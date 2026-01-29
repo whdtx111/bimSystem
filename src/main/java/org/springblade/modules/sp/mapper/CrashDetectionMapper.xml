@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.CrashDetectionMapper">
+
+    <resultMap id="crashDetectionResultMap" type="org.springblade.modules.sp.entity.CrashDetection">
+        <id column="id" property="id"/>
+        <result column="stream_id" property="streamId"/>
+        <result column="branch_id" property="branchId"/>
+        <result column="commit_id" property="commitId"/>
+        <result column="min_io_url" property="minIoUrl"/>
+        <result column="status" property="status"/>
+        <result column="threshold" property="threshold"/>
+        <result column="data" property="data" typeHandler="org.springblade.modules.sp.utils.JsonTypeHandler"/>
+        <result column="modify_user" property="modifyUser"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
+
+    <select id="getById" resultMap="crashDetectionResultMap">
+        SELECT id, stream_id, branch_id, commit_id, min_io_url, status, threshold, data, modify_user, modify_time
+        FROM sp_crash_detection
+        WHERE id = #{id}
+    </select>
+
+    <select id="getByStreamBranchCommit" resultMap="crashDetectionResultMap">
+        SELECT id, stream_id, branch_id, commit_id, min_io_url, status, threshold, data, modify_user, modify_time
+        FROM sp_crash_detection
+        WHERE stream_id = #{streamId} AND branch_id = #{branchId} AND commit_id = #{commitId}
+        ORDER BY modify_time DESC
+        LIMIT 1
+    </select>
+
+    <select id="getByStreamId" resultMap="crashDetectionResultMap">
+        SELECT id, stream_id, branch_id, commit_id, min_io_url, status, threshold, data, modify_user, modify_time
+        FROM sp_crash_detection
+        WHERE stream_id = #{streamId}
+        ORDER BY modify_time DESC
+    </select>
+
+    <select id="getAllCrashDetection" resultMap="crashDetectionResultMap">
+        SELECT id, stream_id, branch_id, commit_id, min_io_url, status, threshold, data, modify_user, modify_time
+        FROM sp_crash_detection
+        ORDER BY modify_time DESC
+    </select>
+
+    <insert id="addCrashDetection" parameterType="org.springblade.modules.sp.entity.CrashDetection">
+        INSERT INTO sp_crash_detection (id, stream_id, branch_id, commit_id, min_io_url, status, threshold, data, modify_user, modify_time)
+        VALUES (#{id}, #{streamId}, #{branchId}, #{commitId}, #{minIoUrl}, #{status}, #{threshold},
+                #{data,typeHandler=org.springblade.modules.sp.utils.JsonTypeHandler}, #{modifyUser}, #{modifyTime})
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM sp_crash_detection WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteByStreamBranchCommit">
+        DELETE FROM sp_crash_detection 
+        WHERE stream_id = #{streamId} AND branch_id = #{branchId} AND commit_id = #{commitId}
+    </delete>
+
+    <update id="updateCrashDetection" parameterType="org.springblade.modules.sp.entity.CrashDetection">
+        UPDATE sp_crash_detection
+        SET stream_id = #{streamId},
+            branch_id = #{branchId},
+            commit_id = #{commitId},
+            min_io_url = #{minIoUrl},
+            status = #{status},
+            threshold = #{threshold},
+            data = #{data,typeHandler=org.springblade.modules.sp.utils.JsonTypeHandler},
+            modify_user = #{modifyUser},
+            modify_time = #{modifyTime}
+        WHERE id = #{id}
+    </update>
+
+</mapper>

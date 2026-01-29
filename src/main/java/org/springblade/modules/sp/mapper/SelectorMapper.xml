@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.SelectorMapper">
+
+    <resultMap id="SelectorResult" type="org.springblade.modules.sp.entity.Selector">
+        <id property="id" column="id"/>
+        <result property="commitIds" column="commit_ids" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="streamId" column="stream_id"/>
+        <result property="elementIds" column="element_ids" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="selectIds" column="select_ids" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="name" column="name"/>
+        <result property="color" column="color"/>
+        <result property="conditions" column="conditions" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!-- 根据ID查询 -->
+    <select id="getById" resultMap="SelectorResult">
+        SELECT * FROM sp_selector WHERE id = #{id} AND status != 9;
+    </select>
+
+    <!-- 条件搜索 -->
+    <select id="searchFilter" resultMap="SelectorResult">
+        SELECT * FROM sp_selector WHERE status != 9
+        <if test="commitIds != null and commitIds != ''">
+            AND commit_ids = #{commitIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler}::text[]
+        </if>
+        <if test="streamId != null and streamId != ''">
+            AND stream_id = #{streamId}
+        </if>
+<!--        <if test="elementIds != null and elementIds.length > 0">-->
+<!--            AND (-->
+<!--            <foreach item="elementId" index="index" collection="elementIds" open="(" separator="OR" close=")">-->
+<!--                #{elementId} = ANY (element_ids)-->
+<!--            </foreach>-->
+<!--            )-->
+<!--        </if>-->
+    </select>
+
+    <!-- 插入记录 -->
+    <insert id="addSelector" parameterType="org.springblade.modules.sp.entity.Selector">
+        INSERT INTO sp_selector (id, commit_ids, stream_id, select_ids, element_ids, name, color, conditions, modify_user, modify_time, status)
+        VALUES (#{id}, #{commitIds, typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler}, #{streamId}, #{selectIds, typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler}, #{elementIds, typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler}, #{name}, #{color}, #{conditions, typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb, #{modifyUser}, #{modifyTime}, #{status});
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="updateSelector" parameterType="org.springblade.modules.sp.entity.Selector">
+        UPDATE sp_selector
+        <set>
+            <if test="commitIds != null">
+                commit_ids = #{commitIds, typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            </if>
+            <if test="streamId != null">
+                stream_id = #{streamId},
+            </if>
+            <if test="selectIds != null">
+                select_ids = #{selectIds, typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            </if>
+            <if test="elementIds != null">
+                element_ids = #{elementIds, typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="color != null">
+                color = #{color},
+            </if>
+            <if test="conditions != null">
+                conditions = #{conditions, typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb,
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser},
+            </if>
+            modify_time = #{modifyTime},
+            status = #{status}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <update id="updateName" parameterType="String">
+        UPDATE sp_selector set name = #{name} where id = #{id};
+    </update>
+    
+    <!-- 根据ID删除记录 -->
+    <delete id="deleteSelectorById" parameterType="String">
+        DELETE FROM sp_selector WHERE id = #{id};
+    </delete>
+
+</mapper>

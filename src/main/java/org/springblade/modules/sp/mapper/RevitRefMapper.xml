@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.RevitRefMapper">
+
+    <resultMap id="RevitRef" type="org.springblade.modules.sp.entity.RevitRef">
+        <id property="id" column="id"/>
+        <result property="nameEn" column="name_en"/>
+        <result property="nameCh" column="name_ch"/>
+        <result property="group" column="group"/>
+    </resultMap>
+
+    <select id="getById" resultType="org.springblade.modules.sp.entity.RevitRef">
+        SELECT * FROM sp_revit_ref WHERE id = #{id}
+    </select>
+
+    <select id="getAllByGroup" resultType="org.springblade.modules.sp.entity.RevitRef">
+        SELECT * FROM sp_revit_ref WHERE sp_revit_ref."group" = #{group}
+    </select>
+
+    <insert id="addRevitRef" parameterType="org.springblade.modules.sp.entity.RevitRef">
+        INSERT INTO sp_revit_ref(id,name_en,name_ch,"group")
+        VALUES(#{id},#{nameEn},#{nameCh},#{group})
+    </insert>
+
+</mapper>

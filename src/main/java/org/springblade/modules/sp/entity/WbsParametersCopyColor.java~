@@ -1,0 +1,26 @@
+package org.springblade.modules.sp.entity;
+
+import lombok.Data;
+import org.springblade.core.mp.base.BaseEntity;
+
+import java.util.UUID;
+
+@Data
+public class WbsParametersCopyColor extends BaseEntity{
+
+    private String id;
+    private String wbsId;
+    private String wbsCode;
+    private String color;
+
+    public WbsParametersCopyColor(String id, String wbsId, String wbsCode, String color) {
+        this.id = UUID.randomUUID().toString();
+        this.wbsId = wbsId;
+        this.wbsCode = wbsCode;
+        this.color = color;
+    }
+
+    public WbsParametersCopyColor() {
+
+    }
+}

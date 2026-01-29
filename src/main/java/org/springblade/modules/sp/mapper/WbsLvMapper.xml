@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.WbsLvMapper">
+
+    <!-- ResultMap定义，映射数据库表中的列与实体类的属性 -->
+    <resultMap id="WbsLvResultMap" type="org.springblade.modules.sp.entity.WbsLv">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="nameCn" column="name_cn"/>
+        <result property="wbsId" column="wbs_id"/>
+    </resultMap>
+
+    <!-- 根据ID获取WbsLv记录 -->
+    <select id="getById" resultMap="WbsLvResultMap">
+        SELECT * FROM sp_wbs_lv WHERE id = #{id};
+    </select>
+
+    <!-- 获取所有WbsLv记录 -->
+    <select id="getWbsLvByWbsId" resultMap="WbsLvResultMap">
+        SELECT * FROM sp_wbs_lv where wbs_id = #{wbsId} order by code asc ;
+    </select>
+
+    <!-- 条件过滤获取WbsLv记录 -->
+    <select id="filterWbsLv" resultMap="WbsLvResultMap">
+        SELECT * FROM sp_wbs_lv
+        WHERE 1=1
+        <if test="code != null and code !=''">
+            AND code = #{code}
+        </if>
+        <if test="nameCn != null and nameCn !=''">
+            AND name_cn LIKE CONCAT('%', #{nameCn}, '%')
+        </if>
+        <if test="wbsId != null and wbsId !=''">
+            AND wbs_id = #{wbsId}
+        </if>
+    </select>
+
+    <!-- 插入新的WbsLv记录 -->
+    <insert id="addWbsLv" parameterType="org.springblade.modules.sp.entity.WbsLv">
+        INSERT INTO sp_wbs_lv(id, code, name_cn,wbs_id)
+        VALUES (#{id}, #{code}, #{nameCn},#{wbsId});
+    </insert>
+
+    <!-- 更新现有的WbsLv记录 -->
+    <update id="updateWbsLv" parameterType="org.springblade.modules.sp.entity.WbsLv">
+        UPDATE sp_wbs_lv
+        <set>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="nameCn != null">
+                name_cn = #{nameCn},
+            </if>
+            <if test="wbsId != null">
+                wbs_id = #{wbsId},
+            </if>
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!-- 删除WbsLv记录 -->
+    <delete id="deleteWbsLv" parameterType="string">
+        DELETE FROM sp_wbs_lv WHERE id = #{id};
+    </delete>
+</mapper>

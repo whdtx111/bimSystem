@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.TemplatePartElementMapper">
+
+    <resultMap id="TemplatePartElementResultMap" type="org.springblade.modules.sp.entity.TemplatePartElement">
+        <id column="id" property="id"/>
+        <result column="template_id" property="templateId"/>
+        <result column="element" property="element"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="getByTemplateId" resultMap="TemplatePartElementResultMap">
+        SELECT * FROM sp_template_part_element WHERE template_id = #{templateId} order by create_time desc limit 1
+    </select>
+
+    <select id="getLatestTwoByTemplateId" resultMap="TemplatePartElementResultMap">
+        SELECT * FROM sp_template_part_element WHERE template_id = #{templateId} ORDER BY create_time DESC LIMIT 2
+    </select>
+
+    <insert id="addTemplatePartElement" parameterType="org.springblade.modules.sp.entity.TemplatePartElement">
+        INSERT INTO sp_template_part_element (id, template_id, element, create_time)
+        VALUES (#{id}, #{templateId}, #{element}::jsonb, #{createTime})
+    </insert>
+
+    <update id="updateTemplatePartElement" parameterType="org.springblade.modules.sp.entity.TemplatePartElement">
+        UPDATE sp_template_part_element
+        SET element = #{element}::jsonb
+        WHERE template_id = #{templateId}
+    </update>
+
+    <delete id="deleteTemplatePartElement">
+        DELETE FROM sp_template_part_element WHERE template_id = #{templateId}
+    </delete>
+
+</mapper>

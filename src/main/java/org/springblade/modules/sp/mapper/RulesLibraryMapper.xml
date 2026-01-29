@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.RulesLibraryMapper">
+    <resultMap id="rulesLibraryResultMap" type="org.springblade.modules.sp.entity.RulesLibrary">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="stream_ids" property="streamIds" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result column="auth" property="auth"/>
+        <result column="status" property="status"/>
+        <result column="user" property="user"/>
+        <result column="source" property="source"/>
+        <result column="description" property="description"/>
+        <result column="created_user" property="createdUser"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 联表查询结果映射 -->
+    <resultMap id="RulesLibraryWithDetailsResultMap" type="org.springblade.modules.sp.vo.RulesLibraryDetailVO">
+        <id column="rl_id" property="id"/>
+        <result column="rl_name" property="name"/>
+        <result column="rl_stream_ids" property="streamIds" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result column="rl_auth" property="auth"/>
+        <result column="rl_status" property="status"/>
+        <result column="rl_user" property="user"/>
+        <result column="rl_source" property="source"/>
+        <result column="rl_description" property="description"/>
+        <result column="rl_created_user" property="createdUser"/>
+        <result column="rl_update_time" property="updateTime"/>
+
+        <collection property="rulesParametersLOD" ofType="org.springblade.modules.sp.entity.RulesParametersLOD" javaType="java.util.List">
+            <id column="rpl_id" property="id"/>
+            <result column="rpl_pid" property="pid"/>
+            <result column="rpl_stream_id" property="streamId"/>
+            <result column="rpl_branch_id" property="branchId"/>
+            <result column="rpl_file_id" property="fileId"/>
+            <result column="rpl_status" property="status"/>
+            <result column="rpl_update_time" property="updateTime"/>
+        </collection>
+
+        <!-- RulesDetail 集合 -->
+        <collection property="rulesDetails" ofType="org.springblade.modules.sp.vo.RulesDetailVO">
+            <id column="rd_id" property="id"/>
+            <result column="rd_pid" property="pid"/>
+            <result column="rd_name" property="name"/>
+            <result column="rd_description" property="description"/>
+            <result column="rd_status" property="status"/>
+            <result column="rd_icon" property="icon"/>
+
+            <!-- RulesParameters 集合 -->
+            <collection property="parameters" ofType="org.springblade.modules.sp.entity.RulesParameters">
+                <id column="rp_id" property="id"/>
+                <result column="rp_detail_id" property="detailId"/>
+                <result column="rp_name" property="name"/>
+                <result column="rp_relation" property="relation"/>
+                <result column="rp_value1" property="value1"/>
+                <result column="rp_value2" property="value2"/>
+                <result column="rp_status" property="status"/>
+                <result column="rp_update_time" property="updateTime"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <!-- 查询单条记录 -->
+    <select id="getRulesLibraryById" resultMap="rulesLibraryResultMap">
+        SELECT * FROM sp_rules_library WHERE id = #{id}
+    </select>
+
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="rulesLibraryResultMap">
+        SELECT * FROM sp_rules_library ORDER BY update_time DESC
+    </select>
+
+    <!-- 联表查询 -->
+    <select id="getRulesLibraryWithDetails" resultMap="RulesLibraryWithDetailsResultMap">
+        SELECT
+            rl.id as rl_id,
+            rl.name as rl_name,
+            rl.stream_ids as rl_stream_ids,
+            rl.auth as rl_auth,
+            rl.status as rl_status,
+            rl."user" as rl_user,
+            rl.source as rl_source,
+            rl.description as rl_description,
+            rl.created_user as rl_created_user,
+            rl.update_time as rl_update_time,
+
+            rpl.id as rpl_id,
+            rpl.pid as rpl_pid,
+            rpl.stream_id as rpl_stream_id,
+            rpl.branch_id as rpl_branch_id,
+            rpl.file_id as rpl_file_id,
+            rpl.status as rpl_status,
+            rpl.update_time as rpl_update_time,
+
+            rd.id as rd_id,
+            rd.pid as rd_pid,
+            rd.name as rd_name,
+            rd.description as rd_description,
+            rd.status as rd_status,
+            rd.icon as rd_icon,
+
+            rp.id as rp_id,
+            rp.detail_id as rp_detail_id,
+            rp.name as rp_name,
+            rp.relation as rp_relation,
+            rp.value1 as rp_value1,
+            rp.value2 as rp_value2,
+            rp.status as rp_status,
+            rp.update_time as rp_update_time
+        FROM
+            sp_rules_library rl
+            LEFT JOIN sp_rules_parameters_lod rpl ON rl.id = rpl.pid
+            LEFT JOIN sp_rules_detail rd ON rl.id = rd.pid
+            LEFT JOIN sp_rules_parameters rp ON rd.id = rp.detail_id
+        WHERE
+            rl.id = #{id}
+    </select>
+
+<!--    全量查询-->
+    <select id="getAllRulesLibraryWithDetails" resultMap="RulesLibraryWithDetailsResultMap">
+        SELECT
+            rl.id as rl_id,
+            rl.name as rl_name,
+            rl.stream_ids as rl_stream_ids,
+            rl.auth as rl_auth,
+            rl.status as rl_status,
+            rl."user" as rl_user,
+            rl.source as rl_source,
+            rl.description as rl_description,
+            rl.created_user as rl_created_user,
+            rl.update_time as rl_update_time,
+
+            rpl.id as rpl_id,
+            rpl.pid as rpl_pid,
+            rpl.stream_id as rpl_stream_id,
+            rpl.branch_id as rpl_branch_id,
+            rpl.file_id as rpl_file_id,
+            rpl.status as rpl_status,
+            rpl.update_time as rpl_update_time,
+
+            rd.id as rd_id,
+            rd.pid as rd_pid,
+            rd.name as rd_name,
+            rd.description as rd_description,
+            rd.status as rd_status,
+            rd.icon as rd_icon,
+
+            rp.id as rp_id,
+            rp.detail_id as rp_detail_id,
+            rp.name as rp_name,
+            rp.relation as rp_relation,
+            rp.value1 as rp_value1,
+            rp.value2 as rp_value2,
+            rp.status as rp_status,
+            rp.update_time as rp_update_time
+        FROM
+            sp_rules_library rl
+                LEFT JOIN sp_rules_parameters_lod rpl ON rl.id = rpl.pid
+                LEFT JOIN sp_rules_detail rd ON rl.id = rd.pid
+                LEFT JOIN sp_rules_parameters rp ON rd.id = rp.detail_id
+        WHERE
+            #{streamId} = ANY(rl.stream_ids)
+    </select>
+
+    <!-- 根据条件查询 -->
+    <select id="filterRulesLibrary" resultMap="rulesLibraryResultMap">
+        SELECT * FROM sp_rules_library
+        <where>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="auth != null and auth != ''">
+                AND auth = #{auth}
+            </if>
+            <if test="source != null and source != ''">
+                AND source = #{source}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+        </where>
+        ORDER BY update_time DESC
+    </select>
+
+    <!-- 插入记录 -->
+    <insert id="addRulesLibrary" parameterType="org.springblade.modules.sp.entity.RulesLibrary">
+        INSERT INTO sp_rules_library (
+            id, name, stream_ids, auth, status, "user", source,description,created_user,update_time
+        ) VALUES (
+                     #{id}, #{name}, #{streamIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+                     #{auth}, #{status}, #{user}, #{source},#{description},#{createdUser},#{updateTime}
+                 )
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertRulesLibraryBatch" parameterType="java.util.List">
+        INSERT INTO sp_rules_library (
+        id, name, stream_ids, auth, status, "user", source,description,created_user,update_time
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id}, #{item.name},
+            #{item.streamIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            #{item.auth}, #{item.status}, #{item.user}, #{item.source},#{item.description},#{item.createdUser},
+            #{item.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="updateRulesLibrary" parameterType="org.springblade.modules.sp.entity.RulesLibrary">
+        UPDATE sp_rules_library
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="streamIds != null">
+                stream_ids = #{streamIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            </if>
+            <if test="auth != null">auth = #{auth},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="user != null">"user" = #{user},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="description != null">description = #{description},</if>
+            update_time = #{updateTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="deleteRulesLibraryById">
+        DELETE FROM sp_rules_library WHERE id = #{id}
+    </delete>
+
+    <!-- 批量删除 -->
+    <delete id="deleteRulesLibraryBatch">
+        DELETE FROM sp_rules_library WHERE id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+</mapper>

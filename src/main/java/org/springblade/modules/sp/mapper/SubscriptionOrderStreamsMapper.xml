@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.SubscriptionOrderStreamsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="subscriptionOrderStreamsResultMap" type="org.springblade.modules.sp.entity.SubscriptionOrderStreams">
+        <id column="id" property="id"/>
+        <result column="order_id" property="orderId"/>
+        <result column="stream_id" property="streamId"/>
+        <result column="name" property="name"/>
+        <result column="used_storage" property="usedStorage"/>
+        <result column="total_storage" property="totalStorage"/>
+        <result column="project_num" property="projectNum"/>
+        <result column="user_num" property="userNum"/>
+        <result column="owner" property="owner"/>
+        <result column="create_time" property="createTime"/>
+        <result column="dead_time" property="deadTime"/>
+    </resultMap>
+
+    <!-- 新增订阅工作流记录 -->
+    <insert id="addSubscriptionOrderStreams" parameterType="org.springblade.modules.sp.entity.SubscriptionOrderStreams">
+        INSERT INTO sp_subscription_order_streams (
+            id, order_id, stream_id, name, used_storage,total_storage,project_num, user_num, owner, create_time, dead_time
+        ) VALUES (
+                     #{id}, #{orderId}, #{streamId}, #{name}, #{usedStorage}, #{totalStorage},#{projectNum}, #{userNum}, #{owner}, #{createTime}, #{deadTime}
+                 )
+    </insert>
+
+    <!-- 更新订阅工作流记录 -->
+    <update id="updateSubscriptionOrderStreams" parameterType="org.springblade.modules.sp.entity.SubscriptionOrderStreams">
+        UPDATE sp_subscription_order_streams
+        <set>
+            <if test="orderId != null">order_id = #{orderId},</if>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="usedStorage != null">used_storage = #{usedStorage},</if>
+            <if test="totalStorage != null">total_storage = #{totalStorage},</if>
+            <if test="projectNum != null">project_num = #{projectNum},</if>
+            <if test="userNum != null">user_num = #{userNum},</if>
+            <if test="owner != null">owner = #{owner},</if>
+            <if test="deadTime != null">dead_time = #{deadTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除订阅工作流记录 -->
+    <delete id="deleteSubscriptionOrderStreams" parameterType="java.lang.String">
+        DELETE FROM sp_subscription_order_streams WHERE id = #{id}
+    </delete>
+
+    <!-- 根据ID查询订阅工作流记录 -->
+    <select id="getById" resultMap="subscriptionOrderStreamsResultMap">
+        SELECT * FROM sp_subscription_order_streams WHERE id = #{id}
+    </select>
+
+    <!-- 根据订阅ID查询工作流记录列表 -->
+    <select id="getByOrderId" resultMap="subscriptionOrderStreamsResultMap">
+        SELECT * FROM sp_subscription_order_streams WHERE order_id = #{orderId}
+    </select>
+
+    <!-- 根据工作流ID查询订阅记录列表 -->
+    <select id="getByStreamId" resultMap="subscriptionOrderStreamsResultMap">
+        SELECT * FROM sp_subscription_order_streams WHERE stream_id = #{streamId}
+    </select>
+
+    <select id="getByStreamIdAndOrderId" resultMap="subscriptionOrderStreamsResultMap">
+        SELECT * FROM sp_subscription_order_streams WHERE order_id = #{orderId} AND stream_id = #{streamId}
+    </select>
+
+</mapper>

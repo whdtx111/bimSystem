@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.EbsMapper">
+
+    <resultMap id="EbsResultMap" type="org.springblade.modules.sp.entity.Ebs">
+        <id property="id" column="id"/>
+        <result property="ebsCode" column="ebs_code"/>
+        <result property="ebsName" column="ebs_name"/>
+        <result property="ebsLv" column="ebs_lv"/>
+        <result property="type" column="type"/>
+        <result property="source" column="source"/>
+        <result property="ebsStatus" column="ebs_status" />
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+    </resultMap>
+
+
+    <select id="getById" resultMap="EbsResultMap">
+        select * from sp_ebs_ref where id = #{id} ;
+    </select>
+
+    <select id="getAllEbs" resultMap="EbsResultMap">
+        select * from sp_ebs_ref ;
+    </select>
+
+    <select id="filterEbs" resultMap="EbsResultMap">
+        SELECT * FROM sp_ebs_ref
+        WHERE 1=1
+        <if test="ebsCode != null and ebsCode !=''">
+            AND ebs_code = #{ebsCode}
+        </if>
+        <if test="ebsName != null and ebsName !=''">
+            AND ebs_name LIKE CONCAT('%', #{ebsName}, '%')
+        </if>
+        <if test="type != null and type !=''">
+            AND type = #{type}
+        </if>
+        <if test="source != null and source !=''">
+            AND source = #{source}
+        </if>
+        <if test="auth != null and auth !=''">
+            AND auth = #{auth}
+        </if>
+        <if test="ebsStatus != null and ebsStatus !=''">
+            AND ebs_status = CAST(#{ebsStatus} AS INTEGER)
+        </if>
+        ORDER BY modify_time DESC
+    </select>
+
+    <insert id="addEbs" parameterType="org.springblade.modules.sp.entity.Ebs">
+        insert into sp_ebs_ref(id,ebs_code,ebs_name,ebs_lv,type,source,auth,modify_user,modify_time,ebs_status)
+        values (#{id},#{ebsCode},#{ebsName},0,#{type},#{source},#{auth},#{modifyUser},#{modifyTime},#{ebsStatus});
+    </insert>
+
+    <update id="updateEbs" parameterType="org.springblade.modules.sp.entity.Ebs">
+        update sp_ebs_ref
+        <set>
+            <if test="ebsCode != null">
+                ebs_code = #{ebsCode},
+            </if>
+            <if test="ebsName != null">
+                ebs_name = #{ebsName},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="source != null">
+                source = #{source},
+            </if>
+            <if test="auth != null">
+                 auth = #{auth},
+            </if>
+            <if test="ebsStatus != null">
+                ebs_status = #{ebsStatus},
+            </if>
+            modify_user = #{modifyUser},
+            modify_time = #{modifyTime}
+        </set>
+        where
+        id = #{id}
+    </update>
+
+    <update id="updateEbsStatus" parameterType="org.springblade.modules.sp.entity.Ebs">
+        update sp_ebs_ref
+        set
+            ebs_status = 1
+        where
+        id = #{id}
+    </update>
+
+    <delete id="deleteEbs" parameterType="string">
+        DELETE FROM sp_ebs_ref WHERE id = #{id}
+    </delete>
+</mapper>

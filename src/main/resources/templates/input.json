@@ -1,0 +1,7054 @@
+[
+  {
+    "id": "002",
+    "name": "吊点需避开洞口",
+    "valuePass": 54,
+    "valueNotPass": 11,
+    "status": "已检测",
+    "passAssemblyPC": [
+      {
+        "name": "VL1N-SP006",
+        "elementId": "3011131",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "8442057",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8442089",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP007",
+        "elementId": "3013543",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3199792",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5385735",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP003",
+        "elementId": "3018837",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3018741",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5385041",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP010",
+        "elementId": "3022089",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3021111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3636426",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP004",
+        "elementId": "3024247",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3023152",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3621870",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP011",
+        "elementId": "3028161",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3199221",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5421646",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP005",
+        "elementId": "3029008",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3025189",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5385055",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP014",
+        "elementId": "3032545",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3031022",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5409327",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP012",
+        "elementId": "3034710",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3118568",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3636500",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP101",
+        "elementId": "3035786",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5421633",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5421638",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP105",
+        "elementId": "3037377",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5427530",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5427532",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP107",
+        "elementId": "3038172",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "8445236",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8445268",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP104",
+        "elementId": "3040523",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5421877",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5422015",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP111",
+        "elementId": "3041126",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5430973",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5431011",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP108",
+        "elementId": "3041889",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5429619",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5429646",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP112",
+        "elementId": "3045950",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5430598",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5430794",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-IP202",
+        "elementId": "3071039",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7828865",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP205",
+        "elementId": "3078774",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3624882",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3624886",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP206",
+        "elementId": "3080683",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7196986",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7196988",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP207",
+        "elementId": "3084483",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "6718651",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7196994",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP208",
+        "elementId": "3086206",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3624835",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3624845",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP209",
+        "elementId": "3087782",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3624819",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3624823",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP202",
+        "elementId": "3092257",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5295809",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295811",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP203",
+        "elementId": "3092312",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5295816",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295818",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP201",
+        "elementId": "3095289",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5295794",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295802",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP211",
+        "elementId": "3095841",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5300661",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5300703",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP210",
+        "elementId": "3097759",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5300495",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5300497",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP201",
+        "elementId": "3100002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3099739",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295778",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP202",
+        "elementId": "3100451",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3100380",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295780",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP204",
+        "elementId": "3100627",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3100485",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295783",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP205",
+        "elementId": "3236265",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3235135",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295789",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP103",
+        "elementId": "3279382",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5421667",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5421672",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP204",
+        "elementId": "3315324",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5295825",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295828",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-1SS2001",
+        "elementId": "3315455",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183210",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183220",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183221",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183222",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-1SS1501",
+        "elementId": "3315911",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183242",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183263",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183265",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183266",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-2SS1502",
+        "elementId": "3369078",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183375",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183376",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183379",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183380",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-1SS2002",
+        "elementId": "3369186",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183229",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183232",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183234",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183235",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-2SS2501",
+        "elementId": "3371954",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183304",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183305",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183306",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183307",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-2SS1501",
+        "elementId": "3371958",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183369",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183370",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183371",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183372",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP102",
+        "elementId": "3469126",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7121892",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7121893",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-3SS1501",
+        "elementId": "3481863",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183345",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183349",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183350",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183351",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-1SS1200",
+        "elementId": "3492678",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5154304",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5154311",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5154313",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5154314",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-2SS2502",
+        "elementId": "3656462",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183383",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183384",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183386",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183387",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-2SS1200",
+        "elementId": "3656472",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183245",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183247",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183248",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183249",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-ST01",
+        "elementId": "3718396",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3753117",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3753118",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3753292",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5342578",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-ST02",
+        "elementId": "3718397",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3763778",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3763780",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5342581",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5342582",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5342585",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5342586",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-ST03",
+        "elementId": "3718398",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3763822",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3763825",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3763830",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5342598",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-ST04",
+        "elementId": "3718399",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3752427",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3752428",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3752517",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3752900",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-ST06",
+        "elementId": "3718400",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3762869",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3762877",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3762881",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3762882",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-RB200",
+        "elementId": "4846352",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "6415634",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6415636",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP212",
+        "elementId": "5316337",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7503361",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8024461",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP213",
+        "elementId": "5316339",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5342849",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6731003",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP215",
+        "elementId": "7853310",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "8030427",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8030428",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-PP214",
+        "elementId": "7855270",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "8028896",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8028897",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      }
+    ],
+    "notPassAssemblyPC": [
+      {
+        "name": "VL1N-SP001",
+        "elementId": "3008093",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "3411358",
+            "issucess": false,
+            "interElementIds": ["5729051"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3411988",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP002",
+        "elementId": "3010088",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "3012290",
+            "issucess": false,
+            "interElementIds": ["4830101"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3012466",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP008",
+        "elementId": "3015901",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5751917",
+            "issucess": false,
+            "interElementIds": ["7467892"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8176810",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP009",
+        "elementId": "3017317",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5387057",
+            "issucess": false,
+            "interElementIds": ["7778108"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7491403",
+            "issucess": false,
+            "interElementIds": ["4830132"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP013",
+        "elementId": "3033605",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "7456625",
+            "issucess": false,
+            "interElementIds": ["4830133"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP102",
+        "elementId": "3036578",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5409338",
+            "issucess": false,
+            "interElementIds": ["7865343"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5421656",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP203",
+        "elementId": "3100753",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "3100686",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295786",
+            "issucess": false,
+            "interElementIds": ["7706376"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP110",
+        "elementId": "3218601",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5431315",
+            "issucess": false,
+            "interElementIds": ["7565719"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5431372",
+            "issucess": false,
+            "interElementIds": ["4843199"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP109",
+        "elementId": "3221450",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5431708",
+            "issucess": false,
+            "interElementIds": ["7661100"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5431752",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-SP106",
+        "elementId": "3222002",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "3221995",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6932972",
+            "issucess": false,
+            "interElementIds": ["7562347"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      },
+      {
+        "name": "VL1N-RB100",
+        "elementId": "4846362",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5374988",
+            "issucess": false,
+            "interElementIds": ["7769467"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5376237",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": []
+      }
+    ],
+    "lodElement": null,
+    "isSuccess": false,
+    "streamId": "a2667e2b64",
+    "branchId": "687e4bb370",
+    "commitId": "4f352831d3"
+  },
+  {
+    "id": "001",
+    "name": "吊点布置需双数",
+    "valuePass": 88,
+    "valueNotPass": 2,
+    "status": "已检测",
+    "passAssemblyPC": [
+      {
+        "name": "VL1N-IP002",
+        "elementId": "2938617",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP011",
+        "elementId": "2952155",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP010",
+        "elementId": "2955048",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP106",
+        "elementId": "2965862",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP107",
+        "elementId": "2969344",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP105",
+        "elementId": "2972740",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP104",
+        "elementId": "2977041",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP103",
+        "elementId": "2978235",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP102",
+        "elementId": "2984958",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP111",
+        "elementId": "2987984",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP108",
+        "elementId": "2991302",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP109",
+        "elementId": "2993195",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP110",
+        "elementId": "2997824",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP001",
+        "elementId": "3008093",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3411358",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3411988",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP002",
+        "elementId": "3010088",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3012290",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3012466",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP006",
+        "elementId": "3011131",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "8442057",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8442089",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP007",
+        "elementId": "3013543",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3199792",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5385735",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP008",
+        "elementId": "3015901",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5751917",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8176810",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP009",
+        "elementId": "3017317",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5387057",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7491403",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP003",
+        "elementId": "3018837",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3018741",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5385041",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP010",
+        "elementId": "3022089",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3021111",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3636426",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP004",
+        "elementId": "3024247",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3023152",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3621870",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP011",
+        "elementId": "3028161",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3199221",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5421646",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP005",
+        "elementId": "3029008",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3025189",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5385055",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP014",
+        "elementId": "3032545",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3031022",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5409327",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP012",
+        "elementId": "3034710",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3118568",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3636500",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP101",
+        "elementId": "3035786",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5421633",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5421638",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP102",
+        "elementId": "3036578",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5409338",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5421656",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP105",
+        "elementId": "3037377",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5427530",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5427532",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP107",
+        "elementId": "3038172",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "8445236",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8445268",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP104",
+        "elementId": "3040523",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5421877",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5422015",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP111",
+        "elementId": "3041126",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5430973",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5431011",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP108",
+        "elementId": "3041889",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5429619",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5429646",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP112",
+        "elementId": "3045950",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5430598",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5430794",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP206",
+        "elementId": "3059955",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP207",
+        "elementId": "3065897",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP201",
+        "elementId": "3067685",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP203",
+        "elementId": "3071366",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP204",
+        "elementId": "3074740",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP205",
+        "elementId": "3078774",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3624882",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3624886",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP206",
+        "elementId": "3080683",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7196986",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7196988",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP207",
+        "elementId": "3084483",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "6718651",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7196994",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP208",
+        "elementId": "3086206",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3624835",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3624845",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP209",
+        "elementId": "3087782",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3624819",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3624823",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP202",
+        "elementId": "3092257",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5295809",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295811",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP203",
+        "elementId": "3092312",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5295816",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295818",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP201",
+        "elementId": "3095289",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5295794",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295802",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP211",
+        "elementId": "3095841",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5300661",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5300703",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP210",
+        "elementId": "3097759",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5300495",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5300497",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP201",
+        "elementId": "3100002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3099739",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295778",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP202",
+        "elementId": "3100451",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3100380",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295780",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP204",
+        "elementId": "3100627",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3100485",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295783",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP203",
+        "elementId": "3100753",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3100686",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295786",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP110",
+        "elementId": "3218601",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5431315",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5431372",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP109",
+        "elementId": "3221450",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5431708",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5431752",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP106",
+        "elementId": "3222002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3221995",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6932972",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP205",
+        "elementId": "3236265",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3235135",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295789",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP003",
+        "elementId": "3253766",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP007",
+        "elementId": "3256801",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP006",
+        "elementId": "3259528",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP005",
+        "elementId": "3262590",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP004",
+        "elementId": "3265670",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP008",
+        "elementId": "3267058",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP103",
+        "elementId": "3279382",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5421667",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5421672",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP101",
+        "elementId": "3281870",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP001",
+        "elementId": "3285101",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP009",
+        "elementId": "3286962",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP204",
+        "elementId": "3315324",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5295825",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295828",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-1SS2001",
+        "elementId": "3315455",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183210",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183220",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183221",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183222",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-1SS1501",
+        "elementId": "3315911",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183242",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183263",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183265",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183266",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2SS1502",
+        "elementId": "3369078",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183375",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183376",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183379",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183380",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-1SS1502",
+        "elementId": "3369182",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7080347",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7082174",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7082175",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7082176",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-1SS2002",
+        "elementId": "3369186",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183229",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183232",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183234",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183235",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2SS2501",
+        "elementId": "3371954",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183304",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183305",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183306",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183307",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2SS1501",
+        "elementId": "3371958",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183369",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183370",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183371",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183372",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP102",
+        "elementId": "3469126",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7121892",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7121893",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-3SS1501",
+        "elementId": "3481863",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183345",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183349",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183350",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183351",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-1SS1200",
+        "elementId": "3492678",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5154304",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5154311",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5154313",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5154314",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2SS2502",
+        "elementId": "3656462",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183383",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183384",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183386",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183387",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2SS1200",
+        "elementId": "3656472",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5183245",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183247",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183248",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5183249",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-RB200",
+        "elementId": "4846352",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "6415634",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6415636",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-RB100",
+        "elementId": "4846362",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5374988",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5376237",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP212",
+        "elementId": "5316337",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7503361",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8024461",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP213",
+        "elementId": "5316339",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5342849",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6731003",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP215",
+        "elementId": "7853310",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "8030427",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8030428",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP214",
+        "elementId": "7855270",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "8028896",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8028897",
+            "issucess": true,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      }
+    ],
+    "notPassAssemblyPC": [
+      {
+        "name": "VL1N-SP013",
+        "elementId": "3033605",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "7456625",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP202",
+        "elementId": "3071039",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "7828865",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      }
+    ],
+    "lodElement": null,
+    "isSuccess": false,
+    "streamId": "a2667e2b64",
+    "branchId": "687e4bb370",
+    "commitId": "4f352831d3"
+  },
+  {
+    "id": "003",
+    "name": "预埋管线交叉不能碰撞",
+    "valuePass": 54,
+    "valueNotPass": 0,
+    "status": "已检测",
+    "passAssemblyPC": [
+      {
+        "name": "VL1N-IP002",
+        "elementId": "2938617",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "6761600",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP108",
+        "elementId": "2991302",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4822695",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6249742",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6249748",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8178624",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8179714",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP108",
+        "elementId": "2991302",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4822695",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6249742",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6249748",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8178624",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8179714",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP108",
+        "elementId": "2991302",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4822695",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6249742",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6249748",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8178624",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8179714",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP108",
+        "elementId": "2991302",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4822695",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6249742",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6249748",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8178624",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8179714",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP108",
+        "elementId": "2991302",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4822695",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6249742",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6249748",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8178624",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8179714",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP109",
+        "elementId": "2993195",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4716591",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6932833",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6932836",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP109",
+        "elementId": "2993195",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4716591",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6932833",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6932836",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP109",
+        "elementId": "2993195",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4716591",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6932833",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6932836",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP002",
+        "elementId": "3010088",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4735398",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8381588",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8381794",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP002",
+        "elementId": "3010088",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4735398",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8381588",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8381794",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP002",
+        "elementId": "3010088",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4735398",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8381588",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8381794",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP102",
+        "elementId": "3036578",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7278283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278289",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278292",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278295",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP102",
+        "elementId": "3036578",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7278283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278289",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278292",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278295",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP102",
+        "elementId": "3036578",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7278283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278289",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278292",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278295",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP102",
+        "elementId": "3036578",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7278283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278289",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278292",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7278295",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP205",
+        "elementId": "3055002",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4802441",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802451",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4802455",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647412",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647414",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647417",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647425",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6647431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485002",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7485283",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7496393",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7714458",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8244431",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP201",
+        "elementId": "3067685",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "6681293",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8353817",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8354094",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP201",
+        "elementId": "3067685",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "6681293",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8353817",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8354094",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP201",
+        "elementId": "3067685",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "6681293",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8353817",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8354094",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP203",
+        "elementId": "3071366",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7714464",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP008",
+        "elementId": "3267058",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5200364",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641725",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641727",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641734",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641984",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP008",
+        "elementId": "3267058",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5200364",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641725",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641727",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641734",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641984",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP008",
+        "elementId": "3267058",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5200364",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641725",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641727",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641734",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641984",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP008",
+        "elementId": "3267058",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5200364",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641725",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641727",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641734",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641984",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP008",
+        "elementId": "3267058",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5200364",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641725",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641727",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641734",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6641984",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP001",
+        "elementId": "3285101",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4573885",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4574222",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP001",
+        "elementId": "3285101",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4573885",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4574222",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP009",
+        "elementId": "3286962",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4716596",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4716599",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4778469",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6686278",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP009",
+        "elementId": "3286962",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4716596",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4716599",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4778469",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6686278",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP009",
+        "elementId": "3286962",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4716596",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4716599",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4778469",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6686278",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP009",
+        "elementId": "3286962",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "4716596",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4716599",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "4778469",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6686278",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3873085",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6250169",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859108",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859121",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859124",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8351940",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352069",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352355",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352366",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3873085",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6250169",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859108",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859121",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859124",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8351940",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352069",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352355",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352366",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3873085",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6250169",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859108",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859121",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859124",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8351940",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352069",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352355",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352366",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3873085",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6250169",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859108",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859121",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859124",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8351940",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352069",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352355",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352366",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3873085",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6250169",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859108",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859121",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859124",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8351940",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352069",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352355",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352366",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3873085",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6250169",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859108",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859121",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859124",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8351940",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352069",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352355",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352366",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3873085",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6250169",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859108",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859121",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859124",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8351940",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352069",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352355",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352366",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3873085",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6250169",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859108",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859121",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859124",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8351940",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352069",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352355",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352366",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3873085",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6250169",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859108",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859121",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859124",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8351940",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352069",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352355",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352366",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3873085",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6250169",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859108",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859111",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859121",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6859124",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8351940",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352069",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352355",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "8352366",
+            "issucess": true,
+            "interElementIds": [],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      }
+    ],
+    "notPassAssemblyPC": [],
+    "lodElement": null,
+    "isSuccess": false,
+    "streamId": "a2667e2b64",
+    "branchId": "687e4bb370",
+    "commitId": "4f352831d3"
+  },
+  {
+    "id": "004",
+    "name": "上下墙板插筋波纹管连接能否对上",
+    "valuePass": 71,
+    "valueNotPass": 6,
+    "status": "已检测",
+    "passAssemblyPC": [
+      {
+        "name": "VL1N-IP106",
+        "elementId": "2965862",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5337464",
+            "issucess": true,
+            "interElementIds": ["5337464"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5338036",
+            "issucess": true,
+            "interElementIds": ["5338036"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP107",
+        "elementId": "2969344",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5339384",
+            "issucess": true,
+            "interElementIds": ["5339384"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5339494",
+            "issucess": true,
+            "interElementIds": ["5339494"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP105",
+        "elementId": "2972740",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5335348",
+            "issucess": true,
+            "interElementIds": ["5335348"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5335451",
+            "issucess": true,
+            "interElementIds": ["5335451"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5335491",
+            "issucess": true,
+            "interElementIds": ["5335491"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP104",
+        "elementId": "2977041",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "2972882",
+            "issucess": true,
+            "interElementIds": ["2972882"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5300880",
+            "issucess": true,
+            "interElementIds": ["5300880"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5300881",
+            "issucess": true,
+            "interElementIds": ["5300881"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP103",
+        "elementId": "2978235",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "2977245",
+            "issucess": true,
+            "interElementIds": ["2977245"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "3558605",
+            "issucess": true,
+            "interElementIds": ["3558605"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP102",
+        "elementId": "2984958",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5332267",
+            "issucess": true,
+            "interElementIds": ["5332267"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5332601",
+            "issucess": true,
+            "interElementIds": ["5332601"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP111",
+        "elementId": "2987984",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "2987490",
+            "issucess": true,
+            "interElementIds": ["2987490"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5309561",
+            "issucess": true,
+            "interElementIds": ["5309561"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP108",
+        "elementId": "2991302",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5307620",
+            "issucess": true,
+            "interElementIds": ["5307620"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5307622",
+            "issucess": true,
+            "interElementIds": ["5307622"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5309238",
+            "issucess": true,
+            "interElementIds": ["5309238"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP109",
+        "elementId": "2993195",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5341128",
+            "issucess": true,
+            "interElementIds": ["5341128"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5341129",
+            "issucess": true,
+            "interElementIds": ["5341129"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP110",
+        "elementId": "2997824",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "2997817",
+            "issucess": true,
+            "interElementIds": ["2997817"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP101",
+        "elementId": "3035786",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5408821",
+            "issucess": true,
+            "interElementIds": ["5408821"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5408847",
+            "issucess": true,
+            "interElementIds": ["5408847"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP102",
+        "elementId": "3036578",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5410992",
+            "issucess": true,
+            "interElementIds": ["5410992"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5410993",
+            "issucess": true,
+            "interElementIds": ["5410993"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP105",
+        "elementId": "3037377",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "7515519",
+            "issucess": true,
+            "interElementIds": ["7515519"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "7515547",
+            "issucess": true,
+            "interElementIds": ["7515547"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP107",
+        "elementId": "3038172",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5420148",
+            "issucess": true,
+            "interElementIds": ["5420148"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5420157",
+            "issucess": true,
+            "interElementIds": ["5420157"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP104",
+        "elementId": "3040523",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP111",
+        "elementId": "3041126",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP108",
+        "elementId": "3041889",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "3629088",
+            "issucess": true,
+            "interElementIds": ["3629088"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "6734668",
+            "issucess": true,
+            "interElementIds": ["6734668"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP112",
+        "elementId": "3045950",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP110",
+        "elementId": "3218601",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5420871",
+            "issucess": true,
+            "interElementIds": ["5420871"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5420879",
+            "issucess": true,
+            "interElementIds": ["5420879"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP109",
+        "elementId": "3221450",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5421427",
+            "issucess": true,
+            "interElementIds": ["5421427"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5421467",
+            "issucess": true,
+            "interElementIds": ["5421467"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP106",
+        "elementId": "3222002",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "3221980",
+            "issucess": true,
+            "interElementIds": ["3221980"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5419364",
+            "issucess": true,
+            "interElementIds": ["5419364"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP103",
+        "elementId": "3279382",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP101",
+        "elementId": "3281870",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP101",
+        "elementId": "3360087",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "3460917",
+            "issucess": true,
+            "interElementIds": ["3460917"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295008",
+            "issucess": true,
+            "interElementIds": ["5295008"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295009",
+            "issucess": true,
+            "interElementIds": ["5295009"],
+            "interNotElementIds": null
+          },
+          {
+            "elementId": "5295010",
+            "issucess": true,
+            "interElementIds": ["5295010"],
+            "interNotElementIds": null
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2SS1502",
+        "elementId": "3369078",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC1506",
+        "elementId": "3369080",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC1507",
+        "elementId": "3369082",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2506",
+        "elementId": "3369087",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2507",
+        "elementId": "3369089",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2SS2501",
+        "elementId": "3371954",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC1500",
+        "elementId": "3371956",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2SS1501",
+        "elementId": "3371958",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC1504",
+        "elementId": "3371960",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2503",
+        "elementId": "3371962",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-PP102",
+        "elementId": "3469126",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC1508",
+        "elementId": "3656461",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2SS2502",
+        "elementId": "3656462",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2513",
+        "elementId": "3656464",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2512",
+        "elementId": "3656465",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2509",
+        "elementId": "3656468",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2508",
+        "elementId": "3656469",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2501",
+        "elementId": "3656470",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2500",
+        "elementId": "3656471",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2SS1200",
+        "elementId": "3656472",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC1501",
+        "elementId": "3656474",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-ST04",
+        "elementId": "3718399",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-ST06",
+        "elementId": "3718400",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-RB200",
+        "elementId": "4846352",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2510",
+        "elementId": "4991445",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC2511",
+        "elementId": "4991447",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-2HC1505",
+        "elementId": "5110702",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SU001",
+        "elementId": "5329964",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SU001",
+        "elementId": "8709484",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SU001",
+        "elementId": "8709497",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SU001",
+        "elementId": "8709528",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SU001",
+        "elementId": "8709545",
+        "isPass": false,
+        "partsOne": [],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP001",
+        "elementId": "3008093",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5388311",
+            "issucess": true,
+            "interElementIds": ["5408821"],
+            "interNotElementIds": ["5337464", "5338036"]
+          },
+          {
+            "elementId": "5388312",
+            "issucess": true,
+            "interElementIds": ["5408847"],
+            "interNotElementIds": ["5337464", "5338036", "5408821"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP005",
+        "elementId": "3262590",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5295338",
+            "issucess": true,
+            "interElementIds": ["5335451"],
+            "interNotElementIds": ["5337464", "5338036", "5335348"]
+          },
+          {
+            "elementId": "7769914",
+            "issucess": true,
+            "interElementIds": ["5335348"],
+            "interNotElementIds": ["5337464", "5338036"]
+          },
+          {
+            "elementId": "7769915",
+            "issucess": true,
+            "interElementIds": ["5335491"],
+            "interNotElementIds": ["5337464", "5338036", "5335348", "5335451"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP008",
+        "elementId": "3267058",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5272133",
+            "issucess": true,
+            "interElementIds": ["5309238"],
+            "interNotElementIds": [
+              "5339384",
+              "5339494",
+              "2972882",
+              "5300880",
+              "5300881",
+              "5307620",
+              "5307622"
+            ]
+          },
+          {
+            "elementId": "5272541",
+            "issucess": true,
+            "interElementIds": ["5307620"],
+            "interNotElementIds": [
+              "5339384",
+              "5339494",
+              "2972882",
+              "5300880",
+              "5300881"
+            ]
+          },
+          {
+            "elementId": "5310322",
+            "issucess": true,
+            "interElementIds": ["5307622"],
+            "interNotElementIds": [
+              "5339384",
+              "5339494",
+              "2972882",
+              "5300880",
+              "5300881",
+              "5307620"
+            ]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP004",
+        "elementId": "3265670",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "2924936",
+            "issucess": true,
+            "interElementIds": ["5300881"],
+            "interNotElementIds": [
+              "5335348",
+              "5335451",
+              "5335491",
+              "2972882",
+              "5300880"
+            ]
+          },
+          {
+            "elementId": "5294382",
+            "issucess": true,
+            "interElementIds": ["5300880"],
+            "interNotElementIds": ["5335348", "5335451", "5335491", "2972882"]
+          },
+          {
+            "elementId": "5294398",
+            "issucess": true,
+            "interElementIds": ["2972882"],
+            "interNotElementIds": ["5335348", "5335451", "5335491"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP010",
+        "elementId": "2955048",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5319621",
+            "issucess": true,
+            "interElementIds": ["2997817"],
+            "interNotElementIds": ["2972882", "5300880", "5300881"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP006",
+        "elementId": "3011131",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5391436",
+            "issucess": true,
+            "interElementIds": ["5420157"],
+            "interNotElementIds": [
+              "2972882",
+              "5300880",
+              "5300881",
+              "7515519",
+              "7515547",
+              "5420148"
+            ]
+          },
+          {
+            "elementId": "5391528",
+            "issucess": true,
+            "interElementIds": ["5420148"],
+            "interNotElementIds": [
+              "2972882",
+              "5300880",
+              "5300881",
+              "7515519",
+              "7515547"
+            ]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP007",
+        "elementId": "3013543",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5424799",
+            "issucess": true,
+            "interElementIds": ["6734668"],
+            "interNotElementIds": ["2972882", "5300880", "5300881", "3629088"]
+          },
+          {
+            "elementId": "5424800",
+            "issucess": true,
+            "interElementIds": ["3629088"],
+            "interNotElementIds": ["2972882", "5300880", "5300881"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP008",
+        "elementId": "3015901",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7494428",
+            "issucess": true,
+            "interElementIds": ["5421467"],
+            "interNotElementIds": ["2972882", "5300880", "5300881", "5421427"]
+          },
+          {
+            "elementId": "7494437",
+            "issucess": true,
+            "interElementIds": ["5421427"],
+            "interNotElementIds": ["2972882", "5300880", "5300881"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP009",
+        "elementId": "3017317",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "7494434",
+            "issucess": true,
+            "interElementIds": ["5420871"],
+            "interNotElementIds": [
+              "2972882",
+              "5300880",
+              "5300881",
+              "7515519",
+              "7515547"
+            ]
+          },
+          {
+            "elementId": "8440095",
+            "issucess": true,
+            "interElementIds": ["5420879"],
+            "interNotElementIds": [
+              "2972882",
+              "5300880",
+              "5300881",
+              "7515519",
+              "7515547",
+              "5420871"
+            ]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP004",
+        "elementId": "3024247",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5418981",
+            "issucess": true,
+            "interElementIds": ["7515547"],
+            "interNotElementIds": ["2972882", "5300880", "5300881", "7515519"]
+          },
+          {
+            "elementId": "5418982",
+            "issucess": true,
+            "interElementIds": ["7515519"],
+            "interNotElementIds": ["2972882", "5300880", "5300881"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP005",
+        "elementId": "3029008",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "3025194",
+            "issucess": true,
+            "interElementIds": ["5419364"],
+            "interNotElementIds": [
+              "2972882",
+              "5300880",
+              "5300881",
+              "7515519",
+              "7515547",
+              "5420871",
+              "5420879",
+              "3221980"
+            ]
+          },
+          {
+            "elementId": "5391122",
+            "issucess": true,
+            "interElementIds": ["3221980"],
+            "interNotElementIds": [
+              "2972882",
+              "5300880",
+              "5300881",
+              "7515519",
+              "7515547",
+              "5420871",
+              "5420879"
+            ]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP003",
+        "elementId": "3253766",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "2927583",
+            "issucess": true,
+            "interElementIds": ["3558605"],
+            "interNotElementIds": ["2972882", "5300880", "5300881", "2977245"]
+          },
+          {
+            "elementId": "5342551",
+            "issucess": true,
+            "interElementIds": ["2977245"],
+            "interNotElementIds": ["2972882", "5300880", "5300881"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP009",
+        "elementId": "3286962",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5300856",
+            "issucess": true,
+            "interElementIds": ["5341129"],
+            "interNotElementIds": [
+              "2972882",
+              "5300880",
+              "5300881",
+              "5307620",
+              "5307622",
+              "5309238",
+              "5341128"
+            ]
+          },
+          {
+            "elementId": "5310320",
+            "issucess": true,
+            "interElementIds": ["5341128"],
+            "interNotElementIds": [
+              "2972882",
+              "5300880",
+              "5300881",
+              "5307620",
+              "5307622",
+              "5309238"
+            ]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP002",
+        "elementId": "2938617",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5699434",
+            "issucess": true,
+            "interElementIds": ["5332267"],
+            "interNotElementIds": ["2977245", "3558605"]
+          },
+          {
+            "elementId": "5699435",
+            "issucess": true,
+            "interElementIds": ["5332601"],
+            "interNotElementIds": ["2977245", "3558605", "5332267"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP001",
+        "elementId": "3285101",
+        "isPass": true,
+        "partsOne": [
+          {
+            "elementId": "5236520",
+            "issucess": true,
+            "interElementIds": ["3460917"],
+            "interNotElementIds": ["5332267", "5332601", "2987490", "5309561"]
+          },
+          {
+            "elementId": "5342505",
+            "issucess": true,
+            "interElementIds": ["5295010"],
+            "interNotElementIds": [
+              "5332267",
+              "5332601",
+              "2987490",
+              "5309561",
+              "3460917",
+              "5295008",
+              "5295009"
+            ]
+          },
+          {
+            "elementId": "5342508",
+            "issucess": true,
+            "interElementIds": ["5295009"],
+            "interNotElementIds": [
+              "5332267",
+              "5332601",
+              "2987490",
+              "5309561",
+              "3460917",
+              "5295008"
+            ]
+          },
+          {
+            "elementId": "5342509",
+            "issucess": true,
+            "interElementIds": ["5295008"],
+            "interNotElementIds": [
+              "5332267",
+              "5332601",
+              "2987490",
+              "5309561",
+              "3460917"
+            ]
+          }
+        ],
+        "partsElse": null
+      }
+    ],
+    "notPassAssemblyPC": [
+      {
+        "name": "VL1N-IP007",
+        "elementId": "3256801",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5300845",
+            "issucess": true,
+            "interElementIds": ["5339384"],
+            "interNotElementIds": ["5337464", "5338036"]
+          },
+          {
+            "elementId": "5307803",
+            "issucess": true,
+            "interElementIds": ["5339494"],
+            "interNotElementIds": ["5337464", "5338036", "5339384"]
+          },
+          {
+            "elementId": "8472497",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": [
+              "5337464",
+              "5338036",
+              "5339384",
+              "5339494",
+              "5307620",
+              "5307622",
+              "5309238"
+            ]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP006",
+        "elementId": "3259528",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5295661",
+            "issucess": true,
+            "interElementIds": ["5338036"],
+            "interNotElementIds": ["5337464"]
+          },
+          {
+            "elementId": "2892153",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": [
+              "5338036",
+              "5339384",
+              "5339494",
+              "5335348",
+              "5335451",
+              "5335491",
+              "5408821",
+              "5408847"
+            ]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP011",
+        "elementId": "3028161",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "7078238",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": ["2972882", "5300880", "5300881"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP014",
+        "elementId": "3032545",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5410838",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": ["2972882", "5300880", "5300881"]
+          },
+          {
+            "elementId": "5410896",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": ["2972882", "5300880", "5300881"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-IP011",
+        "elementId": "2952155",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5319623",
+            "issucess": true,
+            "interElementIds": ["5309561"],
+            "interNotElementIds": ["2987490"]
+          },
+          {
+            "elementId": "5300872",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": ["5309561"]
+          }
+        ],
+        "partsElse": null
+      },
+      {
+        "name": "VL1N-SP002",
+        "elementId": "3010088",
+        "isPass": false,
+        "partsOne": [
+          {
+            "elementId": "5389140",
+            "issucess": true,
+            "interElementIds": ["5410993"],
+            "interNotElementIds": ["5410992"]
+          },
+          {
+            "elementId": "5389109",
+            "issucess": false,
+            "interElementIds": null,
+            "interNotElementIds": ["5410993"]
+          }
+        ],
+        "partsElse": null
+      }
+    ],
+    "lodElement": null,
+    "isSuccess": false,
+    "streamId": "a2667e2b64",
+    "branchId": "687e4bb370",
+    "commitId": "4f352831d3"
+  }
+]

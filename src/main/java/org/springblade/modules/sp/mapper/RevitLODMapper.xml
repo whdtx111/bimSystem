@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.RevitLODMapper">
+
+    <resultMap id="revitLODResultMap" type="org.springblade.modules.sp.entity.RevitLOD">
+        <id column="id" property="id"/>
+        <result column="check_id" property="checkId"/>
+        <result column="stream_id" property="streamId"/>
+        <result column="branch_id" property="branchId"/>
+        <result column="commit_id" property="commitId"/>
+        <result column="name" property="name"/>
+        <result column="value_pass" property="valuePass"/>
+        <result column="value_not_pass" property="valueNotPass"/>
+        <result column="check_status" property="checkStatus"/>
+        <result column="is_pass" property="isPass"/>
+        <result column="data" property="data" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result column="created_time" property="createdTime"/>
+    </resultMap>
+
+    <!-- 根据id查询 -->
+    <select id="getById" resultMap="revitLODResultMap">
+        SELECT id, check_id, stream_id, branch_id, commit_id, name, value_pass, value_not_pass, 
+               check_status, is_pass, data, created_time
+        FROM sp_revit_lod
+        WHERE id = #{id}
+    </select>
+
+    <!-- 根据checkId查询 -->
+    <select id="getByCheckId" resultMap="revitLODResultMap">
+        SELECT id, check_id, stream_id, branch_id, commit_id, name, value_pass, value_not_pass, 
+               check_status, is_pass, data, created_time
+        FROM sp_revit_lod
+        WHERE check_id = #{checkId}
+    </select>
+
+    <!-- 根据streamId、branchId、commitId查询列表 -->
+    <select id="getByStreamBranchCommit" resultMap="revitLODResultMap">
+        SELECT id, check_id, stream_id, branch_id, commit_id, name, value_pass, value_not_pass, 
+               check_status, is_pass, data, created_time
+        FROM sp_revit_lod
+        WHERE stream_id = #{streamId} AND branch_id = #{branchId} AND commit_id = #{commitId}
+        ORDER BY created_time DESC
+        LIMIT 1
+    </select>
+
+    <!-- 根据streamId、branchId、commitId、checkId查询记录 -->
+    <select id="getByStreamBranchCommitAndCheckId" resultMap="revitLODResultMap">
+        SELECT id, check_id, stream_id, branch_id, commit_id, name, value_pass, value_not_pass, 
+               check_status, is_pass, data, created_time
+        FROM sp_revit_lod
+        WHERE stream_id = #{streamId} AND branch_id = #{branchId} AND commit_id = #{commitId} AND check_id = #{checkId}
+        ORDER BY created_time DESC
+        LIMIT 1
+    </select>
+
+    <!-- 根据streamId、branchId、commitId查询所有记录列表 -->
+    <select id="getListByStreamBranchCommit" resultMap="revitLODResultMap">
+        SELECT id, check_id, stream_id, branch_id, commit_id, name, value_pass, value_not_pass, 
+               check_status, is_pass, data, created_time
+        FROM sp_revit_lod
+        WHERE stream_id = #{streamId} AND branch_id = #{branchId} AND commit_id = #{commitId}
+        ORDER BY check_id NULLS LAST, created_time DESC
+    </select>
+
+    <!-- 根据streamId、branchId查询最新的记录列表（不需要commitId，按created_time获取每个checkId的最新记录） -->
+    <select id="getLatestListByStreamBranch" resultMap="revitLODResultMap">
+        SELECT DISTINCT ON (check_id) id, check_id, stream_id, branch_id, commit_id, name, value_pass, value_not_pass, 
+               check_status, is_pass, data, created_time
+        FROM sp_revit_lod
+        WHERE stream_id = #{streamId} AND branch_id = #{branchId}
+        ORDER BY check_id NULLS LAST, created_time DESC
+    </select>
+
+    <!-- 根据streamId查询列表 -->
+    <select id="getByStreamId" resultMap="revitLODResultMap">
+        SELECT id, check_id, stream_id, branch_id, commit_id, name, value_pass, value_not_pass, 
+               check_status, is_pass, data, created_time
+        FROM sp_revit_lod
+        WHERE stream_id = #{streamId}
+        ORDER BY created_time DESC
+    </select>
+
+    <!-- 新增 -->
+    <insert id="addRevitLOD" parameterType="org.springblade.modules.sp.entity.RevitLOD">
+        INSERT INTO sp_revit_lod (id, check_id, stream_id, branch_id, commit_id, name, value_pass, value_not_pass, 
+                                  check_status, is_pass, data, created_time)
+        VALUES (#{id}, #{checkId}, #{streamId}, #{branchId}, #{commitId}, #{name}, #{valuePass}, #{valueNotPass}, 
+                #{checkStatus}, #{isPass}, #{data,typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}, #{createdTime})
+    </insert>
+
+    <!-- 根据id删除 -->
+    <delete id="deleteById">
+        DELETE FROM sp_revit_lod WHERE id = #{id}
+    </delete>
+
+    <!-- 根据checkId删除 -->
+    <delete id="deleteByCheckId">
+        DELETE FROM sp_revit_lod WHERE check_id = #{checkId}
+    </delete>
+
+    <!-- 更新 -->
+    <update id="updateRevitLOD" parameterType="org.springblade.modules.sp.entity.RevitLOD">
+        UPDATE sp_revit_lod
+        SET check_id = #{checkId},
+            stream_id = #{streamId},
+            branch_id = #{branchId},
+            commit_id = #{commitId},
+            name = #{name},
+            value_pass = #{valuePass},
+            value_not_pass = #{valueNotPass},
+            check_status = #{checkStatus},
+            is_pass = #{isPass},
+            data = #{data,typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler},
+            created_time = #{createdTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 获取所有数据 -->
+    <select id="getAllRevitLOD" resultMap="revitLODResultMap">
+        SELECT id, check_id, stream_id, branch_id, commit_id, name, value_pass, value_not_pass, 
+               check_status, is_pass, data, created_time
+        FROM sp_revit_lod
+        ORDER BY created_time DESC
+    </select>
+
+</mapper>

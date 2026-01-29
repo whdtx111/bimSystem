@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.RulesDetailMapper">
+    <resultMap id="rulesDetailResultMap" type="org.springblade.modules.sp.entity.RulesDetail">
+        <id column="id" property="id"/>
+        <result column="pid" property="pid"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="status" property="status"/>
+        <result column="icon" property="icon"/>
+    </resultMap>
+
+    <!-- 查询单条记录 -->
+    <select id="getRulesDetailById" resultMap="rulesDetailResultMap">
+        SELECT * FROM sp_rules_detail WHERE id = #{id}
+    </select>
+
+    <!-- 根据pid查询 -->
+    <select id="getRulesDetailByPid" resultMap="rulesDetailResultMap">
+        SELECT * FROM sp_rules_detail WHERE pid = #{pid}
+    </select>
+
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="rulesDetailResultMap">
+        SELECT * FROM sp_rules_detail
+    </select>
+
+    <!-- 插入记录 -->
+    <insert id="addRulesDetail" parameterType="org.springblade.modules.sp.entity.RulesDetail">
+        INSERT INTO sp_rules_detail (
+            id, pid, name, description, status, icon
+        ) VALUES (
+                     #{id}, #{pid}, #{name},#{description}, #{status},#{icon}
+                 )
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertRulesDetailBatch" parameterType="java.util.List">
+        INSERT INTO sp_rules_detail (
+        id, pid, name,description, status,icon
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id}, #{item.pid}, #{item.name},#{item.description},
+            #{item.status},#{item.icon}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="updateRulesDetail" parameterType="org.springblade.modules.sp.entity.RulesDetail">
+        UPDATE sp_rules_detail
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="icon != null">icon = #{icon},</if>
+            id = #{id}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="deleteRulesDetailById" parameterType="string">
+        DELETE FROM sp_rules_detail WHERE id = #{id}
+    </delete>
+
+    <!-- 根据pid删除 -->
+    <delete id="deleteRulesDetailByPid">
+        DELETE FROM sp_rules_detail WHERE pid = #{pid}
+    </delete>
+</mapper>

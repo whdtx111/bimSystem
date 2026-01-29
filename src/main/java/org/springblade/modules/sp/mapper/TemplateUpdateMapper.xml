@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.TemplateUpdateMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="templateUpdateResultMap" type="org.springblade.modules.sp.entity.TemplateUpdate">
+        <id column="id" property="id"/>
+        <result column="template_id" property="templateId"/>
+        <result column="stream_id" property="streamId"/>
+        <result column="branch_id" property="branchId"/>
+        <result column="data" property="data" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result column="modify_user" property="modifyUser"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, template_id, stream_id, branch_id, data, modify_user, modify_time
+    </sql>
+
+    <!-- 根据ID获取模板修改记录 -->
+    <select id="getById" resultMap="templateUpdateResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_template_update
+        where id = #{id}
+    </select>
+
+    <!-- 根据模板ID获取模板修改记录列表 -->
+    <select id="getByTemplateId" resultMap="templateUpdateResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_template_update
+        where template_id = #{templateId}
+        order by modify_time desc
+    </select>
+
+    <!-- 根据流水线ID和分支ID获取模板修改记录列表 -->
+    <select id="getByStreamAndBranchAndTemplateId" resultMap="templateUpdateResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_template_update
+        where stream_id = #{streamId}
+        <if test="branchId != null and branchId != ''">
+            and branch_id = #{branchId}
+        </if>
+        <if test="templateId != null and templateId != ''">
+            and template_id = #{templateId}
+        </if>
+        order by modify_time desc limit 1
+    </select>
+
+    <select id="getAllByStreamAndBranchAndTemplateId" resultMap="templateUpdateResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_template_update
+        where stream_id = #{streamId}
+        <if test="branchId != null and branchId != ''">
+            and branch_id = #{branchId}
+        </if>
+        <if test="templateId != null and templateId != ''">
+            and template_id = #{templateId}
+        </if>
+        order by modify_time desc
+    </select>
+
+    <!-- 新增模板修改记录 -->
+    <insert id="addTemplateUpdate" parameterType="org.springblade.modules.sp.entity.TemplateUpdate">
+        insert into sp_template_update (
+            id, template_id, stream_id, branch_id, data, modify_user, modify_time
+        ) values (
+                     #{id}, #{templateId}, #{streamId}, #{branchId},
+                     #{data, typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler},
+                     #{modifyUser}, #{modifyTime}
+                 )
+    </insert>
+
+    <!-- 更新模板修改记录 -->
+    <update id="updateTemplateUpdate" parameterType="org.springblade.modules.sp.entity.TemplateUpdate">
+        update sp_template_update
+        <set>
+            <if test="templateId != null">template_id = #{templateId},</if>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="branchId != null">branch_id = #{branchId},</if>
+            <if test="data != null">data = #{data, typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler},</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+            <if test="modifyTime != null">modify_time = #{modifyTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 删除模板修改记录 -->
+    <delete id="deleteTemplateUpdate">
+        delete from sp_template_update where id = #{id}
+    </delete>
+
+    <!-- 根据模板ID删除所有记录 -->
+    <delete id="deleteByTemplateId">
+        delete from sp_template_update where template_id = #{templateId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,163 @@
+#数据源配置
+#spring:
+#  redis:
+#    ##redis 单机环境配置
+#    host: 127.0.0.1
+#    port: 6379
+#    password:
+#    database: 0
+#    ssl: false
+#    ##redis 集群环境配置
+#    #cluster:
+#    #  nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003
+#    #  commandTimeout: 5000
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/sp-boot-sever?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8
+#    username: root
+#    password: wangc951203
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#多数据源配置
+spring:
+  freemarker:
+    template-loader-path: classpath:/templates/ # 从类路径加载模板
+    charset: UTF-8                              # 模板编码
+    check-template-location: true               # 启动时检查模板是否存在
+    prefer-file-system-access: false
+  redis:
+    ##redis 单机环境配置
+    ## 本地
+    host: 10.5.57.53
+    ## 生产
+    ##host:
+    #redis-3rrsyp.devops.svc
+    ## 本地
+    port: 31673
+    ## 生产
+    #port: 6379
+    password: KWjsVmuDjj
+    database: 0
+    ssl: false
+    ##redis 集群环境配置
+    #cluster:
+    #  nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003
+    #  commandTimeout: 5000
+  datasource:
+    dynamic:
+      primary: postgresql #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        #        mysql:
+        #          url: jdbc:mysql://10.5.58.132:32000/sp-boot-sever?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8
+        #          username: root
+        #          password: TCIsNRX1pq
+        #          driver-class-name: com.mysql.cj.jdbc.Driver
+        postgresql:
+          # url: jdbc:postgresql://10.5.56.20:5432/speckle
+          url: jdbc:postgresql://10.5.57.114:27019/smartlink_dev
+          username: smartlink
+          password: 8exTw@PiAUjA6hiM
+          #          url: jdbc:postgresql://10.5.58.132:31335/speckle
+          #          username: postgres
+          #          password: Qing@123
+          driver-class-name: org.postgresql.Driver
+
+#第三方登陆
+social:
+  enabled: true
+  domain: http://127.0.0.1:1888
+
+#blade配置
+blade:
+  prop:
+    upload-domain: http://localhost:8888
+    remote-mode: true
+    remote-path: /usr/share/nginx/html
+    remote-path-iis: D://iis/html
+    log-mode: true
+
+streamFiles:
+  url: http://10.5.57.53:30203/minio/speckle-server/upload/
+#  url: D:/uploads/streamFiles/
+
+# Minio配置
+minio:
+  config:
+    #    endpoint: http://10.5.57.53:30203
+    ip: 10.5.57.53 #ip地址
+    port: 30203  #  端口号
+    accessKey: openpitrixminioaccesskey #  账号
+    secretKey: openpitrixminiosecretkey #  密码
+    secure: false #如果是true，则用的是https而不是http,默认值是true
+    bucketName: "stream-files-uploads"  # 桶的名字
+    folderName: "uploads" #文件夹名
+    downloadDir: "/uploads/streamFiles/"  #保存到本地的路径
+
+#oss配置
+oss:
+  enabled: true
+  name: minio
+  tenant-mode: false
+  endpoint: http://10.5.57.53:30203
+  access-key: openpitrixminioaccesskey
+  secret-key: openpitrixminiosecretkey
+  bucket-name: speckle-server
+
+#加密言
+server:
+  port: 8080
+smartlink:
+  token_url: http://10.5.57.107:8100/auth/token
+  auth_local_login_url: http://10.5.57.107:8100/auth/local/login?challenge=
+  register_url: http://10.5.57.107:8100/auth/local/register
+
+  jwt:
+    rsa:
+      private-key: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCcTUOpGlI7/DQd
+        ygH8z/7EAoWxLiyu44UVp9xp4MaB/aNQw+VxWdeUF1gQE4ryy62bscazZVKE03Jt
+        UJ0KdcMQ7QsctssyTJJREXYLYGJjlEekN8MzVMaThAkJ5PBuKOlQJISTIWu/tpjl
+        VlGvQETbj4X0PLxkLqWMoI9Fvz7y3LL3Mrpz1i85KQUEALN77+Vs9xyax8GnTR50
+        V2NeFvFOXsvtE+mjv2Tq48ih1eUXUUAX4TZ6qrc4zHFBIcb21SSfWdlB81Ry+y7L
+        yHor7UlWOsevFQLGh1XavgxAGvFsVmjlytv8ZtiaYwW+icsi/gLP4HyLO0UkW2Qk
+        Cm9YJNUDAgMBAAECggEARGLB0cEEbd5g5w+1YumWLCh2Whk7z6EYX2s8Us7Xy5Qv
+        2mx7fOa0HcVA8He8eZKH+PEFYQRZ4GerTwzQSP1RRZyRGhUYPn+mHPYo0b1wDuWX
+        mtATBeh3oZ9JXRzf3TLlMf1oS/95Zz37E4x63NSfy/i1wTC5tJN8N1UgmoGchyE9
+        uSsTVd7We6JgyXB4YM4019gw+teWTH4birsdgH668M84qBBs/J6I+WtP1zAuBffu
+        9Fkkd1LncA1txOL6CbPw7Axi7a9DMdVGPc3XjH+QuQlrV1110y4BfQ0b59n92vej
+        3iJC21dmjaIW+bHCK5YUO/ucRIYJEr+M1MyMnIdAgQKBgQDPzvbBlBxba3USw0bg
+        UH6rzuQRL4Uv7NSHjK0LyCYbQdShMAyRWEdEco6/KxRh1IHQamjWIhzILu+y4yXW
+        NXZkZjy725fs/AbCYGNxtnlztpGj+RePJDQuVBy01z4YwL/LI2F4mo0Amf09TJYD
+        I0e/In9l4ll2DgOkTWaz1fpuowKBgQDAjHzta3uB0qi/NFcsNKaU5XiMSyr9QYL2
+        pAoMM5s0S+iqRYcBU8bJIyOeUvRkJ5kp9zbWgxfBsaDo/ICMRi62gnQ+LsCIOG/l
+        eQ29yEs8s00JEBoCsJfboP+BQVk3HpElF15vBx9ybZAUA2HK6kzvHHZRIvXLFJ9/
+        hLRTarRGIQKBgA4PQJ6kOK7uvEMCtz7h81AIdWG8R1SQv2hUWjjb18gsUgh9ybvj
+        rx6waXwBnCVqTUYejO0/7ZaVpl4CBENT5qiwShejqcm823A3OUMuR1VO2tevOKrU
+        ljs0MaUCkw71q4RA5o1UV4nc4UdOcS/RKT+DQ/9OqyLTm+d33ST5qzHlAoGAAhC/
+        ulA/1+mpk7t8/+VksA4yF9cqk+LjA8BIt07KaGo0CbeLNjFu3XN6C1W6d2SRWQjk
+        1rI7TAGax0UGH/sUvzJxCsW3nP51/NEqm5GNdQ47UlCQ5tx8FIgKlZlc2qGCTxKM
+        GcbKyJByTjSnFOUkhCAbCM3GMzJ6b4S95nMrkeECgYB9ZvyShb92lRQ2fFa9gNNV
+        etl+PeEonz7r+R3dgnBCAtXBeZTfYslMFibw2x/kc9Oim99r8nlvghLYjUiurUME
+        mFFOs2X4CCyFe4U3/PQfCm+0prnDh7L3ePOOXwJ2mFmrgH3R/MOV/0X8tVQ3JXnh
+        ndrz/Z20yrxNosvC0n+cGg==
+        -----END PRIVATE KEY-----
+      public-key: |
+        -----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnE1DqRpSO/w0HcoB/M/+
+        xAKFsS4sruOFFafcaeDGgf2jUMPlcVnXlBdYEBOK8sutm7HGs2VShNNybVCdCnXD
+        EO0LHLbLMkySURF2C2BiY5RHpDfDM1TGk4QJCeTwbijpUCSEkyFrv7aY5VZRr0BE
+        24+F9Dy8ZC6ljKCPRb8+8tyy9zK6c9YvOSkFBACze+/lbPccmsfBp00edFdjXhbx
+        Tl7L7RPpo79k6uPIodXlF1FAF+E2eqq3OMxxQSHG9tUkn1nZQfNUcvsuy8h6K+1J
+        VjrHrxUCxodV2r4MQBrxbFZo5crb/GbYmmMFvonLIv4Cz+B8iztFJFtkJApvWCTV
+        AwIDAQAB
+        -----END PUBLIC KEY-----
+      expire-seconds: 259200  # 72 hours
+      issuer: sp-server
+      audience: sp-bff
+
+
+      #外部API配置
+      external:
+        api:
+          bff:
+            base-url: http://10.5.57.107:8100

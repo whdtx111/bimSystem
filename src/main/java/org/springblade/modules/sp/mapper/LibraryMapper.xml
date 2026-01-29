@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.LibraryMapper">
+
+    <!-- Result Map -->
+    <resultMap id="LibraryMap" type="org.springblade.modules.sp.entity.Library">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="units" column="units"/>
+        <result property="version" column="version"/>
+        <result property="category" column="category"/>
+        <result property="parameterType" column="parameter_type"/>
+        <result property="dataType" column="data_type"/>
+        <result property="dataTypeEn" column="data_type_en"/>
+        <result property="parameters" column="parameters"/>
+        <result property="detail" column="detail"/>
+        <result property="type" column="type"/>
+        <result property="lod" column="lod"/>
+        <result property="revitParameters" column="revit_parameters"/>
+        <result property="revitParametersEn" column="revit_parameters_en"/>
+        <result property="tag" column="tag" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="guid" column="guid"/>
+        <result property="datacategory" column="datacategory"/>
+        <result property="group" column="group"/>
+        <result property="visible" column="visible"/>
+        <result property="description" column="description"/>
+        <result property="usermodifiable" column="usermodifiable"/>
+        <result property="hidewhennovalue" column="hidewhennovalue"/>
+        <result property="source" column="source"/>
+    </resultMap>
+
+    <!-- 根据ID查询 -->
+    <select id="getById" resultMap="LibraryMap">
+        SELECT * FROM sp_lib WHERE id = #{id} AND status != 9;
+    </select>
+
+    <select id="getByIds" resultMap="LibraryMap">
+        SELECT * FROM sp_lib WHERE id in
+        <foreach item='id' collection='ids' open='(' separator=',' close=')'>
+        #{id}
+        </foreach>
+        AND status != 9;
+    </select>
+
+    <!-- 获取所有数据 -->
+    <select id="getAllLibrary" resultMap="LibraryMap">
+        SELECT * FROM sp_lib WHERE status != 9 ORDER BY modify_time DESC;
+    </select>
+
+    <select id="getLibrarysParams" resultMap="LibraryMap">
+        select * from sp_lib where parameter_type = '系统专业参数';
+    </select>
+
+    <select id="getRevitByName" resultType="org.springblade.modules.sp.dto.LibraryRevitDTO">
+        select id,name,revit_parameters_en,data_type_en,data_type,revit_parameters from sp_lib where name = #{name} and status != 9;
+    </select>
+
+    <!-- 根据name查询（用于校验是否存在） -->
+    <select id="getByName" resultMap="LibraryMap">
+        SELECT * FROM sp_lib WHERE name = #{name} AND status != 9 LIMIT 1;
+    </select>
+
+    <!-- 通过条件获取数据 -->
+    <select id="getAllLibraryFilter" resultMap="LibraryMap">
+        SELECT * FROM sp_lib WHERE status != 9
+        <if test="name != null and name != ''">
+            AND name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="parameters != null and parameters != ''">
+            AND parameters = #{parameters}
+        </if>
+        <if test="tag != null">
+            and #{tag} = ANY(tag)
+        </if>
+        order by modify_time desc
+    </select>
+
+    <!-- 通过Tag查询 -->
+    <select id="getLibrarysByTag" resultMap="LibraryMap">
+        SELECT * FROM sp_lib WHERE #{tag} = ANY(tag) AND status != 9;
+    </select>
+
+    <select id="filterLibrary" resultMap="LibraryMap">
+        SELECT * FROM sp_lib
+        WHERE status != 9
+        <if test="name != null and name != ''">
+            AND name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="units != null and units != ''">
+            AND units = #{units}
+        </if>
+        <choose>
+            <when test="type != null and type != ''">
+                AND "type" = #{type}
+            </when>
+            <otherwise>
+                AND ("type" IS NULL OR "type" = '')
+            </otherwise>
+        </choose>
+        <if test="category != null and category != ''">
+            AND category = #{category}
+        </if>
+        <if test="dataType != null and dataType != ''">
+            AND data_type = #{dataType}
+        </if>
+        <if test="parameterType != null and parameterType != ''">
+            AND parameter_type = #{parameterType}
+        </if>
+        <if test="parameters != null and parameters != ''">
+            AND parameters = #{parameters}
+        </if>
+        <if test="version != null and version != ''">
+            AND version = #{version}
+        </if>
+        <if test="group != null and group != ''">
+            AND "group" = #{group}
+        </if>
+        <if test="status != null and status != ''">
+            AND status = #{status}
+        </if>
+        <if test="modifyUser != null and modifyUser != ''">
+            AND modify_user = #{modifyUser}
+        </if>
+        <if test="source != null and source != ''">
+            AND source = #{source}
+        </if>
+        <if test="tag != null">
+        AND (
+        <foreach collection="tag" item="t" separator="OR">
+            #{t} = ANY(tag)
+        </foreach>
+        )
+        </if>
+        ORDER BY modify_time DESC
+    </select>
+
+    <!-- 插入单条记录 -->
+    <insert id="addLibrary" parameterType="org.springblade.modules.sp.entity.Library">
+        INSERT INTO sp_lib(
+            id, name, units, version, category, parameter_type, data_type, data_type_en,
+            parameters, detail, type, lod, revit_parameters, revit_parameters_en,
+            tag, modify_user, modify_time, status, guid, datacategory, "group",
+            visible, description, usermodifiable, hidewhennovalue,source)
+        VALUES (
+                   #{id}, #{name}, #{units}, #{version}, #{category}, #{parameterType}, #{dataType},
+                   #{dataTypeEn}, #{parameters}, #{detail}, #{type}, #{lod}, #{revitParameters},
+                   #{revitParametersEn}, #{tag,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+                   #{modifyUser}, #{modifyTime}, #{status}, #{guid}, #{datacategory}, #{group},
+                   #{visible}, #{description}, #{usermodifiable}, #{hidewhennovalue},#{source}
+               );
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="updateLibrary" parameterType="org.springblade.modules.sp.entity.Library">
+        UPDATE sp_lib
+        <set>
+            <if test="name != null"> name = #{name}, </if>
+            <if test="units != null"> units = #{units}, </if>
+            <if test="version != null"> version = #{version}, </if>
+            <if test="category != null"> category = #{category}, </if>
+            <if test="parameterType != null"> parameter_type = #{parameterType}, </if>
+            <if test="dataType != null"> data_type = #{dataType}, </if>
+            <if test="dataTypeEn != null"> data_type_en = #{dataTypeEn}, </if>
+            <if test="parameters != null"> parameters = #{parameters}, </if>
+            <if test="detail != null"> detail = #{detail}, </if>
+            <if test="type != null"> type = #{type}, </if>
+            <if test="lod != null"> lod = #{lod}, </if>
+            <if test="revitParameters != null"> revit_parameters = #{revitParameters}, </if>
+            <if test="revitParametersEn != null"> revit_parameters_en = #{revitParametersEn}, </if>
+            <if test="source != null"> source = #{source}, </if>
+            <if test="tag != null"> tag = #{tag,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler}, </if>
+            modify_user = #{modifyUser}, modify_time = #{modifyTime}, status = #{status}
+        </set>
+        WHERE id = #{id} AND status != 9;
+    </update>
+
+    <!-- 批量动态更新值 -->
+    <update id="updateLibraryByKey" parameterType="org.springblade.modules.sp.entity.Librarys">
+        <foreach collection="libIds" item="libId" separator=";">
+            UPDATE sp_lib
+            <set>
+                <if test="key == 'name'"> name = #{value}, </if>
+                <if test="key == 'units'"> units = #{value}, </if>
+                <if test="key == 'version'"> version = #{value}, </if>
+                <if test="key == 'category'"> category = #{value}, </if>
+                <if test="key == 'parameterType'"> parameter_type = #{value}, </if>
+                <if test="key == 'dataType'"> data_type = #{value}, </if>
+                <if test="key == 'dataTypeEn'"> data_type_en = #{value}, </if>
+                <if test="key == 'parameters'"> parameters = #{value}, </if>
+                <if test="key == 'detail'"> detail = #{value}, </if>
+                <if test="key == 'type'"> type = #{value}, </if>
+                <if test="key == 'lod'"> lod = #{value}, </if>
+                <if test="key == 'revitParameters'"> revit_parameters = #{value}, </if>
+                <if test="key == 'revitParametersEn'"> revit_parameters_en = #{value}, </if>
+                <if test="key == 'source'"> source = #{value}, </if>
+                modify_time = CURRENT_TIMESTAMP
+            </set>
+            WHERE id = #{libId} AND status != 9
+        </foreach>
+    </update>
+
+
+
+    <!-- 更新Tag字段 -->
+    <update id="updateLibraryTag" parameterType="java.lang.String">
+        UPDATE sp_lib SET tag = #{tag,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler} WHERE id = #{id};
+    </update>
+
+    <!-- 逻辑删除 -->
+    <update id="deleteLibrary" parameterType="java.lang.String">
+        UPDATE sp_lib SET status = 9 WHERE id = #{id};
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatchSomeColumn" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sp_lib (
+        id, name, units, version, category, parameter_type, data_type, data_type_en,
+        parameters, detail, type, lod, tag, revit_parameters, revit_parameters_en,
+        modify_time, modify_user, status, source
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id}, #{item.name}, #{item.units}, #{item.version}, #{item.category},
+            #{item.parameterType}, #{item.dataType}, #{item.dataTypeEn}, #{item.parameters},
+            #{item.detail}, #{item.type}, #{item.lod},
+            #{item.tag,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            #{item.revitParameters}, #{item.revitParametersEn}, #{item.modifyTime},
+            'admin', #{item.status},#{item.source})
+        </foreach>
+    </insert>
+
+    <!-- 批量物理删除 -->
+    <delete id="deleteLibrariesByIds" parameterType="java.util.List">
+        DELETE FROM sp_lib
+        WHERE id IN
+        <foreach collection="libIds" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+
+</mapper>

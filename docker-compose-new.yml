@@ -1,0 +1,144 @@
+services:
+  smartlink-server:
+    image: 10.5.57.53:30002/zxgj/sm-server:1.0.1
+    restart: always
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "try { require('node:http').request({headers: {'Content-Type': 'application/json'}, port:3000, hostname:'127.0.0.1', path:'/graphql?query={serverInfo{version}}', method: 'GET', timeout: 2000 }, (res) => { body = ''; res.on('data', (chunk) => {body += chunk;}); res.on('end', () => {process.exit(res.statusCode != 200 || body.toLowerCase().includes('error'));}); }).end(); } catch { process.exit(1); }"
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+    environment:
+      CANONICAL_URL: 'http://10.5.57.168'
+      SESSION_SECRET: '42Fe32j&3e24rjkfldnsje2pq54rn43'
+      STRATEGY_LOCAL: 'true'
+      LOG_LEVEL: 'info'
+      POSTGRES_URL: 'postgres'
+      POSTGRES_USER: 'smartlink'
+      POSTGRES_PASSWORD: '8exTw@PiAUjA6hiM'
+      POSTGRES_DB: 'smartlink'
+      REDIS_URL: 'redis://redis'
+      S3_ENDPOINT: 'http://minio:9000'
+      S3_ACCESS_KEY: 'minioadmin'
+      S3_SECRET_KEY: 'minioadmin'
+      S3_BUCKET: 'smartlink-server'
+      S3_CREATE_BUCKET: 'true'
+      S3_REGION: ''
+      FILE_SIZE_LIMIT_MB: 100
+
+  sm-test-java:
+    image: 10.5.57.53:30002/zxgj/sm-test-java:2.0
+    container_name: sm-java
+    restart: always
+    ports:
+      - '0.0.0.0:8080:8080'
+    environment:
+      - TZ=Asia/Shanghai
+      - SPRING_CONFIG_LOCATION=optional:classpath:/
+      # 数据源配置 - 动态数据源
+      - SPRING_DATASOURCE_DYNAMIC_PRIMARY=postgresql
+      - SPRING_DATASOURCE_DYNAMIC_STRICT=false
+      - SPRING_DATASOURCE_DYNAMIC_DATASOURCE_POSTGRESQL_URL=jdbc:postgresql://10.5.57.114:27019/smartlink
+      - SPRING_DATASOURCE_DYNAMIC_DATASOURCE_POSTGRESQL_USERNAME=smartlink
+      - SPRING_DATASOURCE_DYNAMIC_DATASOURCE_POSTGRESQL_PASSWORD=8exTw@PiAUjA6hiM
+      - SPRING_DATASOURCE_DYNAMIC_DATASOURCE_POSTGRESQL_DRIVER-CLASS-NAME=org.postgresql.Driver
+      # Redis配置
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+      - SPRING_REDIS_DATABASE=0
+      - SPRING_REDIS_SSL=false
+      # Freemarker配置
+      - SPRING_FREEMARKER_TEMPLATE-LOADER-PATH=classpath:/templates/
+      - SPRING_FREEMARKER_CHARSET=UTF-8
+      - SPRING_FREEMARKER_CHECK-TEMPLATE-LOCATION=true
+      - SPRING_FREEMARKER_PREFER-FILE-SYSTEM-ACCESS=false
+      # 服务器配置
+      - SERVER_PORT=8080
+      # 日志配置
+      - LOGGING_LEVEL_ROOT=INFO
+      # Blade配置
+      - BLADE_PROP_UPLOAD-DOMAIN=http://localhost:8888
+      - BLADE_PROP_REMOTE-MODE=true
+      - BLADE_PROP_REMOTE-PATH=/usr/share/nginx/html
+      - BLADE_PROP_LOG-MODE=true
+      # Minio配置
+      - MINIO_CONFIG_IP=minio
+      - MINIO_CONFIG_PORT=9000
+      - MINIO_CONFIG_ACCESSKEY=openpitrixminioaccesskey
+      - MINIO_CONFIG_SECRETKEY=openpitrixminiosecretkey
+      - MINIO_CONFIG_SECURE=false
+      - MINIO_CONFIG_BUCKETNAME=stream-files-uploads
+      - MINIO_CONFIG_FOLDERNAME=uploads
+      # OSS配置
+      - OSS_ENABLED=true
+      - OSS_NAME=minio
+      - OSS_TENANT-MODE=false
+      - OSS_ENDPOINT=http://minio:9000
+      - OSS_ACCESS-KEY=openpitrixminioaccesskey
+      - OSS_SECRET-KEY=openpitrixminiosecretkey
+      - OSS_BUCKET-NAME=speckle-server
+      # StreamFiles配置
+      - STREAMFILES_URL=http://minio:9000/minio/speckle-server/upload/
+      # 社交登录配置
+      - SOCIAL_ENABLED=true
+      - SOCIAL_DOMAIN=http://127.0.0.1:1888
+      # Smartlink配置
+      - SMARTLINK_TOKEN_URL=http://10.5.57.114:27018/auth/token
+        - SMARTLINK_AUTH_LOCAL_LOGIN_URL=http://10.5.57.114:27018/auth/local/login?challenge=
+        - SMARTLINK_REGISTER_URL=http://10.5.57.114:27018/auth/local/register
+    depends_on:
+      - redis
+      - minio
+
+  sm-bff:
+    image: '10.5.57.53:30002/zxgj/sm-bff:latest'
+    restart: always
+    container_name: sm-bff
+    ports:
+      - '0.0.0.0:8100:8100'
+    environment:
+      LOG_LEVEL: 'info'
+      POSTGRES_URL: '10.5.57.114'
+      POSTGRES_PORT: '27019'
+      POSTGRES_USER: 'smartlink'
+      POSTGRES_PASSWORD: '8exTw@PiAUjA6hiM'
+      POSTGRES_DB: 'smartlink'
+      REDIS_URL: 'redis://redis'
+      SMARTLINK_TOKEN_URL: 'http://smartlink-server:3000/auth/token'
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    environment:
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    command: redis-server --appendonly yes --requirepass ""
+    volumes:
+      - redis-data:/data
+
+  minio:
+    image: quay.io/minio/minio
+    restart: always
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio-data:/data
+
+  fileimport-service:
+    image: 10.5.57.53:30002/zxgj/fileimport:latest
+    restart: always
+    environment:
+      LOG_LEVEL: 'info'
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:
+  minio-data:

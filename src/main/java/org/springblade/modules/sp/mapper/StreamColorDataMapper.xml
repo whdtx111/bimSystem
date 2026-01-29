@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.StreamColorDataMapper">
+
+    <resultMap id="StreamColorDataMap" type="org.springblade.modules.sp.entity.StreamColorData">
+        <id property="id" column="id"/>
+        <result property="streamId" column="stream_id"/>
+        <result property="commitId" column="commit_id"/>
+        <result property="nodeId" column="node_id"/>
+        <result property="color" column="color"/>
+        <result property="modifyTime" column="modify_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="selectByStreamAndCommit" resultMap="StreamColorDataMap">
+        SELECT * FROM sp_stream_color_data
+        WHERE stream_id = #{streamId}
+        AND commit_id = #{commitId}
+        AND status != 9
+        ORDER BY modify_time DESC
+    </select>
+
+    <select id="selectByStreamCommitAndNode" resultMap="StreamColorDataMap">
+        SELECT * FROM sp_stream_color_data
+        WHERE stream_id = #{streamId}
+        AND commit_id = #{commitId}
+        AND node_id = #{nodeId}
+        AND status != 9
+        LIMIT 1
+    </select>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO sp_stream_color_data
+        (id, stream_id, commit_id, node_id, color, modify_time, status)
+        VALUES
+        <foreach collection="dataList" item="item" separator=",">
+            (#{item.id}, #{item.streamId}, #{item.commitId}, #{item.nodeId}, #{item.color},
+             #{item.modifyTime}, #{item.status})
+        </foreach>
+    </insert>
+
+    <update id="updateColor">
+        UPDATE sp_stream_color_data
+        SET color = #{color},
+            modify_time = NOW()
+        WHERE id = #{id}
+          AND status != 9
+    </update>
+
+    <update id="deleteByStreamAndCommit">
+        UPDATE sp_stream_color_data
+        SET status = 9,
+            modify_time = NOW()
+        WHERE stream_id = #{streamId}
+          AND commit_id = #{commitId}
+          AND status != 9
+    </update>
+
+</mapper>

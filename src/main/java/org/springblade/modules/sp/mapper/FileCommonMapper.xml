@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.FileCommonMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="fileCommonResultMap" type="org.springblade.modules.sp.entity.FileCommon">
+        <id column="id" property="id"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_dept" property="createDept"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="streams_id" property="streamsId"/>
+        <result column="objects_id" property="objectsId"/>
+        <result column="file_name" property="fileName"/>
+        <result column="file_type" property="fileType"/>
+        <result column="file_size" property="fileSize"/>
+        <result column="file_link" property="fileLink"/>
+        <result column="file_domain" property="fileDomain"/>
+        <result column="file_original_name" property="fileOriginalName"/>
+        <result column="commits_id" property="commitsId"/>
+        <result column="resource_type" property="resourceType"/>
+    </resultMap>
+
+
+</mapper>

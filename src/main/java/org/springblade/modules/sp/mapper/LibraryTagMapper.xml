@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.LibraryTagMapper">
+
+    <select id="getById" resultType="org.springblade.modules.sp.entity.LibraryTag">
+        select * from sp_lib_tag where id = #{id} ;
+    </select>
+
+    <select id="getByName" resultType="org.springblade.modules.sp.entity.LibraryTag">
+        select * from sp_lib_tag where tag = #{tag} ;
+    </select>
+
+    <select id="getAllLibraryTag" resultType="org.springblade.modules.sp.entity.LibraryTag">
+        select * from sp_lib_tag ;
+    </select>
+
+    <insert id="addLibraryTag" parameterType="org.springblade.modules.sp.entity.LibraryTag">
+        insert into sp_lib_tag(id,tag,tag_color) VALUES (#{id},#{tag},#{tagColor});
+    </insert>
+
+    <update id="updateLibraryTag" parameterType="org.springblade.modules.sp.entity.LibraryTag">
+        update sp_lib_tag
+        <set>
+            <if test="tag != null">
+                tag = #{tag},
+            </if>
+            <if test="tagColor != null">
+                tag_color = #{tagColor},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+    <delete id="deleteLibraryTag" parameterType="java.lang.String">
+        delete from sp_lib_tag where id = #{id};
+    </delete>
+</mapper>

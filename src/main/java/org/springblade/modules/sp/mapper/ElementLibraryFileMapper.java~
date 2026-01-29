@@ -1,0 +1,22 @@
+package org.springblade.modules.sp.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+import org.springblade.modules.sp.entity.ElementLibraryFile;
+
+import java.util.List;
+
+@Mapper
+public interface ElementLibraryFileMapper extends BaseMapper<ElementLibraryFile> {
+
+    ElementLibraryFile getById(String id);
+
+    List<ElementLibraryFile> getAll();
+
+    boolean addElementLibraryFile(ElementLibraryFile elementLibraryFile);
+
+    boolean updateElementLibraryFile(ElementLibraryFile elementLibraryFile);
+
+    boolean deleteElementLibraryFile(String id);
+
+}

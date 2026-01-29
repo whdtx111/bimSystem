@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.ObjSnapshotMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="objSnapshotResultMap" type="org.springblade.modules.sp.entity.ObjSnapshot">
+        <id column="id" property="id"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_dept" property="createDept"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="user_id" property="userId"/>
+        <result column="snapshot_name" property="snapshotName"/>
+        <result column="model_data" property="modelData"/>
+        <result column="color_data" property="colorData"/>
+        <result column="remark" property="remark"/>
+        <result column="stream_id" property="streamId"/>
+        <result column="commit_id" property="commitId"/>
+    </resultMap>
+
+
+    <select id="selectObjSnapshotPage" resultMap="objSnapshotResultMap">
+        select * from sp_obj_snapshot where is_deleted = 0
+    </select>
+
+    <select id="getObjSnapshotList" resultType="org.springblade.modules.sp.dto.ObjSnapshotDTO">
+        SELECT
+            objSnapshot.*,
+            u."name" user_name
+        FROM
+            sp_obj_snapshot objSnapshot
+            LEFT JOIN ( SELECT "id", "name" FROM users ) AS u ON u."id" = objSnapshot."user_id"
+        WHERE
+            objSnapshot.is_deleted = 0
+        AND objSnapshot.commit_id = #{commitId}
+        ORDER BY
+            objSnapshot.create_time
+        DESC
+    </select>
+
+</mapper>

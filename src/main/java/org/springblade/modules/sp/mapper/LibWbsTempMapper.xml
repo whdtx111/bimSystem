@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.LibWbsTempMapper">
+
+    <resultMap id="LibWbsTempMap" type="org.springblade.modules.sp.entity.LibWbsTemp">
+        <id property="id" column="id"/>
+        <result property="wbsCode" column="wbs_code"/>
+        <result property="tempId" column="temp_id"/>
+        <result property="libIds" column="lib_ids" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="parameterIds" column="parameter_ids" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+<!--    <select id="getLibIds"  resultType="java.lang.String">-->
+<!--        SELECT lib_ids FROM sp_lib_wbs_temp WHERE wbs_code = #{wbsCode} AND temp_id = #{tempId} AND status != 9-->
+<!--    </select>-->
+
+    <select id="getById" resultMap="LibWbsTempMap">
+        SELECT * FROM sp_lib_wbs_temp WHERE id = #{id} AND status != 9
+    </select>
+
+    <select id="getLibWbsTemp" resultMap="LibWbsTempMap">
+        SELECT * FROM sp_lib_wbs_temp WHERE wbs_code = #{wbsCode} AND temp_id = #{tempId} AND status != 9
+    </select>
+
+    <select id="getWbsCodeByTempId" resultType="String">
+        SELECT wbs_code FROM sp_lib_wbs_temp WHERE temp_id = #{tempId} AND status != 9
+    </select>
+    
+    <select id="getLibWbsTempByTempId" resultMap="LibWbsTempMap">
+        SELECT * FROM sp_lib_wbs_temp WHERE temp_id = #{tempId} AND status != 9
+    </select>
+
+    <insert id="addLibWbsTemp" parameterType="org.springblade.modules.sp.entity.LibWbsTemp">
+        INSERT INTO sp_lib_wbs_temp(id,wbs_code,temp_id,lib_ids,parameter_ids,status)
+        VALUES(#{id},#{wbsCode},#{tempId},#{libIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},#{parameterIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},#{status})
+    </insert>
+
+    <update id="updateLibWbsTemp" parameterType="org.springblade.modules.sp.entity.LibWbsTemp">
+        update sp_lib_wbs_temp
+        <set>
+            <if test="wbsCode != null">
+                wbs_code = #{wbsCode},
+            </if>
+            <if test="tempId != null">
+                temp_id = #{tempId},
+            </if>
+            <if test="libIds != null">
+                lib_ids = #{libIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            </if>
+            <if test="parameterIds != null">
+                parameter_ids = #{parameterIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            </if>
+        </set>
+        where
+        id = #{id}
+        and
+        status != 9;
+    </update>
+
+    <!--<delete id="deleteLibrary" parameterType="java.lang.String">-->
+        <!--delete from sp_lib where "id" = #{id};-->
+    <!--</delete>-->
+    <!--逻辑删除sp_lib-->
+    <update id="deleteLibrary" parameterType="java.lang.String">
+         update sp_lib_wbs_temp
+         set status = 9
+         where id = #{id};
+    </update>
+
+</mapper>

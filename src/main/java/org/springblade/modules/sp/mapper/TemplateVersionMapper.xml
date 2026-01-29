@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.TemplateVersionMapper">
+
+    <resultMap id="TemplateVersionResultMap" type="org.springblade.modules.sp.entity.TemplateVersion">
+        <id column="id" property="id"/>
+        <result column="template_id" property="templateId"/>
+        <result column="insert_count" property="insertCount"/>
+        <result column="delete_count" property="deleteCount"/>
+        <result column="update_count" property="updateCount"/>
+        <result column="check_time" property="checkTime"/>
+        <result column="version" property="version"/>
+        <result column="data" property="data" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <select id="getByTemplateId" resultMap="TemplateVersionResultMap">
+        SELECT * FROM sp_template_version WHERE template_id = #{templateId} ORDER BY create_time DESC
+    </select>
+
+    <insert id="addTemplateVersion" parameterType="org.springblade.modules.sp.entity.TemplateVersion">
+        INSERT INTO sp_template_version (id, template_id, insert_count, delete_count, update_count, check_time, version, data, create_time)
+        VALUES (#{id}, #{templateId}, #{insertCount}, #{deleteCount}, #{updateCount}, #{checkTime}, #{version}, #{data, typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}, #{createTime})
+    </insert>
+
+    <select id="getLatestByTemplateId" resultMap="TemplateVersionResultMap">
+        SELECT * FROM sp_template_version WHERE template_id = #{templateId} ORDER BY create_time DESC LIMIT 1
+    </select>
+
+    <select id="getLatestNonNullVersionByTemplateId" resultType="string">
+        SELECT version FROM sp_template_version WHERE template_id = #{templateId} AND version IS NOT NULL ORDER BY create_time DESC LIMIT 1
+    </select>
+
+    <select id="getById" resultMap="TemplateVersionResultMap">
+        SELECT * FROM sp_template_version WHERE id = #{id}
+    </select>
+
+    <delete id="deleteByTemplateId">
+        DELETE FROM sp_template_version WHERE template_id = #{templateId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.BomFileMapper">
+
+    <resultMap id="bomFileResultMap" type="org.springblade.modules.sp.entity.BomFile">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="url" property="url"/>
+        <result column="size" property="size"/>
+        <result column="modify_user" property="modifyUser"/>
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="getById" resultMap="bomFileResultMap">
+        SELECT * FROM sp_bom_file WHERE id = #{id} ;
+    </select>
+
+    <select id="getByType" resultMap="bomFileResultMap">
+        SELECT * FROM sp_bom_file WHERE type = #{type} ORDER BY modify_time DESC LIMIT 1;
+    </select>
+
+
+    <select id="getAll" resultMap="bomFileResultMap">
+        SELECT * FROM sp_bom_file;
+    </select>
+
+    <select id="getLatestTemplateFile" resultMap="bomFileResultMap">
+            (SELECT * FROM sp_bom_file WHERE type = '2' ORDER BY modify_time DESC LIMIT 1)
+            UNION ALL
+            (SELECT * FROM sp_bom_file WHERE type = '3' ORDER BY modify_time DESC LIMIT 1)
+    </select>
+
+    <insert id="addBomFile" parameterType="org.springblade.modules.sp.entity.BomFile">
+        INSERT INTO sp_bom_file (id, name, type, url, size, modify_user, modify_time)
+        VALUES (#{id}, #{name}, #{type}, #{url}, #{size}, #{modifyUser}, #{modifyTime})
+    </insert>
+
+    <update id="updateBomFile" parameterType="org.springblade.modules.sp.entity.BomFile">
+        UPDATE sp_bom_file
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="size != null">size = #{size},</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+        </set>
+        modify_time = #{modifyTime}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteBomFile">
+        DELETE FROM sp_bom_file WHERE id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.WbsMapper">
+
+    <resultMap id="WbsResultMap" type="org.springblade.modules.sp.entity.Wbs">
+        <id property="id" column="id"/>
+        <result property="wbsCode" column="wbs_code"/>
+        <result property="wbsName" column="wbs_name"/>
+        <result property="wbsLv" column="wbs_lv"/>
+        <result property="type" column="type"/>
+        <result property="source" column="source"/>
+        <result property="wbsStatus" column="wbs_status" />
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+    </resultMap>
+
+    <select id="getById" resultMap="WbsResultMap">
+        select * from sp_wbs_ref where id = #{id} ;
+    </select>
+
+    <select id="getAllWbs" resultMap="WbsResultMap">
+        select * from sp_wbs_ref ;
+    </select>
+
+    <select id="filterWbs" resultMap="WbsResultMap">
+        SELECT * FROM sp_wbs_ref
+        WHERE 1=1
+        <if test="wbsCode != null and wbsCode !=''">
+            AND wbs_code = #{wbsCode}
+        </if>
+        <if test="wbsName != null and wbsName !=''">
+            AND wbs_name LIKE CONCAT('%', #{wbsName}, '%')
+        </if>
+        <if test="type != null and type !=''">
+            AND type = #{type}
+        </if>
+        <if test="source != null and source !=''">
+            AND source = #{source}
+        </if>
+        <if test="auth != null and auth !=''">
+            AND auth = #{auth}
+        </if>
+        <if test="wbsStatus != null and wbsStatus !=''">
+            AND wbs_status = CAST(#{wbsStatus} AS INTEGER)
+        </if>
+        ORDER BY modify_time DESC
+    </select>
+
+    <insert id="addWbs" parameterType="org.springblade.modules.sp.entity.Wbs">
+        insert into sp_wbs_ref(id,wbs_code,wbs_name,wbs_lv,type,source,auth,modify_user,modify_time,wbs_status)
+        values (#{id},#{wbsCode},#{wbsName},0,#{type},#{source},#{auth},#{modifyUser},#{modifyTime},#{wbsStatus});
+    </insert>
+
+    <update id="updateWbs" parameterType="org.springblade.modules.sp.entity.Wbs">
+        update sp_wbs_ref
+        <set>
+            <if test="wbsCode != null">
+                wbs_code = #{wbsCode},
+            </if>
+            <if test="wbsName != null">
+                wbs_name = #{wbsName},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="source != null">
+                source = #{source},
+            </if>
+            <if test="auth != null">
+                auth = #{auth},
+            </if>
+            <if test="wbsStatus != null">
+                wbs_status = #{wbsStatus},
+            </if>
+            modify_user = #{modifyUser},
+            modify_time = #{modifyTime}
+        </set>
+        where
+        id = #{id}
+    </update>
+
+    <update id="updateWbsStatus" parameterType="org.springblade.modules.sp.entity.Wbs">
+        update sp_wbs_ref
+        set
+            wbs_status = 1
+        where
+        id = #{id}
+    </update>
+
+    <delete id="deleteWbs" parameterType="string">
+        DELETE FROM sp_wbs_ref WHERE id = #{id}
+    </delete>
+</mapper>

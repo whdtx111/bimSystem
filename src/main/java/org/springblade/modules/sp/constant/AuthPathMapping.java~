@@ -1,0 +1,25 @@
+package org.springblade.modules.sp.constant;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class AuthPathMapping {
+    private static final Map<String, String> PATH_AUTH_MAP = new HashMap<>();
+
+    static {
+        // 初始化路径和权限的映射关系
+        PATH_AUTH_MAP.put("/sp/backend", "resourceSpace");
+        PATH_AUTH_MAP.put("/sp/modelMain", "projectSpace");
+        PATH_AUTH_MAP.put("/sp/library", "dataTemplate");
+        PATH_AUTH_MAP.put("/sp/encoding", "dataTemplate");
+        PATH_AUTH_MAP.put("/sp/parameter", "PATH_AUTH_MAP");
+    }
+
+    public static String getAuthByPath(String path) {
+        return PATH_AUTH_MAP.entrySet().stream()
+                .filter(entry -> path.startsWith(entry.getKey()))
+                .map(Map.Entry::getValue)
+                .findFirst()
+                .orElse(null);
+    }
+}

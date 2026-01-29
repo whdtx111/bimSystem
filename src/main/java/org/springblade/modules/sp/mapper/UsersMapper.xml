@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.UsersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="usersResultMap" type="org.springblade.modules.sp.entity.Users">
+        <id column="id" property="id"/>
+        <result column="suuid" property="suuid"/>
+        <result column="createdAt" property="createdAt"/>
+        <result column="name" property="name"/>
+        <result column="bio" property="bio"/>
+        <result column="company" property="company"/>
+        <result column="email" property="email"/>
+        <result column="verified" property="verified"/>
+        <result column="avatar" property="avatar"/>
+        <result column="profiles" property="profiles"/>
+        <result column="passwordDigest" property="passwordDigest"/>
+        <result column="ip" property="ip"/>
+        <result column="code" property="code"/>
+        <result column="roleIds" property="roleIds" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result column="status" property="status"/>
+        <result column="is_order" property="isOrder"/>
+    </resultMap>
+
+    <!-- 订阅用户视图映射 -->
+    <resultMap id="subscriptionUserVOMap" type="org.springblade.modules.sp.vo.SubscriptionUserVO">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="avatar" property="avatar"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="is_order" property="isOrder"/>
+        <result column="createdAt" property="createdAt"/>
+    </resultMap>
+
+    <!-- 用户带角色名称映射 -->
+    <resultMap id="userWithRoleNameVOMap" type="org.springblade.modules.sp.vo.UserWithRoleNameVO">
+        <id column="id" property="id"/>
+        <result column="suuid" property="suuid"/>
+        <result column="createdAt" property="createdAt"/>
+        <result column="name" property="name"/>
+        <result column="bio" property="bio"/>
+        <result column="company" property="company"/>
+        <result column="email" property="email"/>
+        <result column="verified" property="verified"/>
+        <result column="avatar" property="avatar"/>
+        <result column="profiles" property="profiles"/>
+        <result column="passwordDigest" property="passwordDigest"/>
+        <result column="ip" property="ip"/>
+        <result column="code" property="code"/>
+        <result column="phone" property="phone"/>
+        <result column="roleIds" property="roleIds" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result column="status" property="status"/>
+        <result column="is_order" property="isOrder"/>
+        <result column="role_name" property="roleName"/>
+    </resultMap>
+
+    <!-- 分页查询订阅用户列表 -->
+    <select id="filterSubscriptionUsers" resultMap="subscriptionUserVOMap">
+        SELECT
+            id ,
+            name ,
+            avatar,
+            phone,
+            email,
+            is_order,
+            "createdAt" as createdAt
+        FROM users
+        WHERE 1=1
+        <if test="filterInput != null and filterInput != ''">
+            AND (
+            CASE
+            WHEN #{filterInput} ~ '^[0-9]+$' THEN phone LIKE CONCAT('%', #{filterInput}, '%')
+            WHEN #{filterInput} ~ '@' THEN email LIKE CONCAT('%', #{filterInput}, '%')
+            ELSE name LIKE CONCAT('%', #{filterInput}, '%')
+            END
+            )
+        </if>
+            <if test="isOrder != null">
+                AND is_order = #{isOrder}
+            </if>
+            <if test="startTime != null and startTime != ''">
+                AND "createdAt" >= TO_TIMESTAMP(#{startTime}, 'YYYY-MM-DD HH24:MI:SS')
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND "createdAt" &lt;= TO_TIMESTAMP(#{endTime}, 'YYYY-MM-DD HH24:MI:SS')
+            </if>
+        ORDER BY "createdAt" DESC
+    </select>
+
+    <!-- 根据用户ID获取信息 -->
+    <select id="getSubscriptionUserById" resultMap="subscriptionUserVOMap">
+        SELECT
+            id ,
+            name ,
+            avatar,
+            phone,
+            email,
+            is_order,
+            "createdAt" as createdAt
+        FROM users
+        WHERE id = #{id}
+    </select>
+
+    <!-- 批量删除用户（硬删除） -->
+    <delete id="batchDeleteSubscriptionUsers">
+        DELETE FROM users
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 更新用户信息 -->
+    <update id="updateSubscriptionUser" parameterType="org.springblade.modules.sp.entity.Users">
+        UPDATE users
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="isOrder != null">is_order = #{isOrder},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="email != null">email = #{email},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateIsOrder" parameterType="org.springblade.modules.sp.entity.Users">
+        UPDATE users
+        SET is_order = #{isOrder}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getById" resultMap="usersResultMap">
+        SELECT * FROM "users" WHERE "id" = #{id};
+    </select>
+
+    <select id="selectUsersPage" resultMap="usersResultMap">
+        select * from users where is_deleted = 0
+    </select>
+
+    <select id="getUserByPhonOrEmailOrName" resultType="org.springblade.modules.sp.vo.SearchUserVO">
+        SELECT
+        sc."role",
+        u.*
+        FROM
+        users u
+        LEFT JOIN server_acl AS sc ON sc."userId" = U."id"
+        WHERE
+        u."name" LIKE CONCAT('%', #{str}, '%')
+        OR  u."phone" LIKE CONCAT('%', #{str}, '%')
+        OR  u."email" LIKE CONCAT('%', #{str}, '%')
+    </select>
+
+    <select id="getUserByStreamId" resultMap="usersResultMap">
+        WITH filtered_users AS (
+            SELECT
+                u.id,
+                u.suuid,
+                u."createdAt",
+                u.name,
+                u.bio,
+                u.company,
+                u.email,
+                u.verified,
+                u.avatar,
+                u.profiles,
+                u."passwordDigest",
+                u.ip,
+                u.code,
+                u.phone,
+                u.status,
+                ARRAY(
+                    SELECT DISTINCT ur
+                FROM UNNEST(u."roleIds") AS ur
+                WHERE ur IN (
+                    SELECT sl_role.role_id
+                    FROM sl_role
+                    WHERE status != 2 AND stream_id = #{streamId}
+                )
+            ) AS "roleIds"
+            FROM users u
+            WHERE u.id IN (
+                SELECT "userId"
+                FROM stream_acl
+                WHERE "resourceId" = #{streamId}
+            )
+        )
+        SELECT * FROM filtered_users;
+    </select>
+
+    <update id="updateRole">
+        UPDATE "users" SET "roleIds" = #{roleIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler} WHERE "id" = #{id};
+    </update>
+
+    <!-- 更新用户角色，移除指定streamId相关的角色ID -->
+    <update id="removeRoleIdsByStreamId">
+        UPDATE users
+        SET "roleIds" = ARRAY(
+            SELECT unnested_role
+        FROM UNNEST("roleIds") AS unnested_role
+        WHERE unnested_role NOT IN (
+            SELECT role_id::text FROM sl_role WHERE stream_id = #{streamId}
+            )
+                        )
+        WHERE "roleIds" &amp;&amp; ARRAY(
+        SELECT role_id::text FROM sl_role WHERE stream_id = #{streamId}
+            );
+    </update>
+
+    <select id="getOwnerByTokenId" resultType="java.lang.String">
+        SELECT "owner" FROM "api_tokens" WHERE "id" = #{tokenId}
+    </select>
+
+    <select id="getUserByPhone" resultMap="usersResultMap">
+        SELECT * FROM "users" WHERE "phone" = #{phone};
+    </select>
+
+    <!-- 根据streamId获取用户列表，包含角色名称 -->
+    <select id="getUserByStreamIdWithRoleName" resultMap="userWithRoleNameVOMap">
+        WITH filtered_users AS (
+            SELECT
+                u.id,
+                u.suuid,
+                u."createdAt",
+                u.name,
+                u.bio,
+                u.company,
+                u.email,
+                u.verified,
+                u.avatar,
+                u.profiles,
+                u."passwordDigest",
+                u.ip,
+                u.code,
+                u.phone,
+                u.status,
+                u.is_order,
+                ARRAY(
+                    SELECT DISTINCT ur
+                    FROM UNNEST(u."roleIds") AS ur
+                    WHERE ur IN (
+                        SELECT sl_role.role_id
+                        FROM sl_role
+                        WHERE status != 2 AND stream_id = #{streamId}
+                    )
+                ) AS "roleIds",
+                (
+                    SELECT STRING_AGG(sl_role.role_name, ', ')
+                    FROM sl_role
+                    WHERE sl_role.role_id = ANY(
+                        ARRAY(
+                            SELECT DISTINCT ur
+                            FROM UNNEST(u."roleIds") AS ur
+                            WHERE ur IN (
+                                SELECT sl_role.role_id
+                                FROM sl_role
+                                WHERE status != 2 AND stream_id = #{streamId}
+                            )
+                        )
+                    )
+                ) AS role_name
+            FROM users u
+            WHERE u.id IN (
+                SELECT "userId"
+                FROM stream_acl
+                WHERE "resourceId" = #{streamId}
+            )
+        )
+        SELECT * FROM filtered_users;
+    </select>
+</mapper>

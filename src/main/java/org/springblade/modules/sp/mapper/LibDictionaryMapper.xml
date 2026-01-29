@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.LibDictionaryMapper">
+
+    <resultMap id="libDictionaryResultMap" type="org.springblade.modules.sp.entity.LibDictionary">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="createTime" column="create_time"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="userName" column="user_name"/>
+        <result property="remark" column="remark"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="getLibDictionaryList" resultMap="libDictionaryResultMap">
+        SELECT * FROM lib_dictionary WHERE status = 0
+    </select>
+
+    <select id="getLibDictionaryById" resultMap="libDictionaryResultMap">
+        SELECT * FROM lib_dictionary WHERE id = #{id} and status = 0
+    </select>
+
+    <insert id="addLibDictionary" parameterType="org.springblade.modules.sp.entity.LibDictionary">
+        INSERT INTO lib_dictionary (id, name, code,create_time,modify_time,user_name,remark, status)
+        VALUES (#{id}, #{name}, #{code},#{createTime},#{modifyTime},#{userName},#{remark}, #{status})
+    </insert>
+
+    <update id="updateLibDictionary" parameterType="org.springblade.modules.sp.entity.LibDictionary">
+        UPDATE lib_dictionary
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="code != null">code = #{code},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="status != null">status = #{status},</if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateLibDictionaryStatus" parameterType="org.springblade.modules.sp.entity.LibDictionary">
+        UPDATE lib_dictionary
+        <set>
+            <if test="status != null">status = #{status},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteLibDictionaryById">
+        DELETE FROM lib_dictionary WHERE id = #{id}
+    </delete>
+</mapper>

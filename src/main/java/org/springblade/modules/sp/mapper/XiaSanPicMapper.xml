@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.XiaSanPicMapper">
+
+    <!-- resultMap 定义 -->
+    <resultMap id="XiaSanPicResult" type="org.springblade.modules.sp.entity.XiaSanPic">
+        <id property="id" column="id"/>
+        <result property="streamId" column="stream_id"/>
+        <result property="commitId" column="commit_id"/>
+        <result property="objectId" column="object_id"/>
+        <result property="elementId" column="element_id"/>
+        <result property="name" column="name"/>
+        <result property="url" column="url"/>
+        <result property="checkStatus" column="check_status"/>
+        <result property="uploadUser" column="upload_user"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+    </resultMap>
+
+    <!-- 根据ID查询 -->
+    <select id="getById" resultMap="XiaSanPicResult">
+        SELECT * FROM xia_san_pic WHERE id = #{id};
+    </select>
+
+    <select id="getByName" resultMap="XiaSanPicResult">
+        SELECT * FROM xia_san_pic WHERE name = #{name} and stream_id = #{streamId} and element_id = #{elementId};
+    </select>
+
+    <!-- 插入记录 -->
+    <insert id="addXiaSanPic" parameterType="org.springblade.modules.sp.entity.XiaSanPic">
+        INSERT INTO xia_san_pic (id, stream_id, commit_id, object_id,element_id,name, url,check_status,upload_user,modify_user, modify_time)
+        VALUES (#{id}, #{streamId}, #{commitId}, #{objectId},#{elementId} ,#{name}, #{url},#{checkStatus}, #{uploadUser},#{modifyUser}, #{modifyTime});
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="updateXiaSanPic" parameterType="org.springblade.modules.sp.entity.XiaSanPic">
+        UPDATE xia_san_pic
+        <set>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="commitId != null">commit_id = #{commitId},</if>
+            <if test="objectId != null">object_id = #{objectId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="elementId != null">element_id = #{elementId},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="checkStatus != null">check_status = #{checkStatus},</if>
+            <if test="uploadUser != null">upload_user = #{uploadUser},</if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser},
+            </if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!-- 根据ID删除记录 -->
+    <delete id="deleteXiaSanPicById" parameterType="String">
+        DELETE FROM xia_san_pic WHERE id = #{id};
+    </delete>
+
+    <!-- 条件搜索 -->
+    <select id="searchFilter" resultMap="XiaSanPicResult">
+        SELECT * FROM xia_san_pic WHERE 1=1
+        <if test="streamId != null and streamId != ''">
+            AND stream_id = #{streamId}
+        </if>
+        <if test="commitId != null and commitId != ''">
+            AND commit_id = #{commitId}
+        </if>
+        <if test="objectId != null and objectId != ''">
+            AND object_id = #{objectId}
+        </if>
+        <if test="elementId != null and elementId != ''">
+            AND element_id = #{elementId}
+        </if>
+        <if test="checkStatus != null and checkStatus != ''">
+            AND check_status = #{checkStatus}
+        </if>
+    </select>
+
+</mapper>

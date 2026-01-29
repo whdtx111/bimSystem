@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.EncodingMapper">
+
+    <resultMap id="EncodingResultMap" type="org.springblade.modules.sp.entity.Encoding">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="version" column="version"/>
+        <result property="auth" column="auth"/>
+        <result property="user" column="user"/>
+        <result property="source" column="source"/>
+        <result property="detail" column="detail"/>
+        <result property="isfinished" column="isfinished"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!-- 根据ID查询 -->
+    <select id="getById" resultMap="EncodingResultMap">
+        SELECT * FROM sp_encoding WHERE id = #{id};
+    </select>
+
+    <!-- 获取所有记录 -->
+    <select id="getAllEncoding" resultMap="EncodingResultMap">
+        SELECT * FROM sp_encoding;
+    </select>
+
+    <!-- 条件搜索 -->
+    <select id="filterEncoding" resultMap="EncodingResultMap">
+        SELECT * FROM sp_encoding
+        WHERE 1=1
+        <if test="name != null and name != ''">
+            AND name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="version != null and version != ''">
+            AND version = #{version}
+        </if>
+        <if test="auth != null and auth != ''">
+            AND auth = #{auth}
+        </if>
+        <if test="user != null and user != ''">
+            AND "user" = #{user}
+        </if>
+        <if test="source != null and source != ''">
+            AND source = #{source}
+        </if>
+        <if test="isfinished != null and isfinished != ''">
+            AND isfinished = #{isfinished}
+        </if>
+        ORDER BY modify_time DESC
+    </select>
+
+    <!-- 插入记录 -->
+    <insert id="addEncoding" parameterType="org.springblade.modules.sp.entity.Encoding">
+        INSERT INTO sp_encoding (id, name, version, auth, "user", source, detail, isfinished,modify_user, modify_time, status)
+        VALUES (#{id}, #{name}, #{version}, #{auth}, #{user}, #{source}, #{detail},#{isfinished}, #{modifyUser}, #{modifyTime}, #{status});
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="updateEncoding" parameterType="org.springblade.modules.sp.entity.Encoding">
+        UPDATE sp_encoding
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="auth != null">auth = #{auth},</if>
+            <if test="user != null">"user" = #{user},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="detail != null">detail = #{detail},</if>
+            <if test="isfinished != null">isfinished = #{isfinished},</if>
+            <if test="status != null">status = #{status},</if>
+            modify_user = #{modifyUser},
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+
+    <!-- 根据ID删除记录 -->
+    <delete id="deleteEncoding" parameterType="String">
+        DELETE FROM sp_encoding WHERE id = #{id};
+    </delete>
+
+</mapper>

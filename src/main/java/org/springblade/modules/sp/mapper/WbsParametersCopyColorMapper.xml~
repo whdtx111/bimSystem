@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.WbsParametersCopyColorMapper">
+
+    <resultMap id="WbsParametersCopyColorResultMap" type="org.springblade.modules.sp.entity.WbsParametersCopyColor">
+        <result property="id" column="id"/>
+        <result property="wbsId" column="wbs_id"/>
+        <result property="wbsCode" column="wbs_code"/>
+        <result property="color" column="color"/>
+    </resultMap>
+
+    <select id="getAllWbsParametersCopyColorByWbsId" resultMap="WbsParametersCopyColorResultMap">
+        select * from sp_wbs_parameters_copy_color where wbs_id = #{wbsId};
+    </select>
+
+    <select id="getByWbsCode" resultMap="WbsParametersCopyColorResultMap">
+        select * from sp_wbs_parameters_copy_color where wbs_code = #{wbsCode} and wbs_id = #{wbsId};
+    </select>
+
+    <insert id="addWbsParametersCopyColor" parameterType="org.springblade.modules.sp.entity.WbsParametersCopyColor">
+        INSERT INTO sp_wbs_parameters_copy_color (id,wbs_id,wbs_code,color)
+        VALUES (#{id},#{wbsId},#{wbsCode},#{color})
+    </insert>
+
+    <insert id="addWbsParametersCopyColorList" parameterType="java.util.List">
+        INSERT INTO sp_wbs_parameters_copy_color (id,wbs_id,wbs_code,color)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.wbsId},#{item.wbsCode},#{item.color})
+        </foreach>
+    </insert>
+
+    <update id="updateWbsParametersCopyColor" parameterType="org.springblade.modules.sp.entity.WbsParametersCopyColor">
+            update sp_wbs_parameters_copy_color
+            <set>
+                <if test="wbsId != null">wbs_id = #{wbsId},</if>
+                <if test="wbsCode != null">wbs_code = #{wbsCode},</if>
+                <if test="color != null">color = #{color},</if>
+            </set>
+            where id = #{id}
+    </update>
+
+    <update id="updateWbsParametersCopyColorList" parameterType="java.util.List">
+        update sp_wbs_parameters_copy_color
+        <set>
+            <if test="wbsId != null">wbs_id = #{wbsId},</if>
+            <if test="wbsCode != null">wbs_code = #{wbsCode},</if>
+            <if test="color != null">color = #{color},</if>
+        </set>
+        where id in
+        <foreach collection="list" item="item" index="index" separator=",">
+            #{item.id}
+        </foreach>
+    </update>
+
+    <delete id="deleteWbsParametersCopyColor" parameterType="string">
+        DELETE FROM sp_wbs_parameters_copy_color WHERE id = #{id};
+    </delete>
+
+</mapper>

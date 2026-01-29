@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.MetaDataMapper">
+
+    <select id="getById" resultType="org.springblade.modules.sp.entity.MetaData">
+        select * from sp_meta where id = #{id} and status != 9;
+    </select>
+
+    <select id="getAllMetaData" resultType="org.springblade.modules.sp.entity.MetaData">
+        select * from sp_meta where status != 9;
+    </select>
+
+
+    <insert id="addMetaData" parameterType="org.springblade.modules.sp.entity.MetaData">
+        insert into sp_meta(id,guide,name,val,val_range,data_type,units,modify_user,modify_time,status)
+        values (#{id},#{guide},#{name},#{val},#{valRange},#{dataType},#{units},#{modifyUser},#{modifyTime},#{status});
+    </insert>
+
+    <update id="updateMetaData" parameterType="org.springblade.modules.sp.entity.MetaData">
+        update sp_meta
+        <set>
+            <if test="guide != null">
+                guide = #{guide},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="val != null">
+                val = #{val},
+            </if>
+            <if test="valRange != null">
+                val_range = #{valRange},
+            </if>
+            <if test="dataType != null">
+                data_type = #{dataType},
+            </if>
+            <if test="units != null">
+                units = #{units},
+            </if>
+            modify_user = #{modifyUser},
+            modify_time = #{modifyTime}
+        </set>
+        where
+        id = #{id}
+        and
+        status != 9;
+    </update>
+
+    <!--<delete id="deleteMetaData" parameterType="java.lang.String">-->
+        <!--delete from sp_meta where "id" = #{id};-->
+    <!--</delete>-->
+
+    <!--逻辑删除sp_lib-->
+    <update id="deleteMetaData" parameterType="java.lang.String">
+         update sp_meta
+         set status = 9
+         where id = #{id};
+    </update>
+</mapper>

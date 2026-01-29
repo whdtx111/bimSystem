@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.EbsParametersMapper">
+
+    <resultMap id="EbsParametersResultMap" type="org.springblade.modules.sp.entity.EbsParameters">
+        <id property="id" column="id"/>
+        <result property="ebsId" column="ebs_id"/>
+        <result property="pid" column="pid"/>
+        <result property="ebsCode" column="ebs_code"/>
+        <result property="ebsName" column="ebs_name"/>
+        <result property="ebsLv" column="ebs_lv"/>
+        <result property="detail" column="detail"/>
+        <result property="category" column="category" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="ebsStatus" column="ebs_status"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+    </resultMap>
+
+    <select id="getById" resultMap="EbsParametersResultMap">
+        select * from sp_ebs_parameters where id = #{id};
+    </select>
+
+    <select id="getAllEbsParameters" resultMap="EbsParametersResultMap">
+        select * from sp_ebs_parameters ;
+    </select>
+
+    <select id="getAllEbsParametersByEbsId" resultMap="EbsParametersResultMap">
+        select * from sp_ebs_parameters where ebs_id = #{ebsId};
+    </select>
+
+    <select id="reorderEbsParameters" resultMap="EbsParametersResultMap">
+        select * from sp_ebs_parameters where ebs_id = #{ebsId} order by ebs_code asc;
+    </select>
+
+    <insert id="addEbsParameters" parameterType="org.springblade.modules.sp.entity.EbsParameters">
+        INSERT INTO sp_ebs_parameters (id,pid, ebs_id, ebs_code, ebs_name, ebs_lv, detail,category, ebs_status, modify_user, modify_time)
+        VALUES (#{id},#{pid},#{ebsId}, #{ebsCode}, #{ebsName}, #{ebsLv}, #{detail}, #{category,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},#{ebsStatus}, #{modifyUser}, #{modifyTime})
+    </insert>
+
+    <insert id="insertEbsParametersList" parameterType="java.util.List">
+        INSERT INTO sp_ebs_parameters (id, pid, ebs_id, ebs_code, ebs_name, ebs_lv, detail, category, ebs_status, modify_user, modify_time)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id}, #{item.pid}, #{item.ebsId}, #{item.ebsCode}, #{item.ebsName}, #{item.ebsLv},
+            #{item.detail}, #{item.category, typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            #{item.ebsStatus}, #{item.modifyUser}, #{item.modifyTime})
+        </foreach>
+    </insert>
+
+    <update id="updateEbsParameters" parameterType="org.springblade.modules.sp.entity.EbsParameters">
+        update sp_ebs_parameters
+        <set>
+            <if test="ebsId != null">ebs_id = #{ebsId},</if>
+            <if test="ebsCode != null">ebs_code = #{ebsCode},</if>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="ebsName != null">ebs_name = #{ebsName},</if>
+            <if test="ebsLv != null">ebs_lv = #{ebsLv},</if>
+            <if test="detail != null">detail = #{detail},</if>
+            <if test="category != null">category = #{category,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},</if>
+            <if test="ebsStatus != null">ebs_status = #{ebsStatus},</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+            modify_time = #{modifyTime}
+        </set>
+        where
+        id = #{id}
+    </update>
+
+    <update id="updateEbsStatus" parameterType="String">
+    update sp_ebs_parameters set ebs_status = 1 where ebs_id = #{ebsId};
+    </update>
+
+    <delete id="deleteEbsParameters" parameterType="string">
+        DELETE FROM sp_ebs_parameters WHERE id = #{id}
+    </delete>
+</mapper>

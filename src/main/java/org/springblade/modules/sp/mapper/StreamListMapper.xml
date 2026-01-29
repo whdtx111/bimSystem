@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.StreamListMapper">
+
+  <resultMap id="streamListResultMap" type="org.springblade.modules.sp.entity.StreamList">
+    <id column="id" property="id"/>
+    <result column="stream_ids" property="streamIds" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+      <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+
+    <select id="getStreamList" resultMap="streamListResultMap">
+        SELECT * FROM sp_stream_list;
+    </select>
+
+    <select id="getStreamListById" resultMap="streamListResultMap">
+        SELECT * FROM sp_stream_list WHERE id = #{id};
+    </select>
+
+    <insert id="addStreamList" parameterType="org.springblade.modules.sp.entity.StreamList">
+        INSERT INTO sp_stream_list (id,stream_ids, modify_time)
+        VALUES (#{id}, #{streamIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler}, #{modifyTime})
+    </insert>
+
+    <update id="updateStreamList" parameterType="org.springblade.modules.sp.entity.StreamList">
+        UPDATE sp_stream_list
+        <set>
+            <if test="streamIds != null">stream_ids = #{streamIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},</if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteStreamListById">
+        DELETE FROM sp_stream_list WHERE id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.WbsParametersMapper">
+
+    <resultMap id="WbsParametersResultMap" type="org.springblade.modules.sp.entity.WbsParameters">
+        <id property="id" column="id"/>
+        <result property="wbsId" column="wbs_id"/>
+        <result property="pid" column="pid"/>
+        <result property="wbsCode" column="wbs_code"/>
+        <result property="wbsName" column="wbs_name"/>
+        <result property="wbsLv" column="wbs_lv"/>
+        <result property="detail" column="detail"/>
+        <result property="category" column="category" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="wbsStatus" column="wbs_status"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+    </resultMap>
+
+    <select id="getById" resultMap="WbsParametersResultMap">
+        select * from sp_wbs_parameters where id = #{id};
+    </select>
+
+    <select id="getAllWbsParameters" resultMap="WbsParametersResultMap">
+        select * from sp_wbs_parameters ;
+    </select>
+
+    <select id="reorderWbsParameters" resultMap="WbsParametersResultMap">
+        select * from sp_wbs_parameters where wbs_id = #{wbsId} ORDER BY wbs_code ASC;
+    </select>
+
+    <select id="getAllWbsParametersByWbsId" resultMap="WbsParametersResultMap">
+        select * from sp_wbs_parameters where wbs_id = #{wbsId};
+    </select>
+
+    <select id="getWbsParametersByWbsCode" resultMap="WbsParametersResultMap">
+        select * from sp_wbs_parameters where wbs_code = #{wbsCode};
+    </select>
+
+    <select id="getChildrenByPid" resultMap="WbsParametersResultMap">
+        SELECT * FROM sp_wbs_parameters WHERE pid = #{pid}
+    </select>
+
+    <insert id="addWbsParameters" parameterType="org.springblade.modules.sp.entity.WbsParameters">
+        INSERT INTO sp_wbs_parameters (id,pid, wbs_id, wbs_code, wbs_name, wbs_lv, detail,category, wbs_status, modify_user, modify_time)
+        VALUES (#{id},#{pid},#{wbsId}, #{wbsCode}, #{wbsName}, #{wbsLv}, #{detail}, #{category,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},#{wbsStatus}, #{modifyUser}, #{modifyTime})
+    </insert>
+
+    <insert id="insertWbsParametersList" parameterType="java.util.List">
+        INSERT INTO sp_wbs_parameters (id, pid, wbs_id, wbs_code, wbs_name, wbs_lv, detail, category, wbs_status, modify_user, modify_time)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id}, #{item.pid}, #{item.wbsId}, #{item.wbsCode}, #{item.wbsName}, #{item.wbsLv},
+            #{item.detail}, #{item.category, typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            #{item.wbsStatus}, #{item.modifyUser}, #{item.modifyTime})
+        </foreach>
+    </insert>
+
+    <update id="updateWbsParameters" parameterType="org.springblade.modules.sp.entity.WbsParameters">
+        update sp_wbs_parameters
+        <set>
+            <if test="wbsId != null">wbs_id = #{wbsId},</if>
+            <if test="wbsCode != null">wbs_code = #{wbsCode},</if>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="wbsName != null">wbs_name = #{wbsName},</if>
+            <if test="wbsLv != null">wbs_lv = #{wbsLv},</if>
+            <if test="detail != null">detail = #{detail},</if>
+            <if test="category != null">category = #{category,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},</if>
+            <if test="wbsStatus != null">wbs_status = #{wbsStatus},</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+            modify_time = #{modifyTime}
+        </set>
+        where
+        id = #{id}
+    </update>
+
+    <update id="updateWbsStatus" parameterType="String">
+    update sp_wbs_parameters set wbs_status = 1 where wbs_id = #{wbsId};
+    </update>
+
+    <delete id="deleteWbsParameters" parameterType="string">
+        DELETE FROM sp_wbs_parameters WHERE id = #{id}
+    </delete>
+</mapper>

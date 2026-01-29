@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.DashboardMapper">
+
+    <!-- 统计待处理批注数量（comments表，archived = false） -->
+    <select id="countPendingComments" resultType="java.lang.Integer">
+        SELECT COUNT(*) 
+        FROM comments 
+        WHERE "streamId" = #{streamId} 
+          AND archived = false
+          AND "createdAt" >= #{startDate}
+          AND "createdAt" &lt;= #{endDate}
+    </select>
+
+    <!-- 统计未解决碰撞干扰数量（从data JSON中解析collisions数组长度求和） -->
+    <select id="countUnresolvedCrashDetection" resultType="java.lang.Integer">
+        SELECT COALESCE(SUM(
+            CASE
+                WHEN data IS NOT NULL AND jsonb_exists(data::jsonb, 'collisions')
+                THEN jsonb_array_length(data::jsonb->'collisions')
+                ELSE 0
+            END
+        ), 0)
+        FROM sp_crash_detection
+        WHERE stream_id = #{streamId}
+          AND modify_time >= #{startDate}
+          AND modify_time &lt;= #{endDate}
+    </select>
+
+    <!-- 统计近期模型迭代次数（通过branches关联commits表） -->
+    <select id="countModelIterations" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT c.id) 
+        FROM commits c
+        JOIN branch_commits bc ON c.id = bc."commitId"
+        JOIN branches b ON bc."branchId" = b.id
+        WHERE b."streamId" = #{streamId}
+          AND c."createdAt" >= #{startDate}
+          AND c."createdAt" &lt;= #{endDate}
+    </select>
+
+    <!-- 按日期分组统计碰撞检测趋势 -->
+    <select id="getCrashDetectionTrendByDate" resultType="java.util.Map">
+        SELECT 
+            TO_CHAR(modify_time, 'MM-DD') as date,
+            COUNT(*) as count
+        FROM sp_crash_detection 
+        WHERE stream_id = #{streamId}
+          AND modify_time >= #{startDate}
+          AND modify_time &lt;= #{endDate}
+        GROUP BY TO_CHAR(modify_time, 'MM-DD'), DATE(modify_time)
+        ORDER BY DATE(modify_time)
+    </select>
+
+    <!-- 按日期分组统计LOD合规得分（将value_pass/value_not_pass从varchar显式转换为integer） -->
+    <select id="getLODScoreByDate" resultType="java.util.Map">
+        SELECT 
+            TO_CHAR(created_time, 'MM-DD') as date,
+            ROUND(
+                AVG(
+                    CASE 
+                        WHEN (
+                            COALESCE(NULLIF(value_pass, ''), '0')::integer
+                          + COALESCE(NULLIF(value_not_pass, ''), '0')::integer
+                        ) > 0 
+                        THEN (
+                            COALESCE(NULLIF(value_pass, ''), '0')::integer * 100.0
+                            / (
+                                COALESCE(NULLIF(value_pass, ''), '0')::integer
+                              + COALESCE(NULLIF(value_not_pass, ''), '0')::integer
+                              )
+                        )
+                        ELSE 0 
+                    END
+                )::numeric
+            , 1) as lod_score,
+            ROUND(
+                AVG(
+                    CASE 
+                        WHEN (
+                            COALESCE(NULLIF(value_pass, ''), '0')::integer
+                          + COALESCE(NULLIF(value_not_pass, ''), '0')::integer
+                        ) > 0 
+                        THEN (
+                            COALESCE(NULLIF(value_pass, ''), '0')::integer * 100.0
+                            / (
+                                COALESCE(NULLIF(value_pass, ''), '0')::integer
+                              + COALESCE(NULLIF(value_not_pass, ''), '0')::integer
+                              )
+                        )
+                        ELSE 0 
+                    END
+                )::numeric
+            , 1) as loi_score
+        FROM sp_revit_lod 
+        WHERE stream_id = #{streamId}
+          AND created_time >= #{startDate}
+          AND created_time &lt;= #{endDate}
+        GROUP BY TO_CHAR(created_time, 'MM-DD'), DATE(created_time)
+        ORDER BY DATE(created_time)
+    </select>
+
+    <!-- 统计待处理问题分类（基于碰撞检测数据分类） -->
+    <select id="getPendingIssueCategories" resultType="java.util.Map">
+        SELECT
+            '碰撞干扰' as category,
+            COALESCE(SUM(
+                CASE
+                    WHEN data IS NOT NULL AND jsonb_exists(data::jsonb, 'collisions')
+                    THEN jsonb_array_length(data::jsonb->'collisions')
+                    ELSE 0
+                END
+            ), 0) as count
+        FROM sp_crash_detection
+        WHERE stream_id = #{streamId}
+          AND modify_time >= #{startDate}
+          AND modify_time &lt;= #{endDate}
+        
+        UNION ALL
+        
+        SELECT
+            '不符合审查规范' as category,
+            COALESCE(SUM(COALESCE(NULLIF(value_not_pass, ''), '0')::integer), 0)::bigint as count
+        FROM sp_revit_lod
+        WHERE stream_id = #{streamId}
+          AND created_time >= #{startDate}
+          AND created_time &lt;= #{endDate}
+        
+        UNION ALL
+        
+        SELECT
+            '属性参数缺失/错误' as category,
+            COUNT(*) as count
+        FROM sp_revit_lod
+        WHERE stream_id = #{streamId}
+          AND created_time >= #{startDate}
+          AND created_time &lt;= #{endDate}
+          AND (value_pass IS NULL OR value_pass = '' OR value_not_pass IS NULL OR value_not_pass = '')
+          
+        UNION ALL
+        
+        SELECT
+            '人工问题批注' as category,
+            COUNT(*) as count
+        FROM comments
+        WHERE "streamId" = #{streamId}
+          AND archived = false
+          AND "createdAt" >= #{startDate}
+          AND "createdAt" &lt;= #{endDate}
+    </select>
+
+    <!-- 按周分组统计团队数据同步活跃度（基于commits提交次数） -->
+    <select id="getTeamSyncActivityByWeek" resultType="java.util.Map">
+        SELECT 
+            '第' || EXTRACT(WEEK FROM c."createdAt") || '周' as week_label,
+            EXTRACT(WEEK FROM c."createdAt") as week_num,
+            COUNT(*) as count
+        FROM commits c
+        JOIN branch_commits bc ON c.id = bc."commitId"
+        JOIN branches b ON bc."branchId" = b.id
+        WHERE b."streamId" = #{streamId}
+          AND c."createdAt" >= #{startDate}
+          AND c."createdAt" &lt;= #{endDate}
+        GROUP BY EXTRACT(WEEK FROM c."createdAt")
+        ORDER BY EXTRACT(WEEK FROM c."createdAt")
+    </select>
+
+    <!-- 获取高频变更模型列表（按branch统计周期内的commits数量） -->
+    <select id="getHighFrequencyChangeModels" resultType="java.util.Map">
+        SELECT
+            b."streamId" as stream_id,
+            b.id as branch_id,
+            b.name as name,
+            (SELECT c2.id 
+             FROM commits c2
+             JOIN branch_commits bc2 ON c2.id = bc2."commitId"
+             WHERE bc2."branchId" = b.id
+             ORDER BY c2."createdAt" DESC 
+             LIMIT 1) as latest_commit_id,
+            COUNT(DISTINCT c.id) as change_num,
+            COALESCE((SELECT SUM(
+                CASE
+                    WHEN cd.data IS NOT NULL AND jsonb_exists(cd.data::jsonb, 'collisions')
+                    THEN jsonb_array_length(cd.data::jsonb->'collisions')
+                    ELSE 0
+                END
+            ) FROM sp_crash_detection cd
+             WHERE cd.stream_id = b."streamId"
+               AND cd.modify_time >= #{startDate}
+               AND cd.modify_time &lt;= #{endDate}), 0) as unresolve
+        FROM branches b
+        JOIN branch_commits bc ON b.id = bc."branchId"
+        JOIN commits c ON bc."commitId" = c.id
+        WHERE b."streamId" = #{streamId}
+          AND c."createdAt" >= #{startDate}
+          AND c."createdAt" &lt;= #{endDate}
+        GROUP BY b.id, b."streamId", b.name
+        HAVING COUNT(DISTINCT c.id) > 0
+        ORDER BY change_num DESC
+        LIMIT 5
+    </select>
+
+    <!-- 按周分组统计设计裕落指数（基于模型提交的变化趋势） -->
+    <select id="getDesignFalloffIndexByWeek" resultType="java.util.Map">
+        SELECT 
+            '第' || EXTRACT(WEEK FROM c."createdAt") || '周' as week_label,
+            EXTRACT(WEEK FROM c."createdAt") as week_num,
+            COUNT(*) as commit_count,
+            ROUND(AVG(COALESCE(c."totalChildrenCount", 0))::numeric, 1) as avg_children_count
+        FROM commits c
+        JOIN branch_commits bc ON c.id = bc."commitId"
+        JOIN branches b ON bc."branchId" = b.id
+        WHERE b."streamId" = #{streamId}
+          AND c."createdAt" >= #{startDate}
+          AND c."createdAt" &lt;= #{endDate}
+        GROUP BY EXTRACT(WEEK FROM c."createdAt")
+        ORDER BY EXTRACT(WEEK FROM c."createdAt")
+    </select>
+
+    <!-- 按周分组统计新增批注趋势 -->
+    <select id="getNewCommentsTrendByWeek" resultType="java.util.Map">
+        SELECT 
+            '第' || EXTRACT(WEEK FROM "createdAt") || '周' as week_label,
+            EXTRACT(WEEK FROM "createdAt") as week_num,
+            COUNT(*) as count
+        FROM comments 
+        WHERE "streamId" = #{streamId}
+          AND "createdAt" >= #{startDate}
+          AND "createdAt" &lt;= #{endDate}
+        GROUP BY EXTRACT(WEEK FROM "createdAt")
+        ORDER BY EXTRACT(WEEK FROM "createdAt")
+    </select>
+
+    <!-- 获取LOD得分统计（value_pass总和 / (value_pass + value_not_pass)总和 * 100），字段从varchar显式转换为integer -->
+    <select id="getLODScoreStatistics" resultType="java.util.Map">
+        SELECT 
+            COALESCE(SUM(COALESCE(NULLIF(value_pass, ''), '0')::integer), 0) as total_pass,
+            COALESCE(SUM(COALESCE(NULLIF(value_not_pass, ''), '0')::integer), 0) as total_not_pass,
+            CASE 
+                WHEN 
+                    COALESCE(SUM(COALESCE(NULLIF(value_pass, ''), '0')::integer), 0)
+                  + COALESCE(SUM(COALESCE(NULLIF(value_not_pass, ''), '0')::integer), 0) > 0 
+                THEN ROUND(
+                    (
+                        COALESCE(SUM(COALESCE(NULLIF(value_pass, ''), '0')::integer), 0) * 100.0
+                        / (
+                            COALESCE(SUM(COALESCE(NULLIF(value_pass, ''), '0')::integer), 0)
+                          + COALESCE(SUM(COALESCE(NULLIF(value_not_pass, ''), '0')::integer), 0)
+                          )
+                    )::numeric
+                , 0)
+                ELSE 0 
+            END as score
+        FROM sp_revit_lod 
+        WHERE stream_id = #{streamId}
+          AND created_time >= #{startDate}
+          AND created_time &lt;= #{endDate}
+    </select>
+
+    <!-- 统计不符合审查规范的数量（sp_revit_lod中value_not_pass不为0） -->
+    <select id="countReviewNotPass" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM sp_revit_lod
+        WHERE stream_id = #{streamId}
+          AND COALESCE(NULLIF(value_not_pass, ''), '0')::integer != 0
+          AND created_time >= #{startDate}
+          AND created_time &lt;= #{endDate}
+    </select>
+
+    <!-- 按周期统计commits数量 -->
+    <select id="countCommitsByPeriod" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT c.id)
+        FROM commits c
+        JOIN branch_commits bc ON c.id = bc."commitId"
+        JOIN branches b ON bc."branchId" = b.id
+        WHERE b."streamId" = #{streamId}
+          AND c."createdAt" >= #{startDate}
+          AND c."createdAt" &lt;= #{endDate}
+    </select>
+
+    <!-- 按周期统计sp_template_version数量，需要联表sp_new_template -->
+    <select id="countTemplateVersionByPeriod" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT tv.id)
+        FROM sp_template_version tv
+        JOIN sp_new_template nt ON tv.template_id = nt.id
+        WHERE nt.stream_id = #{streamId}
+          AND tv.check_time >= #{startDate}
+          AND tv.check_time &lt;= #{endDate}
+    </select>
+
+    <!-- 按周期统计新增批注数量 -->
+    <select id="countNewCommentsByPeriod" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM comments
+        WHERE "streamId" = #{streamId}
+          AND "createdAt" >= #{startDate}
+          AND "createdAt" &lt;= #{endDate}
+    </select>
+
+    <!-- 按周期统计碰撞数（从data JSON中解析collisions数组长度求和） -->
+    <select id="countResolvedCrashByPeriod" resultType="java.lang.Integer">
+        SELECT COALESCE(SUM(
+            CASE
+                WHEN data IS NOT NULL AND jsonb_exists(data::jsonb, 'collisions')
+                THEN jsonb_array_length(data::jsonb->'collisions')
+                ELSE 0
+            END
+        ), 0)
+        FROM sp_crash_detection
+        WHERE stream_id = #{streamId}
+          AND modify_time >= #{startDate}
+          AND modify_time &lt;= #{endDate}
+    </select>
+
+    <!-- 按周期获取LOI/LOD得分 -->
+    <select id="getLODScoreByPeriod" resultType="java.util.Map">
+        SELECT
+            ROUND(
+                AVG(
+                    CASE
+                        WHEN (
+                            COALESCE(NULLIF(value_pass, ''), '0')::integer
+                          + COALESCE(NULLIF(value_not_pass, ''), '0')::integer
+                        ) > 0
+                        THEN (
+                            COALESCE(NULLIF(value_pass, ''), '0')::integer * 100.0
+                            / (
+                                COALESCE(NULLIF(value_pass, ''), '0')::integer
+                              + COALESCE(NULLIF(value_not_pass, ''), '0')::integer
+                              )
+                        )
+                        ELSE 0
+                    END
+                )::numeric
+            , 1) as lod_score,
+            ROUND(
+                AVG(
+                    CASE
+                        WHEN (
+                            COALESCE(NULLIF(value_pass, ''), '0')::integer
+                          + COALESCE(NULLIF(value_not_pass, ''), '0')::integer
+                        ) > 0
+                        THEN (
+                            COALESCE(NULLIF(value_pass, ''), '0')::integer * 100.0
+                            / (
+                                COALESCE(NULLIF(value_pass, ''), '0')::integer
+                              + COALESCE(NULLIF(value_not_pass, ''), '0')::integer
+                              )
+                        )
+                        ELSE 0
+                    END
+                )::numeric
+            , 1) as loi_score
+        FROM sp_revit_lod
+        WHERE stream_id = #{streamId}
+          AND created_time >= #{startDate}
+          AND created_time &lt;= #{endDate}
+    </select>
+
+</mapper>

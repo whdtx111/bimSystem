@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.CdexElementMapper">
+
+    <resultMap id="CdexElementResultMap" type="org.springblade.modules.sp.entity.CdexElement">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="data" column="data"/>
+        <result property="modifyTime" column="modify_time"/>
+    </resultMap>
+
+
+    <select id="getById" resultMap="CdexElementResultMap">
+        SELECT * FROM sp_cdex_element WHERE id = #{id};
+    </select>
+
+    <select id="getByName" resultMap="CdexElementResultMap">
+        SELECT * FROM sp_cdex_element WHERE name = #{name};
+    </select>
+
+   <insert id="addCdexElement" parameterType="org.springblade.modules.sp.entity.CdexElement">
+        INSERT INTO sp_cdex_element (id,name,data,modify_time)
+        VALUES (#{id},#{name},#{data},#{modifyTime});
+    </insert>
+
+    <update id="updateCdexElement" parameterType="org.springblade.modules.sp.entity.CdexElement">
+        UPDATE sp_cdex_element
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="data != null">data = #{data},</if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteCdexElement" parameterType="java.lang.String">
+        DELETE FROM sp_cdex_element WHERE id = #{id};
+    </delete>
+</mapper>

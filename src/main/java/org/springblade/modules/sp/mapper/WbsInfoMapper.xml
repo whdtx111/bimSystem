@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.WbsInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="wbsInfoResultMap" type="org.springblade.modules.sp.entity.WbsInfo">
+        <id column="id" property="id"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="wbs_code" property="wbsCode"/>
+        <result column="wbs_level" property="wbsLevel"/>
+    </resultMap>
+
+
+    <select id="selectWbsInfoPage" resultMap="wbsInfoResultMap">
+        select * from sp_wbs_info where is_deleted = 0
+    </select>
+
+    <select id="tree" resultType="org.springblade.modules.sp.vo.WbsInfoTreeVO">
+--         SELECT
+--         sp.id id,
+--         sp.wbs_code,
+--         IFNULL(parent.id,0) parent_id,
+--         sp.wbs_name title,
+--         sp.wbs_eng_name ,
+--         sp.id AS 'value',
+--         sp.id AS 'key'
+--         FROM
+--         sp_wbs_info sp
+--         LEFT JOIN (SELECT id,wbs_code FROM sp_wbs_info WHERE is_deleted = 0) parent ON parent.wbs_code = sp.parent_wbs_code
+--         WHERE
+--         sp.is_deleted = 0
+            SELECT
+            sp.ID ID,
+            sp.wbs_code,
+            COALESCE ( parent.ID, 0 ) parent_id,
+            sp.TEXT title,
+            sp.english_text,
+            sp.objects_id,
+            sp.element_id,
+            sp.streams_id,
+            obj."data" dataJson
+            FROM
+            sp_wbs_info sp
+            LEFT JOIN ( SELECT ID, wbs_code FROM sp_wbs_info WHERE is_deleted = 0 ) parent ON parent.wbs_code = sp.parent_wbs_code
+            LEFT JOIN ( SELECT ID, data FROM objects  ) obj ON obj.ID = sp.objects_id
+            WHERE
+            sp.is_deleted = 0
+        <!-- sp streamsId-->
+        <if test="streamsId!=null and streamsId!=''">
+            AND sp.streams_id = #{streamsId}
+        </if>
+    </select>
+
+    <select id="selectGanttList" resultType="org.springblade.modules.sp.vo.WbsInfoGanttVO">
+        SELECT
+            sp.id id,
+            sp.wbs_code,
+            COALESCE (parent.id, 0 ) parent,
+            sp."text" "text",
+            sp.english_text,
+            sp.duration,
+            sp.progress,
+            sp.start_date startDate,
+            sp.deadline,
+            sp.open,
+            sp.info_type,
+            sp.wbs_level,
+            sp.element_id,
+            sp.objects_id,
+            sp.streams_id
+        FROM
+            sp_wbs_info sp
+            LEFT JOIN ( SELECT id, wbs_code FROM sp_wbs_info WHERE is_deleted = 0 ) parent ON parent.wbs_code = sp.parent_wbs_code
+        WHERE
+            sp.is_deleted = 0
+        <!-- sp streamsId-->
+        <if test="streamsId!=null and streamsId!=''">
+            AND sp.streams_id = #{streamsId}
+        </if>
+    </select>
+
+
+    <select id="uEList" resultType="org.springblade.modules.sp.vo.WbsInfoUEVO">
+            SELECT
+            sp.ID ID,
+            sp.wbs_code,
+            COALESCE ( parent.ID, 0 ) parent,
+            sp."text" "text",
+            sp.duration,
+            sp.start_date startDate,
+            sp.deadline,
+            sp.info_type,
+            sp.wbs_level,
+            sp.objects_id
+        FROM
+            sp_wbs_info sp
+            LEFT JOIN ( SELECT ID, wbs_code FROM sp_wbs_info WHERE is_deleted = 0 ) parent ON parent.wbs_code = sp.parent_wbs_code
+        WHERE
+            sp.is_deleted = 0
+        <!-- sp streamsId-->
+        <if test="streamsId!=null and streamsId!=''">
+            AND sp.streams_id = #{streamsId}
+        </if>
+    </select>
+
+    <select id="selectUeDetail" resultType="org.springblade.modules.sp.vo.WbsInfoUeDetailVO">
+        SELECT
+            obj."id" AS obj_id,
+            obj."streamId" AS obj_stream_id,
+            obj."data" ->> 'type' AS obj_type,
+            obj."data" ->> 'units' AS obj_units,
+            obj."data" ->> 'family' AS obj_family,
+            obj."data" ->> 'category' AS obj_category,
+            obj."data" ->> 'elementId' AS obj_elementId
+        FROM
+            objects obj
+        WHERE
+            obj."id" = #{objId}
+            LIMIT 1;
+    </select>
+
+    <select id="selectBimCategoryList" resultType="org.springblade.modules.sp.vo.BimListTreeVO">
+        SELECT
+            newCompriseData.*
+        FROM
+            (
+            SELECT
+                compriseData.*
+            FROM
+                (-- category
+                SELECT DISTINCT
+                    obj."data" ->> 'category' AS label,
+                    obj."data" ->> 'category' AS ID,
+                    obj."data" ->> 'category' AS "parentId",
+                    'category' AS "level"
+                FROM
+                    objects obj
+                WHERE
+                    obj."streamId" = #{streamsId}
+                    AND obj."data" ->> 'category' is not null
+                    AND obj."data" ->> 'family' is not null
+					AND obj."data" ->> 'type' is not null
+                UNION ALL-- family
+                SELECT
+                DISTINCT
+                    obj."data" ->> 'family' AS label,
+                    obj."data" ->> 'family' AS ID,
+                    obj."data" ->> 'category' AS "parentId",
+                    'family' AS "level"
+                FROM
+                    objects obj
+                WHERE
+                    obj."streamId" = #{streamsId}
+                    AND obj."data" ->> 'category' is not null
+                    AND obj."data" ->> 'family' is not null
+                UNION ALL-- type
+                SELECT DISTINCT
+                    obj."data" ->> 'type' AS label,
+                    obj."data" ->> 'type' AS ID,
+                    obj."data" ->> 'family' AS "parentId",
+                    'type' AS "level"
+                FROM
+                    objects obj
+                WHERE
+                    obj."streamId" = #{streamsId}
+                    AND obj."data" ->> 'family' is not null
+                    AND obj."data" ->> 'type' is not null  -- elementId
+                UNION ALL
+                SELECT
+                    obj."data" ->> 'elementId' AS label,
+                    obj."data" ->> 'elementId' AS ID,
+                    obj."data" ->> 'type' AS "parentId",
+                    'elementId' AS "level"
+                FROM
+                    objects obj
+                WHERE
+                    obj."streamId" = #{streamsId}
+                    AND obj."data" ->> 'elementId' is not null
+                    AND obj."data" ->> 'type' is not null
+                ) AS compriseData
+            ) newCompriseData
+    </select>
+
+
+</mapper>

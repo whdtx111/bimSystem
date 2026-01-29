@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.BimMapper">
+
+    <select id="selectBimCategoryList" resultType="org.springblade.modules.sp.vo.BimListTreeVO">
+        -- category
+        SELECT DISTINCT
+            '' AS "objId",
+            obj."data" ->> 'category' AS label,
+            obj."data" ->> 'category' AS ID,
+            obj."data" ->> 'category' AS "parentId",
+            'category' AS "level"
+        FROM
+            objects obj
+        WHERE
+            obj."id" IN (
+            SELECT
+                jsonb_object_keys ( obj."data" -> '__closure' )
+            FROM
+                objects obj
+            WHERE
+                obj."id" = ( SELECT info -> 'commit' ->> 'objectId' AS objectId FROM stream_activity WHERE "resourceId" = #{resourceId} AND "actionType" = 'commit_create' )
+            )
+            AND obj."data" ->> 'category' IS NOT NULL
+           -- AND obj."data" ->> 'family' IS NOT NULL
+           -- AND obj."data" ->> 'type' IS NOT NULL
+        UNION ALL
+        -- family
+        SELECT DISTINCT
+            '' AS "objId",
+            obj."data" ->> 'family' AS label,
+	        concat(obj."data" ->> 'family', '|', obj."data" ->> 'category') AS ID,
+	        obj."data" ->> 'category' AS "parentId",
+	        'family' AS "level"
+        FROM
+            objects obj
+        WHERE
+            obj."id" IN (
+            SELECT
+                jsonb_object_keys ( obj."data" -> '__closure' )
+            FROM
+                objects obj
+            WHERE
+                obj."id" = ( SELECT info -> 'commit' ->> 'objectId' AS objectId FROM stream_activity WHERE "resourceId" = #{resourceId} AND "actionType" = 'commit_create' )
+            )
+            AND obj."data" ->> 'category' IS NOT NULL
+            AND obj."data" ->> 'family' IS NOT NULL
+        UNION ALL
+        -- type
+        SELECT DISTINCT
+            '' AS "objId",
+            obj."data" ->> 'type' AS label,
+            concat(obj."data" ->> 'category', '|', obj."data" ->> 'family','|',obj."data" ->> 'type') AS ID,
+            concat(obj."data" ->> 'family', '|', obj."data" ->> 'category') AS "parentId",
+            'type' AS "level"
+        FROM
+            objects obj
+        WHERE
+            obj."id" IN (
+            SELECT
+                jsonb_object_keys ( obj."data" -> '__closure' )
+            FROM
+                objects obj
+            WHERE
+                obj."id" = ( SELECT info -> 'commit' ->> 'objectId' AS objectId FROM stream_activity WHERE "resourceId" = #{resourceId} AND "actionType" = 'commit_create' )
+            )
+            AND obj."data" ->> 'family' IS NOT NULL
+            AND obj."data" ->> 'type' IS NOT NULL
+        UNION ALL
+        -- elementId
+        SELECT DISTINCT
+            obj."id" AS "objId",
+            -- obj."data" ->> 'elementId' AS label,
+            obj."id" AS "label",
+            concat(obj."data" ->> 'category', '|', obj."data" ->> 'family','|',obj."data" ->> 'type','|',obj."id") AS ID,
+            concat(obj."data" ->> 'category', '|', obj."data" ->> 'family','|',obj."data" ->> 'type') AS parentId,
+            'elementId' AS "level"
+        FROM
+            objects obj
+        WHERE
+            obj."id" IN (
+            SELECT
+                jsonb_object_keys ( obj."data" -> '__closure' )
+            FROM
+                objects obj
+            WHERE
+                obj."id" = ( SELECT info -> 'commit' ->> 'objectId' AS objectId FROM stream_activity WHERE "resourceId" = #{resourceId} AND "actionType" = 'commit_create')
+            )
+            AND obj."data" ->> 'elementId' IS NOT NULL
+            AND obj."data" ->> 'type' IS NOT NULL
+    </select>
+
+    <select id="selectBimObjList" resultType="org.springblade.modules.sp.vo.BimObjVO">
+		SELECT
+		    obj."id" AS objId,
+			obj."data" ->> 'speckle_type' AS speckle_type,
+		    obj."data" ->'definition'->>'referencedId' AS referencedId,
+			obj."data" ->> 'category' AS category,
+            -- obj."data" ->> 'family' AS family,
+            COALESCE(obj."data" ->> 'family', obj."data" ->> 'category' || '-family') AS family ,
+            obj."data" ->> 'type' AS "type",
+			obj."data" ->> 'elementId' AS "elementId"
+        FROM
+            objects obj
+        WHERE
+            obj."id" IN (
+            SELECT
+                jsonb_object_keys ( obj."data" -> '__closure' )
+            FROM
+                objects obj
+            WHERE
+                obj."id" = ( SELECT info -> 'commit' ->> 'objectId' AS objectId FROM stream_activity WHERE "resourceId" = #{resourceId} AND "actionType" = 'commit_create')
+            )
+		AND obj."streamId" = #{streamId}
+    </select>
+
+    <!--保存旧bim结构树数据-->
+    <insert id="addBimObj" parameterType="org.springblade.modules.sp.vo.BimListTreeVO">
+        INSERT INTO sp_bimobjvo("objId", "referencedId", category, family, type, "elementId", "definitionObjIdList", "definitionElementIdList")
+SELECT #{objId}, #{referencedId}, #{category}, #{family}, #{type}, #{elementId}, '{}', '{}'
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM sp_bimobjvo
+    WHERE "objId" = #{objId}
+);
+    </insert>
+
+    <select id="getAllBimObj" resultType="org.springblade.modules.sp.vo.BimListTreeVO">
+        select * from sp_bimobjvo;
+    </select>
+
+</mapper>

@@ -1,0 +1,21 @@
+package org.springblade.modules.sp.service.impl;
+
+import com.baomidou.dynamic.datasource.annotation.DS;
+import org.springblade.core.mp.base.BaseServiceImpl;
+import org.springblade.modules.sp.entity.RulesLibrary;
+import org.springblade.modules.sp.mapper.RulesLibraryMapper;
+import org.springblade.modules.sp.service.RulesLibraryService;
+import org.springframework.stereotype.Service;
+
+/**
+ * Wbs接口实现类
+ * @author dengtx
+ */
+@Service
+@DS("postgresql")
+public class RulesParametersServiceImpl extends BaseServiceImpl<RulesLibraryMapper, RulesLibrary> implements RulesLibraryService {
+
+    
+    
+
+}

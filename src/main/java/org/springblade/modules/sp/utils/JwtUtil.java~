@@ -1,0 +1,27 @@
+package org.springblade.modules.sp.utils;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+import java.util.Date;
+
+public class JwtUtil {
+
+    private static final String SECRET_KEY = "your-secret-key";
+    private static final long EXPIRATION_TIME = 864_000_000;// 10 dayspublic static String generateToken(String username, String[] roles) {
+        return Jwts.builder()
+                .setSubject()
+                .claim("roles", roles)
+                .setIssuedAt(new Date())
+            .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+            .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .compact();
+
+    public static Claims parseToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(token)
+                .getBody();
+    }
+}
+

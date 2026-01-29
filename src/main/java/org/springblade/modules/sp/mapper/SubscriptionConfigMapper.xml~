@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.SubscriptionConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="subscriptionConfigResultMap" type="org.springblade.modules.sp.entity.SubscriptionConfig">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="project_num" property="projectNum"/>
+        <result column="user_num" property="userNum"/>
+        <result column="storage" property="storage"/>
+        <result column="storage_unit" property="storageUnit"/>
+        <result column="duration" property="duration"/>
+        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="discount" property="discount" />
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"  jdbcType="TIMESTAMP"/>
+        <result column="online_time" property="onlineTime" jdbcType="TIMESTAMP"/>
+        <result column="offline_time" property="offlineTime" jdbcType="TIMESTAMP"/>
+        <result column="introduction" property="introduction"/>
+        <result column="description" property="description"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, project_num, user_num, storage, storage_unit, duration, price, discount, status, create_time, online_time, offline_time, introduction, description
+    </sql>
+
+    <!-- 根据条件查询配置列表 -->
+    <select id="selectSubscriptionConfigList" resultType="org.springblade.modules.sp.entity.SubscriptionConfig">
+        SELECT
+        id,
+        name,
+        CASE
+        WHEN price IS NULL THEN null
+        ELSE price
+        END as price,
+        project_num,
+        user_num,
+        storage,
+        duration,
+        status,
+        create_time,
+        online_time,
+        offline_time
+        FROM sp_subscription_config
+        <where>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="onlineTime != null">
+                AND online_time &lt;= #{onlineTime}
+            </if>
+            <if test="offlineTime != null">
+                AND offline_time &gt;= #{offlineTime}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="getById" resultMap="subscriptionConfigResultMap">
+        SELECT * FROM sp_subscription_config WHERE id = #{id};
+    </select>
+
+    <!-- 新增配置 -->
+    <insert id="insertSubscriptionConfig" parameterType="org.springblade.modules.sp.entity.SubscriptionConfig">
+        INSERT INTO sp_subscription_config (
+        id, name, project_num, user_num, storage, storage_unit,
+        duration, price, discount, status, create_time, online_time, offline_time, introduction, description
+        )
+        VALUES (
+        #{id}, #{name}, #{projectNum}, #{userNum}, #{storage}, #{storageUnit},
+        #{duration}, #{price}, #{discount}, #{status}, #{createTime}, #{onlineTime}, #{offlineTime}, #{introduction}, #{description}
+        )
+    </insert>
+
+    <!-- 修改配置 -->
+    <update id="updateSubscriptionConfig" parameterType="org.springblade.modules.sp.entity.SubscriptionConfig">
+        UPDATE sp_subscription_config
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="projectNum != null">project_num = #{projectNum},</if>
+            <if test="userNum != null">user_num = #{userNum},</if>
+            <if test="storage != null">storage = #{storage},</if>
+            <if test="storageUnit != null">storage_unit = #{storageUnit},</if>
+            <if test="duration != null">duration = #{duration},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="discount != null">discount = #{discount},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="onlineTime != null">online_time = #{onlineTime},</if>
+            <if test="offlineTime != null">offline_time = #{offlineTime},</if>
+            <if test="introduction != null">introduction = #{introduction},</if>
+            <if test="description != null">description = #{description},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除配置 -->
+    <delete id="deleteSubscriptionConfig">
+        DELETE FROM sp_subscription_config WHERE id = #{id}
+    </delete>
+
+    <!-- 批量删除配置 -->
+    <delete id="batchDeleteSubscriptionConfig">
+        DELETE FROM sp_subscription_config WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 更新配置状态 -->
+    <update id="updateSubscriptionConfigStatus">
+        UPDATE sp_subscription_config
+        SET status = #{status},
+        update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
+</mapper>

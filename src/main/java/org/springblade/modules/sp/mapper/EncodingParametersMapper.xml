@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.EncodingParametersMapper">
+
+    <resultMap id="EncodingParametersResultMap" type="org.springblade.modules.sp.entity.EncodingParameters">
+        <id property="id" column="id"/>
+        <result property="pid" column="pid"/>
+        <result property="encodingId" column="encoding_id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="lv" column="lv"/>
+        <result property="encodingStatus" column="encoding_status"/>
+        <result property="category" column="category" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="version" column="version"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+    </resultMap>
+
+    <!-- 根据ID查询 -->
+    <select id="getById" resultMap="EncodingParametersResultMap">
+        SELECT * FROM sp_encoding_parameters WHERE id = #{id};
+    </select>
+
+    <select id="getSheetByParametersId" resultMap="EncodingParametersResultMap">
+        select * from sp_encoding_parameters where id = #{encodingParametersId} and lv = '0';
+    </select>
+
+    <select id="getEncodingParametersByCode" resultMap="EncodingParametersResultMap">
+        SELECT * FROM sp_encoding_parameters WHERE encoding_id = #{encodingId} and code = #{code};
+    </select>
+
+    <!-- 获取所有记录 -->
+    <select id="getAllEncodingParameters" resultMap="EncodingParametersResultMap">
+        SELECT * FROM sp_encoding_parameters;
+    </select>
+
+    <select id="getAllEncodingParametersByEncodingId" resultMap="EncodingParametersResultMap">
+        SELECT * FROM sp_encoding_parameters WHERE encoding_id = #{encodingId};
+    </select>
+
+    <select id="getAllSubRecordsByLv0Id" resultMap="EncodingParametersResultMap">
+        WITH RECURSIVE sub_tree AS (
+            -- 基础层级：找到 lv=0 的记录
+            SELECT *
+            FROM sp_encoding_parameters
+            WHERE lv = '0' AND id = #{id} -- 参数：lv=0 的记录 ID
+
+            UNION ALL
+
+            -- 递归层级：查找子记录
+            SELECT ep.*
+            FROM sp_encoding_parameters ep
+                     INNER JOIN sub_tree st ON ep.pid = st.id
+            WHERE ep.lv IN ('1', '2', '3', '4') -- 限制层级
+        )
+        SELECT *
+        FROM sub_tree
+        WHERE lv != '0' -- 排除根节点本身
+        ORDER BY lv ASC, code ASC; -- 按 lv 和 code 排序
+    </select>
+
+    <!-- 根据编码ID获取所有参数 -->
+    <select id="getAllByEncodingId" resultMap="EncodingParametersResultMap">
+        SELECT * FROM sp_encoding_parameters WHERE encoding_id = #{encodingId};
+    </select>
+
+    <!-- 插入记录 -->
+    <insert id="addEncodingParameters" parameterType="org.springblade.modules.sp.entity.EncodingParameters">
+        INSERT INTO sp_encoding_parameters (id, pid, encoding_id, code, name, lv, encoding_status, version,category,modify_user, modify_time)
+        VALUES (#{id}, #{pid}, #{encodingId}, #{code}, #{name}, #{lv}, #{encodingStatus},#{version},#{category,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler}, #{modifyUser}, #{modifyTime});
+    </insert>
+
+    <!-- 插入参数列表 -->
+    <insert id="addEncodingParametersList" parameterType="java.util.List">
+        INSERT INTO sp_encoding_parameters (id, pid, encoding_id, code, name, lv, encoding_status, version,category,modify_user, modify_time)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id}, #{item.pid}, #{item.encodingId}, #{item.code}, #{item.name}, #{item.lv}, #{item.encodingStatus},#{item.version},#{item.category, typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},#{item.modifyUser}, #{item.modifyTime})
+        </foreach>
+    </insert>
+
+    <update id="updateEncodingStatus" parameterType="org.springblade.modules.sp.entity.EncodingParameters">
+        UPDATE sp_encoding_parameters set encoding_status = '1' where encoding_id = #{encodingId};
+    </update>
+
+    <!-- 更新记录 -->
+    <update id="updateEncodingParameters" parameterType="org.springblade.modules.sp.entity.EncodingParameters">
+        UPDATE sp_encoding_parameters
+        <set>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="encodingId != null">encoding_id = #{encodingId},</if>
+            <if test="code != null">code = #{code},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="lv != null">lv = #{lv},</if>
+            <if test="encodingStatus != null">encoding_status = #{encodingStatus},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="category != null">category = #{category,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!-- 根据ID删除记录 -->
+    <delete id="deleteEncodingParameters" parameterType="String">
+        DELETE FROM sp_encoding_parameters WHERE id = #{id};
+    </delete>
+
+    <!-- 根据编码ID删除记录 -->
+    <delete id="deleteEncodingParametersByEncodingId" parameterType="String">
+        DELETE FROM sp_encoding_parameters WHERE encoding_id = #{encodingId};
+    </delete>
+
+</mapper>

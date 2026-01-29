@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.EncodingLibraryMapper">
+
+    <!-- 定义ResultMap，与实体类对应 -->
+    <resultMap id="EncodingLibraryResultMap" type="org.springblade.modules.sp.entity.EncodingLibrary">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="detail" column="detail"/>
+        <result property="lv" column="lv"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!-- 根据ID获取EncodingLibrary -->
+    <select id="getById" resultMap="EncodingLibraryResultMap">
+        SELECT * FROM sp_encoding_library WHERE id = #{id};
+    </select>
+
+    <select id="getAll" resultMap="EncodingLibraryResultMap">
+        SELECT * FROM sp_encoding_library where status != 9;
+    </select>
+
+    <!-- 获取所有EncodingLibrary记录 -->
+    <select id="getAllEncodingLibraries" resultMap="EncodingLibraryResultMap">
+        SELECT * FROM sp_encoding_library
+        WHERE 1=1
+        <if test="name != null and name != ''">
+            AND name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="code != null and code != ''">
+            AND code LIKE CONCAT('%', #{code}, '%')
+        </if>
+        <if test="lv != null and lv != ''">
+            AND lv = #{lv}
+        </if>
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        ORDER BY modify_time DESC
+    </select>
+
+    <!-- 根据条件筛选EncodingLibrary记录 -->
+    <select id="filterEncodingLibrary" resultMap="EncodingLibraryResultMap">
+        SELECT * FROM sp_encoding_library
+        WHERE 1=1
+        <if test="name != null and name != ''">
+            AND name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="code != null and code != ''">
+            AND code = #{code}
+        </if>
+        <if test="lv != null and lv != ''">
+            AND lv = #{lv}
+        </if>
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        ORDER BY modify_time DESC
+    </select>
+
+    <!-- 添加新的EncodingLibrary -->
+    <insert id="addEncodingLibrary" parameterType="org.springblade.modules.sp.entity.EncodingLibrary">
+        INSERT INTO sp_encoding_library (id, name, code, detail, lv, modify_user, modify_time, status)
+        VALUES (#{id}, #{name}, #{code}, #{detail}, #{lv}, #{modifyUser}, #{modifyTime}, '0');
+    </insert>
+
+    <!-- 插入参数列表 -->
+    <insert id="addEncodingLibraryList" parameterType="java.util.List">
+        INSERT INTO sp_encoding_library (id, name, code, detail, lv, modify_user, modify_time, status)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id}, #{item.name}, #{item.code}, #{item.detail}, #{item.lv}, #{item.modifyUser}, #{item.modifyTime}, '0')
+        </foreach>
+    </insert>
+
+    <!-- 更新EncodingLibrary记录 -->
+    <update id="updateEncodingLibrary" parameterType="org.springblade.modules.sp.entity.EncodingLibrary">
+        UPDATE sp_encoding_library
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="detail != null">
+                detail = #{detail},
+            </if>
+            <if test="lv != null">
+                lv = #{lv},
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!-- 根据ID删除EncodingLibrary -->
+    <delete id="deleteEncodingLibrary" parameterType="string">
+        DELETE FROM sp_encoding_library WHERE id = #{id};
+    </delete>
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.LabelMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="BaseResultMap" type="org.springblade.modules.sp.entity.Label">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="stream_id" property="streamId" jdbcType="VARCHAR"/>
+        <result column="branch_id" property="branchId" jdbcType="VARCHAR"/>
+        <result column="commit_id" property="commitId" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="text" property="text" jdbcType="VARCHAR"/>
+        <result column="size" property="size" jdbcType="VARCHAR"/>
+        <result column="color" property="color" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="img_index" property="imgIndex" jdbcType="VARCHAR"/>
+        <result column="position" property="position" jdbcType="VARCHAR"/>
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+        <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- 基础列 -->
+    <sql id="Base_Column_List">
+        id, stream_id, branch_id, commit_id, type, text, size, color, status, img_index, position, created_time, updated_time
+    </sql>
+
+    <!-- 批量插入标签 -->
+    <insert id="batchInsertLabels" parameterType="java.util.List">
+        INSERT INTO sp_label (id, stream_id, branch_id, commit_id, type, text, size, color, status, img_index, position, created_time, updated_time)
+        VALUES
+        <foreach collection="labels" item="label" separator=",">
+            (#{label.id}, #{label.streamId}, #{label.branchId}, #{label.commitId}, #{label.type}, 
+             #{label.text}, #{label.size}, #{label.color}, #{label.status}, #{label.imgIndex}, 
+             #{label.position}, #{label.createdTime}, #{label.updatedTime})
+        </foreach>
+    </insert>
+
+    <!-- 动态查询标签 -->
+    <select id="selectLabelsByCondition" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM sp_label
+        <where>
+            <if test="streamId != null and streamId != ''">
+                AND stream_id = #{streamId}
+            </if>
+            <if test="branchId != null and branchId != ''">
+                AND branch_id = #{branchId}
+            </if>
+            <if test="commitId != null and commitId != ''">
+                AND commit_id = #{commitId}
+            </if>
+            <if test="type != null and type != ''">
+                AND type = #{type}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+        ORDER BY created_time DESC
+    </select>
+
+    <select id="getLabelsByStreamBranchCommit" resultMap="BaseResultMap">
+        SELECT * FROM sp_label WHERE stream_id = #{streamId} AND branch_id = #{branchId} <if test="commitId != null and commitId != ''">
+                                 AND commit_id = #{commitId}
+                               </if>ORDER BY created_time DESC
+    </select>
+
+    <!-- 动态更新标签 -->
+    <update id="updateLabelSelective" parameterType="org.springblade.modules.sp.entity.Label">
+        UPDATE sp_label
+        <set>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="branchId != null">branch_id = #{branchId},</if>
+            <if test="commitId != null">commit_id = #{commitId},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="text != null">text = #{text},</if>
+            <if test="size != null">size = #{size},</if>
+            <if test="color != null">color = #{color},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="imgIndex != null">img_index = #{imgIndex},</if>
+            <if test="position != null">position = #{position},</if>
+            updated_time = #{updatedTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.ExpInstancesMapper">
+
+    <resultMap id="ExpInstancesResultMap" type="org.springblade.modules.sp.entity.ExpInstances">
+        <id property="id" column="id"/>
+        <result property="objId" column="objId"/>
+        <result property="streamId" column="streamId"/>
+        <result property="branchId" column="branchId"/>
+        <result property="type" column="type"/>
+        <result property="level" column="level" typeHandler="org.springblade.modules.sp.utils.JsonTypeHandler"/>
+        <result property="units" column="units"/>
+        <result property="slope" column="slope"/>
+        <result property="family" column="family"/>
+        <result property="category" column="category"/>
+        <result property="elementId" column="elementId"/>
+        <result property="parameters" column="parameters" typeHandler="org.springblade.modules.sp.utils.JsonTypeHandler"/>
+        <result property="phaseCreated" column="phaseCreated"/>
+        <result property="smartLinkType" column="smartLinkType"/>
+        <result property="applicationId" column="applicationId"/>
+        <result property="slopeDirection" column="slopeDirection"/>
+        <result property="builtInCategory" column="builtInCategory"/>
+        <result property="isRevitLinkedModel" column="isRevitLinkedModel"/>
+        <result property="materialQuantities" column="materialQuantities" typeHandler="org.springblade.modules.sp.utils.JsonTypeHandler"/>
+        <result property="createAt" column="createdAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--<resultMap id="bimObjVO" type="org.springblade.modules.sp.vo.NewBimListTreeVO">-->
+        <!--<id property="id" column="id"/>-->
+        <!--<result property="type" column="type"/>-->
+        <!--<result property="family" column="family"/>-->
+        <!--<result property="category" column="category"/>-->
+        <!--<result property="units" column="units"/>-->
+        <!--<result property="elementId" column="elementId"/>-->
+        <!--<result property="builtInCategory" column="builtInCategory"/>-->
+        <!--<result property="streamId" column="streamId"/>-->
+    <!--</resultMap>-->
+
+   <select id="BimListTreeNew" resultType="org.springblade.modules.sp.vo.NewBimListTreeVO">
+       SELECT "objId",type,family,category,units,"elementId","builtInCategory","streamId" FROM exp_instances
+        WHERE  "streamId" = #{streamId}
+       <if test="commitId != null and commitId != '' ">
+        and   "commitId" = #{commitId}
+       </if>
+       ;
+   </select>
+
+    <!--<select id="BimListTreeNew" resultMap="bimObjVO">-->
+       <!--SELECT id,type,family,category,units,"elementId","builtInCategory","streamId" FROM exp_instances WHERE  "streamId" = #{streamId};-->
+   <!--</select>-->
+
+    <select id="getExpInstances" resultMap="ExpInstancesResultMap">
+       SELECT * FROM exp_instances WHERE "objId" = #{objId} and "streamId" = #{streamId}
+        <if test="commitId != null and commitId != '' ">
+            and   "commitId" = #{commitId}
+        </if>
+        ;
+   </select>
+
+    <select id="getExpInstancesFilter" resultMap="ExpInstancesResultMap">
+        SELECT * FROM exp_instances
+        <where>
+            <if test="category != null and category != '' ">
+                "category" = #{category}
+            </if>
+            <if test="family != null and family != ''">
+                and "family" = #{family}
+            </if>
+            <if test="type != null and type != ''">
+                and "type" = #{type}
+            </if>
+            and "streamId" = #{streamId}
+            <if test="commitId != null and commitId != '' ">
+                and   "commitId" = #{commitId}
+            </if>
+            ;
+        </where>
+    </select>
+
+    <select id="getAllExpInstances" resultMap="ExpInstancesResultMap">
+        SELECT * FROM exp_instances WHERE "streamId" = #{streamId}
+        <if test="commitId != null and commitId != '' ">
+            and   "commitId" = #{commitId}
+        </if>
+            limit 1000;
+    </select>
+
+    <select id="getExpInstancesByObjIds" resultMap="ExpInstancesResultMap">
+        SELECT * FROM exp_instances
+        WHERE "streamId" = #{streamId} and "branchId" = #{branchId} and "objId" IN
+        <foreach collection="objIds" item="objId" open="(" separator="," close=")">
+            #{objId}
+        </foreach>
+    </select>
+
+    <select id="searchExpInstances" resultMap="ExpInstancesResultMap">
+        SELECT * FROM exp_instances WHERE
+
+
+         "streamId" = #{streamId}
+
+         and "elementId" = #{elementId}
+
+        <if test="commitId != null and commitId != '' ">
+            and   "commitId" = #{commitId}
+        </if>
+
+    </select>
+
+    <select id="getExpInstancesByElements" resultMap="ExpInstancesResultMap">
+        SELECT * FROM exp_instances WHERE "streamId" = #{streamId}
+        <if test="commitId != null and commitId != '' ">
+            and   "commitId" = #{commitId}
+        </if>
+        <if test="elementId != null and elementId.length > 0">
+            and "elementId" in
+            <foreach collection="elementId" item="elementId" open="(" separator="," close=")">
+                #{elementId}
+            </foreach>
+        </if>
+    </select>
+
+    <update id="updateParameters" parameterType="org.springblade.modules.sp.entity.ExpInstances">
+        update exp_instances set parameters = #{parameters} where id = #{id};
+    </update>
+
+    <insert id="addExpInstances" parameterType="org.springblade.modules.sp.entity.ExpInstances">
+        insert into exp_instances
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        "id",
+        "objId",
+        "streamId",
+        "branchId",
+        <if test="type != null">
+            "type",
+        </if>
+            <if test="commitId != null">
+                "commitId",
+            </if>
+            <if test="level != null">
+                "level",
+            </if>
+        <if test="units != null">
+            "units",
+        </if>
+        <if test="slope != null">
+            "slope",
+        </if>
+                <if test="family != null">
+                    "family",
+                </if>
+                <if test="category != null">
+                    "category",
+                </if>
+                <if test="elementId != null">
+                    "elementId",
+                </if>
+            <if test="parameters != null">
+                "parameters",
+            </if>
+            <if test="phaseCreated != null">
+                "phaseCreated",
+            </if>
+            <if test="smartLinkType != null">
+                "smartLinkType",
+            </if>
+            <if test="applicationId != null">
+                "applicationId",
+            </if>
+            <if test="slopeDirection != null">
+                "slopeDirection",
+            </if>
+            <if test="builtInCategory != null">
+                "builtInCategory",
+            </if>
+            <if test="isRevitLinkedModel != null">
+                "isRevitLinkedModel",
+            </if>
+            <if test="materialQuantities != null">
+                "materialQuantities",
+            </if>
+            <!--<if test="createdAt != null">-->
+                <!--createdAt,-->
+            <!--</if>-->
+    </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            #{id},
+            #{objId},
+            #{streamId},
+            #{branchId},
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="commitId != null">
+                #{commitId},
+            </if>
+            <if test="level != null">
+                #{level, typeHandler=org.springblade.modules.sp.utils.JsonTypeHandler},
+            </if>
+            <if test="units != null">
+                #{units},
+            </if>
+            <if test="slope != null">
+                #{slope},
+            </if>
+            <if test="family != null">
+                #{family},
+            </if>
+            <if test="category != null">
+                #{category},
+            </if>
+            <if test="elementId != null">
+                #{elementId},
+            </if>
+            <if test="parameters != null">
+                #{parameters,typeHandler=org.springblade.modules.sp.utils.JsonTypeHandler},
+            </if>
+            <if test="phaseCreated != null">
+                #{phaseCreated},
+            </if>
+            <if test="smartLinkType != null">
+                #{smartLinkType},
+            </if>
+            <if test="applicationId != null">
+                #{applicationId},
+            </if>
+            <if test="slopeDirection != null">
+                #{slopeDirection},
+            </if>
+            <if test="builtInCategory != null">
+                #{builtInCategory},
+            </if>
+            <if test="isRevitLinkedModel != null">
+                #{isRevitLinkedModel},
+            </if>
+            <if test="materialQuantities != null">
+                #{materialQuantities,typeHandler=org.springblade.modules.sp.utils.JsonTypeHandler},
+            </if>
+            <!--<if test="createdAt != null">-->
+                <!--#{createdAt},-->
+            <!--</if>-->
+        </trim>
+    </insert>
+
+    <delete id="deleteExpInstancesById" parameterType="java.lang.String">
+        delete from exp_instances where id = #{id};
+    </delete>
+
+    <delete id="deleteExpInstances" parameterType="java.lang.String">
+        delete from exp_instances where commitId = #{commitId};
+    </delete>
+
+    <select id="getParameterByElementId" resultMap="ExpInstancesResultMap">
+        SELECT * FROM "exp_instances" WHERE "elementId" = #{elementId} AND "commitId" = (SELECT y."commitId" FROM branch_commits y JOIN commits c ON y."commitId" = c.id
+        WHERE y."branchId" = #{branchId}
+        <if test="category != null and category != '' ">
+            and   "category" = #{category}
+        </if>
+        ORDER BY c."createdAt" DESC LIMIT 1) ;
+    </select>
+
+    <select id="getInstanceByElementIdAndStreamAndCommit" resultMap="ExpInstancesResultMap">
+        SELECT * FROM "exp_instances"
+        WHERE "elementId" = #{elementId}
+          AND "streamId" = #{streamId}
+          AND "commitId" = #{commitId}
+    </select>
+
+</mapper>

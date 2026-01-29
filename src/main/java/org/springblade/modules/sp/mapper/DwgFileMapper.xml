@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.DwgFileMapper">
+
+    <resultMap id="DwgFileResultMap" type="org.springblade.modules.sp.entity.DwgFile">
+        <id property="id" column="id"/>
+        <result property="objectId" column="object_id" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="projectId" column="project_id"/>
+        <result property="name" column="name"/>
+        <result property="mapId" column="map_id"/>
+        <result property="url" column="url"/>
+        <result property="detail" column="detail" typeHandler="org.springblade.modules.sp.utils.JsonTypeHandler"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="getById" resultMap="DwgFileResultMap">
+         SELECT * FROM sp_dwg_file WHERE id = #{id} and status != 9;
+    </select>
+
+    <select id="getByMapId" resultMap="DwgFileResultMap">
+       SELECT * FROM sp_dwg_file WHERE map_id = #{mapId} and project_id = #{projectId} and status != 9;
+   </select>
+
+   <select id="getAllDwg" resultMap="DwgFileResultMap">
+       SELECT * FROM sp_dwg_file WHERE project_id = #{projectId} and status != 9;
+   </select>
+
+    <insert id="addDwgFile" parameterType="org.springblade.modules.sp.entity.DwgFile">
+        insert into sp_dwg_file(id,object_id,project_id,name,map_id,url,detail,modify_user,modify_time,status)
+        values (#{id},'{}',#{projectId},#{name},#{mapId},#{url},#{detail,typeHandler=org.springblade.modules.sp.utils.JsonTypeHandler},#{modifyUser},#{modifyTime},#{status});
+    </insert>
+
+    <update id="updateDwgFile" parameterType="org.springblade.modules.sp.entity.DwgFile">
+        update sp_dwg_file
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="detail != null">
+                detail = #{detail,typeHandler=org.springblade.modules.sp.utils.JsonTypeHandler},
+            </if>
+            modify_user = #{modifyUser},
+            modify_time = #{modifyTime}
+        </set>
+        where map_id = #{mapId}
+        and
+        project_id = #{projectId}
+        and
+        status != 9;
+    </update>
+
+    <update id="linkObjects">
+        update sp_dwg_file set object_id = #{objectId,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler} where id = #{id} and status != 9;
+    </update>
+
+    <delete id="deleteDwgFile" parameterType="java.lang.String">
+         delete from sp_dwg_file where map_id = #{mapId} and project_id = #{projectId};
+    </delete>
+</mapper>

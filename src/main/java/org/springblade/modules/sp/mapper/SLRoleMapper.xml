@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.SLRoleMapper">
+
+    <resultMap id="SLRoleResultMap" type="org.springblade.modules.sp.entity.SLRole">
+        <id column="roleId" property="role_id"/>
+        <result column="roleName" property="role_name"/>
+        <result column="description" property="description"/>
+        <result column="streamId" property="stream_id"/>
+        <result column="modifyUser" property="modify_user"/>
+        <result column="modifyTime" property="modify_time" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="getRoleList" resultMap="SLRoleResultMap">
+        SELECT * FROM sl_role where status != 2 and stream_id = #{streamId} order by modify_time desc;
+    </select>
+
+    <select id="getRoleById" resultMap="SLRoleResultMap">
+        SELECT * FROM sl_role WHERE role_id = #{role_id} order by modify_time desc;
+    </select>
+
+    <select id="getAdmin" resultMap="SLRoleResultMap">
+        select * from sl_role where status = 2;
+    </select>
+
+    <select id="getRoleByStreamIdAndRoleName" resultMap="SLRoleResultMap">
+        SELECT * FROM sl_role 
+        WHERE stream_id = #{streamId} 
+        AND role_name = #{roleName}
+        ORDER BY modify_time DESC
+        LIMIT 1
+    </select>
+
+    <insert id="addRole" parameterType="org.springblade.modules.sp.entity.SLRole">
+        INSERT INTO sl_role(role_id,role_name,description,stream_id,modify_user,modify_time,status)
+        VALUES(#{roleId},#{roleName},#{description},#{streamId},#{modifyUser},#{modifyTime},#{status});
+    </insert>
+
+    <update id="updateRole" parameterType="org.springblade.modules.sp.entity.SLRole">
+        UPDATE sl_role
+        <if test="role_name != null">
+            role_name = #{roleName},
+        </if>
+        <if test="description != null">
+            description = #{description},
+        </if>
+            <if test="streamId != null">
+                stream_id = #{streamId},
+            </if>
+        <if test="modifyUser != null">
+            modify_user = #{modifyUser},
+        </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime},
+            </if>
+        <if test="status != null">
+            status = #{status},
+        </if>
+        WHERE role_id = #{roleId};
+    </update>
+
+    <delete id="deleteRole" parameterType="String">
+        DELETE FROM sl_role WHERE role_id = #{roleId};
+    </delete>
+
+    <!-- 根据streamId删除角色 -->
+    <delete id="deleteRolesByStreamId">
+        DELETE FROM sl_role WHERE stream_id = #{streamId};
+    </delete>
+</mapper>

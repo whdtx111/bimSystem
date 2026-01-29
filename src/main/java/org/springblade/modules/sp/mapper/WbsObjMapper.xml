@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.WbsObjMapper">
+
+    <select id="getById" resultType="org.springblade.modules.sp.entity.WbsObj">
+        select * from sp_wbs_obj where id = #{id} and status != 9;
+    </select>
+
+    <select id="getLink" resultType="org.springblade.modules.sp.entity.WbsObj">
+        select * from sp_wbs_obj where wbs_id = #{wbsId} and object_id = #{objectId} and status != 9;
+    </select>
+
+    <select id="getAllWbsObj" resultType="org.springblade.modules.sp.entity.WbsObj">
+        select * from sp_wbs_obj where status != 9;
+    </select>
+
+
+    <insert id="addWbsObj" parameterType="org.springblade.modules.sp.entity.WbsObj">
+        insert into sp_wbs_obj(id,wbs_id,object_id,modify_user,modify_time,status)
+        values (#{id},#{wbsId},#{objectId},#{modifyUser},#{modifyTime},#{status});
+    </insert>
+
+    <update id="updateWbsObj" parameterType="org.springblade.modules.sp.entity.WbsObj">
+        update sp_wbs_obj
+        <set>
+            <if test="ebsCode != null">
+                wbs_code = #{wbsCode},
+            </if>
+            <if test="ebsName != null">
+                wbs_name = #{wbsName},
+            </if>
+            <if test="ebsLv != null">
+                wbs_lv = #{wbsLv},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="detail != null">
+                detail = #{detail},
+            </if>
+            modify_user = #{modifyUser},
+            modify_time = #{modifyTime}
+        </set>
+        where
+        id = #{id}
+        and
+        status != 9;
+    </update>
+
+    <!--<delete id="deleteWbsObj" parameterType="java.lang.String">-->
+        <!--update sp_wbs_obj set status = '9' and modify_user = #{modifyUser}where "id" = #{id};-->
+    <!--</delete>-->
+
+    <!--逻辑删除sp_wbs_obj-->
+    <update id="deleteWbsObj" parameterType="java.lang.String">
+         update sp_wbs_obj
+         set status = 9
+         where id = #{id};
+    </update>
+
+</mapper>

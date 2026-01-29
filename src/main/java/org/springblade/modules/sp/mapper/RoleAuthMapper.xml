@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.RoleAuthMapper">
+
+    <resultMap id="roleAuthResultMap" type="org.springblade.modules.sp.entity.RoleAuth">
+        <id property="authId" column="auth_id"/>
+        <result property="roleId" column="role_id"/>
+        <result property="authName" column="auth_name"/>
+        <result property="authLevel" column="auth_level"/>
+        <result property="modifyTime" column="modify_time" jdbcType="TIMESTAMP"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!-- 新增 RoleAuthStreamDTO 的结果映射 -->
+    <resultMap id="roleAuthStreamDTOResultMap" type="org.springblade.modules.sp.dto.RoleAuthStreamDTO" extends="roleAuthResultMap">
+        <result property="streamId" column="stream_id"/>
+    </resultMap>
+
+    <select id="getRoleAuthList" resultMap="roleAuthResultMap">
+        SELECT * FROM sl_role_auth order by modify_time desc;
+    </select>
+
+    <select id="getRoleAuthByAuthId" resultMap="roleAuthResultMap">
+        SELECT * FROM sl_role_auth WHERE auth_id = #{authId} order by modify_time desc;
+    </select>
+
+    <select id="getRoleAuthByRoleId" resultMap="roleAuthResultMap">
+        SELECT * FROM sl_role_auth WHERE role_id = #{roleId} order by modify_time desc;
+    </select>
+
+    <select id="getRoleAuthByUserId" resultMap="roleAuthResultMap">
+        SELECT DISTINCT ra.*
+        FROM sl_role_auth ra
+                 INNER JOIN sl_role r ON ra.role_id = r.role_id
+                 INNER JOIN users u ON u."roleIds" @> ARRAY[r.role_id]::text[]
+        WHERE 1 = 1
+            <if test="userId != null and userId !=''">
+                AND  u.id = #{userId}
+            </if>
+            <if test="streamId != null and streamId !=''">
+          AND r.stream_id = #{streamId}
+            </if>
+        ORDER BY ra.modify_time DESC;
+    </select>
+
+    <select id="getRoleAuthNoStream" resultMap="roleAuthStreamDTOResultMap">
+        SELECT DISTINCT ra.*, r.stream_id
+        FROM sl_role_auth ra
+        INNER JOIN sl_role r ON ra.role_id = r.role_id
+        INNER JOIN users u ON u."roleIds" @> ARRAY[r.role_id]::text[]
+        WHERE 1 = 1
+        <if test="userId != null and userId !=''">
+            AND  u.id = #{userId}
+        </if>
+        ORDER BY ra.modify_time DESC;
+    </select>
+
+    <insert id="addRoleAuth" parameterType="org.springblade.modules.sp.entity.RoleAuth">
+        INSERT INTO sl_role_auth(auth_id,role_id,auth_name,auth_level,modify_user,modify_time,status)
+        VALUES(#{authId},#{roleId},#{authName},#{authLevel},#{modifyUser},#{modifyTime},#{status});
+    </insert>
+
+    <update id="updateRoleAuth" parameterType="org.springblade.modules.sp.entity.RoleAuth">
+        UPDATE sl_role_auth
+        <set>
+        <if test="roleId != null">
+            role_id = #{roleId},
+        </if>
+        <if test="authName != null">
+            auth_name = #{authName},
+        </if>
+        <if test="authLevel != null">
+            auth_level = #{authLevel},
+        </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime},
+            </if>
+        <if test="status != null">
+            status = #{status},
+        </if>
+        </set>
+        WHERE auth_id = #{authId};
+    </update>
+
+    <delete id="deleteRoleAuth" parameterType="String">
+        DELETE FROM sl_role_auth WHERE auth_id = #{authId};
+    </delete>
+
+    <!-- 根据角色ID列表批量删除角色权限 -->
+    <delete id="deleteRoleAuthByRoleIds">
+        DELETE FROM sl_role_auth
+        WHERE role_id IN (
+            SELECT role_id FROM sl_role WHERE stream_id = #{streamId}
+        );
+    </delete>
+
+</mapper>

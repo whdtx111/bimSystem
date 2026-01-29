@@ -1,0 +1,68 @@
+package org.springblade.modules.sp.entity;
+
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springblade.core.mp.base.BaseEntity;
+
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+@Data
+@TableName("sp_element_library")
+@EqualsAndHashCode(callSuper = true)
+@ApiModel(value = "ElementLibrary", description = "ElementLibrary")
+public class ElementLibrary extends BaseEntity {
+
+    private String id;
+    private String[] fileIds;
+    private String name;
+    private String version;
+    private String auth;
+    private String[] project;
+    private String description;
+    private String[] tags;
+
+    private  List<JSONObject> codeNameParamsMapList;
+    private  List<JSONObject> propertyMgt;
+    private String modifyUser;
+    private Date modifyTime;
+    private Date createTime;
+    private Integer status;
+    private String streamId;
+    private String branchId;
+    private String commitId;
+    private String loiNow;
+    private String lodNow;
+    private String library;
+
+    public ElementLibrary(String[] fileIds,String name,String version,String auth,String[] project,String description,String[] tags, List<JSONObject> codeNameParamsMapList,List<JSONObject> propertyMgt,String modifyUser,Date modifyTime,Date createTime,Integer status,String streamId,String branchId,String commitId,String loiNow,String lodNow,String library) {
+        this.id = UUID.randomUUID().toString();
+        this.fileIds = fileIds;
+        this.name = name;
+        this.version = version;
+        this.auth = auth;
+        this.project = project;
+        this.description = description;
+        this.tags = tags;
+        this.codeNameParamsMapList = codeNameParamsMapList;
+        this.propertyMgt = propertyMgt;
+        this.modifyUser = modifyUser;
+        this.modifyTime = new Date();
+        this.createTime = new Date();
+        this.status = status;
+        this.streamId = streamId;
+        this.branchId = branchId;
+        this.commitId = commitId;
+        this.loiNow = loiNow;
+        this.lodNow = lodNow;
+        this.library = library;
+    }
+    public ElementLibrary() {
+        this.id = UUID.randomUUID().toString();
+        this.modifyTime = new Date();
+    }
+}

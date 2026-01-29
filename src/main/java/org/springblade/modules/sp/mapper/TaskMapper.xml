@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.TaskMapper">
+
+    <resultMap id="TaskResultMap" type="org.springblade.modules.sp.entity.Task">
+        <id property="id" column="id"/>
+        <result property="streamId" column="stream_id"/>
+        <result property="commitId" column="commit_id"/>
+        <result property="type" column="type"/>
+        <result property="taskStatus" column="task_status"/>
+        <result property="detail" column="detail"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="deadLine" column="dead_line"/>
+        <result property="targetId" column="target_id"/>
+        <result property="collisionId" column="collision_id"/>
+        <result property="url" column="url"/>
+        <result property="others" column="others"/>
+    </resultMap>
+
+    <!-- 查询单个任务通过ID -->
+    <select id="getById" resultMap="TaskResultMap">
+        SELECT * FROM sp_task WHERE id = #{id};
+    </select>
+
+    <!-- 查询所有任务 -->
+    <select id="getAllTasks" resultMap="TaskResultMap">
+        SELECT * FROM sp_task;
+    </select>
+
+    <select id="getTask" resultMap="TaskResultMap">
+        select * from sp_task where stream_id = #{streamId} and commit_id = #{commitId};
+    </select>
+
+    <!-- 根据目标ID查询任务 -->
+    <select id="getTasksByTargetId" resultMap="TaskResultMap">
+        SELECT * FROM sp_task WHERE target_id = #{targetId};
+    </select>
+
+    <!-- 插入新任务 -->
+    <insert id="addTask" parameterType="org.springblade.modules.sp.entity.Task">
+        INSERT INTO sp_task (id,stream_id,commit_id, type, task_status, detail, modify_user, dead_line, target_id, collision_id,url, others)
+        VALUES (#{id},#{streamId}, #{commitId}, #{type}, #{taskStatus}, #{detail}, #{modifyUser}, #{deadLine}, #{targetId}, #{collisionId},#{url}, #{others});
+    </insert>
+
+    <!-- 批量插入任务 -->
+    <insert id="insertTaskList" parameterType="java.util.List">
+        INSERT INTO sp_task (id,stream_id,commit_id, type, task_status, detail, modify_user, dead_line, target_id, collision_id,url,others)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.streamId}, #{item.commitId}, #{item.type}, #{item.taskStatus}, #{item.detail}, #{item.modifyUser},
+            #{item.deadLine}, #{item.targetId}, #{item.collisionId},#{item.url}, #{item.others})
+        </foreach>
+    </insert>
+
+    <!-- 更新任务 -->
+    <update id="updateTask" parameterType="org.springblade.modules.sp.entity.Task">
+        UPDATE sp_task
+        <set>
+            <if test="type != null">type = #{type},</if>
+            <if test="taskStatus != null">task_status = #{taskStatus},</if>
+            <if test="detail != null">detail = #{detail},</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+            <if test="deadLine != null">dead_line = #{deadLine},</if>
+            <if test="targetId != null">target_id = #{targetId},</if>
+            <if test="collisionId != null">collision_id = #{collisionId},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="others != null">others = #{others},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除任务 -->
+    <delete id="deleteTaskById" parameterType="String">
+        DELETE FROM sp_task WHERE id = #{id};
+    </delete>
+</mapper>

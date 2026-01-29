@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.EncodingConfigMapper">
+
+    <!-- 定义 resultMap，映射 EncodingConfig 实体类 -->
+    <resultMap id="EncodingConfigResult" type="org.springblade.modules.sp.entity.EncodingConfig">
+        <id property="id" column="id"/>
+        <result property="encodingParametersId" column="encoding_parameters_id"/>
+        <result property="lv" column="lv"/>
+        <result property="lvCode" column="lv_code"/>
+        <result property="config" column="config" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!-- 根据ID获取记录 -->
+    <select id="getById" resultMap="EncodingConfigResult">
+        SELECT * FROM sp_encoding_config WHERE id = #{id} AND status != 9;
+    </select>
+
+    <!-- 动态条件查询 -->
+    <select id="searchFilter" resultMap="EncodingConfigResult">
+        SELECT * FROM sp_encoding_config WHERE status != 9
+        <if test="encodingParametersId != null">
+            AND encoding_parameters_id = #{encodingParametersId}
+        </if>
+        <if test="lv != null">
+            AND lv = #{lv}
+        </if>
+        <if test="lvCode != null">
+            AND lv_code = #{lvCode}
+        </if>
+    </select>
+
+    <!-- 插入新记录 -->
+    <insert id="addEncodingConfig" parameterType="org.springblade.modules.sp.entity.EncodingConfig">
+        INSERT INTO sp_encoding_config (id, encoding_parameters_id, lv, lv_code, config, modify_user, modify_time, status)
+        VALUES (#{id}, #{encodingParametersId}, #{lv}, #{lvCode}, #{config, typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb, #{modifyUser}, #{modifyTime}, #{status});
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="updateEncodingConfig" parameterType="org.springblade.modules.sp.entity.EncodingConfig">
+        UPDATE sp_encoding_config
+        <set>
+            <if test="encodingParametersId != null">
+                encoding_parameters_id = #{encodingParametersId},
+            </if>
+            <if test="lv != null">
+                lv = #{lv},
+            </if>
+            <if test="lvCode != null">
+                lv_code = #{lvCode},
+            </if>
+            <if test="config != null">
+                config = #{config, typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb,
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser},
+            </if>
+            modify_time = #{modifyTime},
+            status = #{status}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="deleteEncodingConfigById" parameterType="String">
+        DELETE FROM sp_encoding_config WHERE id = #{id};
+    </delete>
+
+</mapper>

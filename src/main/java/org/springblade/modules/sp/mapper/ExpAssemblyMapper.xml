@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.ExpAssemblyMapper">
+
+    <resultMap id="ExpAssemblyResultMap" type="org.springblade.modules.sp.entity.ExpAssembly">
+        <id column="id" property="id"/>
+        <result column="streamId" property="streamId"/>
+        <result column="commitId" property="commitId"/>
+        <result column="assembly" property="assembly" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result column="created_at" property="createdAt"/>
+    </resultMap>
+
+    <select id="getAssemblyByStreamAndCommit" resultType="org.springblade.modules.sp.utils.VarcharArrayTypeHandler">
+        SELECT assembly FROM "exp_assembly"
+        WHERE "streamId" = #{streamId} AND "commitId" = #{commitId}
+    </select>
+
+</mapper>

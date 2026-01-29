@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.TemplateDataMapper">
+
+    <resultMap id="templateDataResultMap" type="org.springblade.modules.sp.entity.TemplateData">
+        <id column="id" property="id"/>
+        <result column="template_id" property="templateId"/>
+        <result column="type" property="type"/>
+        <result column="branch_id" property="branchId"/>
+        <result column="data" property="data" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result column="created_time" property="createdTime"/>
+    </resultMap>
+
+    <!-- 根据id查询 -->
+    <select id="getById" resultMap="templateDataResultMap">
+        SELECT id, template_id, type, branch_id, data, created_time
+        FROM sp_template_data
+        WHERE id = #{id}
+    </select>
+
+    <!-- 根据templateId和type获取data数据 -->
+    <select id="getDataByTemplateIdAndType" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT row_to_json(t)::jsonb as result
+        FROM (
+            SELECT data
+            FROM sp_template_data
+            WHERE template_id = #{templateId} AND type = #{type}
+            <if test="branchId != null and branchId != ''">
+                AND branch_id = #{branchId}
+            </if>
+            ORDER BY created_time DESC
+            LIMIT 1
+        ) t
+    </select>
+
+    <!-- 根据templateId和type查询单条记录 -->
+    <select id="getByTemplateIdAndType" resultMap="templateDataResultMap">
+        SELECT id, template_id, type, branch_id, data, created_time
+        FROM sp_template_data
+        WHERE template_id = #{templateId} AND type = #{type}
+        <if test="branchId != null and branchId != ''">
+            AND branch_id = #{branchId}
+        </if>
+        ORDER BY created_time DESC
+        LIMIT 1
+    </select>
+
+    <!-- 根据templateId查询列表 -->
+    <select id="getByTemplateId" resultMap="templateDataResultMap">
+        SELECT id, template_id, type, branch_id, data, created_time
+        FROM sp_template_data
+        WHERE template_id = #{templateId}
+        ORDER BY created_time DESC
+    </select>
+
+    <!-- 根据type查询列表 -->
+    <select id="getByType" resultMap="templateDataResultMap">
+        SELECT id, template_id, type, branch_id, data, created_time
+        FROM sp_template_data
+        WHERE type = #{type}
+        ORDER BY created_time DESC
+    </select>
+
+    <!-- 新增 -->
+    <insert id="addTemplateData" parameterType="org.springblade.modules.sp.entity.TemplateData">
+        INSERT INTO sp_template_data (id, template_id, type, branch_id, data, created_time)
+        VALUES (#{id}, #{templateId}, #{type}, #{branchId}, #{data,typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}, #{createdTime})
+    </insert>
+
+    <!-- 根据id删除 -->
+    <delete id="deleteById">
+        DELETE FROM sp_template_data WHERE id = #{id}
+    </delete>
+
+    <!-- 根据templateId和type删除 -->
+    <delete id="deleteByTemplateIdAndType">
+        DELETE FROM sp_template_data 
+        WHERE template_id = #{templateId} AND type = #{type}
+        <if test="branchId != null and branchId != ''">
+            AND branch_id = #{branchId}
+        </if>
+    </delete>
+
+    <!-- 更新 -->
+    <update id="updateTemplateData" parameterType="org.springblade.modules.sp.entity.TemplateData">
+        UPDATE sp_template_data
+        SET template_id = #{templateId},
+            type = #{type},
+            branch_id = #{branchId},
+            data = #{data,typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler},
+            created_time = #{createdTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 获取所有数据 -->
+    <select id="getAllTemplateData" resultMap="templateDataResultMap">
+        SELECT id, template_id, type, branch_id, data, created_time
+        FROM sp_template_data
+        ORDER BY created_time DESC
+    </select>
+
+    <!-- 检查模板是否有数据 -->
+    <select id="countByTemplateId" resultType="int">
+        SELECT COUNT(*)
+        FROM sp_template_data
+        WHERE template_id = #{templateId}
+    </select>
+
+    <!-- 根据模板ID删除所有记录 -->
+    <delete id="deleteByTemplateId">
+        DELETE FROM sp_template_data WHERE template_id = #{templateId}
+    </delete>
+
+</mapper>

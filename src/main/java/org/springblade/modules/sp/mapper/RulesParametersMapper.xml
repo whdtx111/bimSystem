@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.RulesParametersMapper">
+    <resultMap id="rulesParametersResultMap" type="org.springblade.modules.sp.entity.RulesParameters">
+        <id column="id" property="id"/>
+        <result column="detail_id" property="detailId"/>
+        <result column="name" property="name"/>
+        <result column="relation" property="relation"/>
+        <result column="value1" property="value1"/>
+        <result column="value2" property="value2"/>
+        <result column="status" property="status"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 查询单条记录 -->
+    <select id="getRulesParametersById" resultMap="rulesParametersResultMap">
+        SELECT * FROM sp_rules_parameters WHERE id = #{id}
+    </select>
+
+    <!-- 根据detailId查询 -->
+    <select id="getRulesParametersByDetailId" resultMap="rulesParametersResultMap">
+        SELECT * FROM sp_rules_parameters WHERE detail_id = #{detailId}
+    </select>
+
+    <!-- 查询所有记录 -->
+    <select id="getAll" resultMap="rulesParametersResultMap">
+        SELECT * FROM sp_rules_parameters ORDER BY update_time DESC
+    </select>
+
+    <!-- 插入记录 -->
+    <insert id="addRulesParameters" parameterType="org.springblade.modules.sp.entity.RulesParameters">
+        INSERT INTO sp_rules_parameters (
+            id, detail_id, name, relation, value1,value2, status,update_time
+        ) VALUES (
+                     #{id}, #{detailId}, #{name}, #{relation}, #{value1},#{value2}, #{status}, #{updateTime}
+                 )
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertRulesParametersBatch" parameterType="java.util.List">
+        INSERT INTO sp_rules_parameters (
+        id, detail_id, name, relation, value1,value2, status, update_time
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id}, #{item.detailId}, #{item.name}, #{item.relation}, #{item.value1},#{item.value2},
+            #{item.status},  #{item.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="updateRulesParameters" parameterType="org.springblade.modules.sp.entity.RulesParameters">
+        UPDATE sp_rules_parameters
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="relation != null">relation = #{relation},</if>
+            <if test="value1 != null">value1 = #{value1},</if>
+            <if test="value2 != null">value2 = #{value2},</if>
+            <if test="status != null">status = #{status},</if>
+            id = #{id}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="deleteRulesParametersById">
+        DELETE FROM sp_rules_parameters WHERE id = #{id}
+    </delete>
+
+    <!-- 根据detailId删除 -->
+    <delete id="deleteRulesParametersByDetailId">
+        DELETE FROM sp_rules_parameters WHERE detail_id = #{detailId}
+    </delete>
+</mapper>

@@ -1,0 +1,22 @@
+package org.springblade.modules.sp.dto;
+
+import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
+
+import java.util.Date;
+import java.util.List;
+
+@Data
+public class ElementLibraryDTO {
+
+    private  JSONObject modelFile;
+    private  JSONObject infoEncoding;
+    private  JSONObject propertyMgt;
+
+    public ElementLibraryDTO(JSONObject modelFile,JSONObject infoEncoding,JSONObject propertyMgt){
+        this.modelFile = modelFile;
+        this.infoEncoding = infoEncoding;
+        this.propertyMgt = propertyMgt;
+    }
+    public ElementLibraryDTO() {};
+}

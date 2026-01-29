@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.ElementWbsMapper">
+
+    <resultMap id="ElementWbsResultMap" type="org.springblade.modules.sp.entity.ElementWbs">
+        <id property="id" column="id"/>
+        <result property="wbsCode" column="wbs_code"/>
+        <result property="elementId" column="element_id" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="branchId" column="branch_id"/>
+        <result property="tempId" column="temp_id"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!--绑定element和wbs-->
+    <insert id="linkElementWbs" parameterType="org.springblade.modules.sp.entity.ElementWbs">
+        insert into sp_element_wbs(id,element_id,wbs_code,branch_id,temp_id,status)
+        values (#{id},#{elementId,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},#{wbsCode},#{branchId},#{tempId},#{status});
+    </insert>
+
+    <!--更新绑定关系-->
+    <update id="updateElementWbs" >
+         update sp_element_wbs
+         set element_id = #{elementId,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler}
+         where id = #{id};
+    </update>
+
+    <select id="getById" resultMap="ElementWbsResultMap">
+        select * from sp_element_wbs where id = #{id} and status != 9;
+    </select>
+
+    <select id="getElementWbs" resultMap="ElementWbsResultMap">
+        SELECT * FROM sp_element_wbs
+        where 1=1
+        <if test="wbsCode != null and wbsCode !=''">
+            and wbs_code = #{wbsCode}
+        </if>
+        <if test="branchId != null and branchId !=''">
+            and branch_id = #{branchId}
+        </if>
+        <if test="tempId != null and tempId !=''">
+            and temp_id = #{tempId}
+        </if>
+        AND status != 9;
+    </select>
+
+    <select id="getAllElementWbs" resultMap="ElementWbsResultMap">
+        SELECT * FROM sp_element_wbs
+        where branch_id = #{branchId}
+        and temp_id = #{tempId}
+        AND status != 9;
+    </select>
+
+</mapper>

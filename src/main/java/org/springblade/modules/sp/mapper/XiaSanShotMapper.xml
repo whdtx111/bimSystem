@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.XiaSanShotMapper">
+
+    <!-- resultMap 定义 -->
+    <resultMap id="XiaSanShotResult" type="org.springblade.modules.sp.entity.XiaSanShot">
+        <id property="id" column="id"/>
+        <result property="streamId" column="stream_id"/>
+        <result property="commitId" column="commit_id"/>
+        <result property="objectId" column="object_id"/>
+        <result property="elementId" column="element_id"/>
+        <result property="checkStatus" column="check_status"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="data" column="data" typeHandler="org.springblade.modules.sp.utils.JsonTypeHandler"/>
+    </resultMap>
+
+    <!-- 根据ID查询 -->
+    <select id="getById" resultMap="XiaSanShotResult">
+        SELECT * FROM xia_san_shot WHERE id = #{id};
+    </select>
+
+<!--    根据streamId和elementId查询-->
+    <select id="getByElementId" resultMap="XiaSanShotResult">
+        SELECT * FROM xia_san_shot WHERE stream_id = #{streamId} AND element_id = #{elementId};
+    </select>
+
+    <select id="getcheckStatus" resultType="String">
+        select DISTINCT check_status from xia_san_shot where stream_id = #{streamId} and commit_id in (#{commitId});
+    </select>
+
+
+    <select id="countByCommitId" resultType="int">
+        SELECT "count"(*) FROM xia_san_shot
+        WHERE
+        <if test="streamId != null">stream_id = #{streamId} and</if>
+        <if test="commitId != null">commit_id = #{commitId} and</if>
+        <if test="checkStatus != null">check_status in (#{checkStatus}) and</if>
+        1=1;
+    </select>
+    <!-- 插入记录 -->
+    <insert id="addXiaSanShot" parameterType="org.springblade.modules.sp.entity.XiaSanShot">
+        INSERT INTO xia_san_shot (id, stream_id, commit_id, object_id,element_id,check_status, modify_user, modify_time, data)
+        VALUES (#{id}, #{streamId}, #{commitId}, #{objectId},#{elementId} ,#{checkStatus}, #{modifyUser}, #{modifyTime},#{data, typeHandler=org.springblade.modules.sp.utils.JsonTypeHandler});
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="updateXiaSanShot" parameterType="org.springblade.modules.sp.entity.XiaSanShot">
+        UPDATE xia_san_shot
+        <set>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="commitId != null">commit_id = #{commitId},</if>
+            <if test="objectId != null">object_id = #{objectId},</if>
+            <if test="elementId != null">element_id = #{elementId},</if>
+            <if test="checkStatus != null">check_status = #{checkStatus},</if>
+            <if test="data != null">data = #{data, typeHandler=org.springblade.modules.sp.utils.JsonTypeHandler},</if>
+            modify_user = #{modifyUser},
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!-- 根据ID删除记录 -->
+    <delete id="deleteXiaSanShotById" parameterType="String">
+        DELETE FROM xia_san_shot WHERE id = #{id};
+    </delete>
+
+    <!-- 条件搜索 -->
+    <select id="searchFilter" resultMap="XiaSanShotResult">
+        SELECT * FROM xia_san_shot WHERE 1=1
+        <if test="checkStatus != null and checkStatus != ''">
+            AND check_status = #{checkStatus}
+        </if>
+        <if test="streamId != null and streamId != ''">
+            AND stream_id = #{streamId}
+        </if>
+        <if test="commitId != null and commitId != ''">
+            AND commit_id = #{commitId}
+        </if>
+        <if test="objectId != null and objectId != ''">
+            AND object_id = #{objectId}
+        </if>
+        <if test="elementId != null and elementId != ''">
+            AND element_id = #{elementId}
+        </if>
+    </select>
+
+</mapper>

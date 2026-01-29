@@ -1,0 +1,5 @@
+/.idea/*
+/target/*
+/*.md
+/testDev/*
+/src/main/resources/templates/*.xlsx

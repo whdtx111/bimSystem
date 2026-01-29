@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.WbsParametersCopyMapper">
+
+    <resultMap id="WbsParametersCopyResultMap" type="org.springblade.modules.sp.entity.WbsParametersCopy">
+        <id property="id" column="id"/>
+        <result property="wbsId" column="wbs_id"/>
+        <result property="tempId" column="temp_id"/>
+        <result property="pid" column="pid"/>
+        <result property="wbsCode" column="wbs_code"/>
+        <result property="wbsName" column="wbs_name"/>
+        <result property="wbsLv" column="wbs_lv"/>
+        <result property="detail" column="detail"/>
+        <result property="category" column="category" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="wbsStatus" column="wbs_status"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+    </resultMap>
+
+    <select id="getById" resultMap="WbsParametersCopyResultMap">
+        select * from sp_wbs_parameters_copy where id = #{id};
+    </select>
+
+    <select id="getAllWbsParametersCopy" resultMap="WbsParametersCopyResultMap">
+        select * from sp_wbs_parameters_copy ;
+    </select>
+
+    <select id="getAllWbsParametersCopyByWbsId" resultMap="WbsParametersCopyResultMap">
+        select * from sp_wbs_parameters_copy where wbs_id = #{wbsId} and temp_id = #{tempId};
+    </select>
+
+    <select id="getWbsParametersCopyByWbsCodeTempId" resultMap="WbsParametersCopyResultMap">
+        select * from sp_wbs_parameters_copy where wbs_code = #{wbsCode} and temp_id = #{tempId};
+    </select>
+
+    <select id="getWbsParametersCopyByTempId" resultMap="WbsParametersCopyResultMap">
+        select * from sp_wbs_parameters_copy where temp_id = #{tempId};
+    </select>
+
+    <insert id="addWbsParametersCopy" parameterType="org.springblade.modules.sp.entity.WbsParametersCopy">
+        INSERT INTO sp_wbs_parameters_copy (id,pid,temp_id,wbs_id, wbs_code, wbs_name, wbs_lv, detail,category, wbs_status, modify_user, modify_time)
+        VALUES (#{id},#{pid},#{tempId},#{wbsId}, #{wbsCode}, #{wbsName}, #{wbsLv}, #{detail}, #{category,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},#{wbsStatus}, #{modifyUser}, #{modifyTime})
+    </insert>
+
+    <insert id="insertWbsParametersCopyList" parameterType="java.util.List">
+        INSERT INTO sp_wbs_parameters_copy (id, pid,temp_id,wbs_id, wbs_code, wbs_name, wbs_lv, detail, category, wbs_status, modify_user, modify_time)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id}, #{item.pid},#{item.tempId},#{item.wbsId}, #{item.wbsCode}, #{item.wbsName}, #{item.wbsLv},
+            #{item.detail}, #{item.category, typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            #{item.wbsStatus}, #{item.modifyUser}, #{item.modifyTime})
+        </foreach>
+    </insert>
+
+    <update id="updateWbsParametersCopy" parameterType="org.springblade.modules.sp.entity.WbsParametersCopy">
+        update sp_wbs_parameters_copy
+        <set>
+            <if test="wbsId != null">wbs_id = #{wbsId},</if>
+            <if test="wbsCode != null">wbs_code = #{wbsCode},</if>
+            <if test="tempId != null">temp_id = #{tempId},</if>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="wbsName != null">wbs_name = #{wbsName},</if>
+            <if test="wbsLv != null">wbs_lv = #{wbsLv},</if>
+            <if test="detail != null">detail = #{detail},</if>
+            <if test="category != null">category = #{category,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},</if>
+            <if test="wbsStatus != null">wbs_status = #{wbsStatus},</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+            modify_time = #{modifyTime}
+        </set>
+        where
+        id = #{id}
+    </update>
+
+    <update id="updateWbsParametersCopyByWbsId" parameterType="String">
+    update sp_wbs_parameters_copy set wbs_status = 1 where wbs_id = #{wbsId};
+    </update>
+
+    <delete id="deleteWbsParametersCopy" parameterType="string">
+        DELETE FROM sp_wbs_parameters_copy WHERE id = #{id}
+    </delete>
+</mapper>

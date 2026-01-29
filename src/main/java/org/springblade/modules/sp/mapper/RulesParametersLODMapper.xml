@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.RulesParametersLODMapper">
+    <resultMap id="rulesParametersResultMap" type="org.springblade.modules.sp.entity.RulesParametersLOD">
+      <id column="id" property="id"/>
+        <result column="pid" property="pid"/>
+      <result column="stream_id" property="streamId"/>
+      <result column="branch_id" property="branchId"/>
+        <result column="file_id" property="fileId"/>
+        <result column="status" property="status"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 查询单条记录 -->
+    <select id="getRulesParametersLODById" resultMap="rulesParametersResultMap">
+        SELECT * FROM sp_rules_parameters_lod WHERE id = #{id}
+    </select>
+
+    <select id="getRulesParametersLODByPid" resultMap="rulesParametersResultMap">
+        SELECT * FROM sp_rules_parameters_lod WHERE pid = #{pid}
+    </select>
+
+    <!-- 查询所有记录 -->
+    <select id="selectRulesParametersLODList" resultMap="rulesParametersResultMap">
+        SELECT * FROM sp_rules_parameters_lod ORDER BY update_time DESC
+    </select>
+
+    <!-- 插入记录 -->
+    <insert id="insertRulesParametersLOD" parameterType="org.springblade.modules.sp.entity.RulesParametersLOD">
+        INSERT INTO sp_rules_parameters_lod (id,pid,stream_id,branch_id,file_id,status,update_time) VALUES (#{id},#{pid},#{streamId},#{branchId},#{fileId},#{status},#{updateTime})
+    </insert>
+
+    <update id="updateRulesParametersLOD" parameterType="org.springblade.modules.sp.entity.RulesParametersLOD">
+        UPDATE sp_rules_parameters_lod
+        <set>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="branchId != null">branch_id = #{branchId},</if>
+            <if test="fileId != null">file_id = #{fileId},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            id = #{id}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="deleteRulesParametersById">
+        DELETE FROM sp_rules_parameters_lod WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteRulesParametersByPid">
+        DELETE FROM sp_rules_parameters_lod WHERE pid = #{pid}
+    </delete>
+
+
+</mapper>

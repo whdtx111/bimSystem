@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.ObjectsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="objectsResultMap" type="org.springblade.modules.sp.entity.Objects">
+        <id column="id" property="id"/>
+        <id column="streamId" property="streamId"/>
+        <result column="speckleType" property="speckleType"/>
+        <result column="totalChildrenCount" property="totalChildrenCount"/>
+        <result column="totalChildrenCountByDepth" property="totalChildrenCountByDepth"/>
+        <result column="createdAt" property="createdAt"/>
+        <result column="data" property="data"/>
+    </resultMap>
+
+    <select id="selectObjectsList" resultType="org.springblade.modules.sp.vo.ObjectsVO">
+        SELECT
+            obj."id" AS id,
+            obj."streamId" AS stream_id,
+            obj."data" ->> 'units' AS units,
+            obj."data" ->> 'category' AS category,
+           -- obj."data" ->> 'family' AS family,
+            COALESCE(obj."data" ->> 'family', obj."data" ->> 'category' || '-family') AS family ,
+            obj."data" ->> 'type' AS type,
+            obj."data" ->> 'elementId' AS elementId,
+            obj."data" ->> 'parameters' AS parameters
+        FROM
+            objects obj
+        WHERE
+            obj."id" IN (
+            SELECT
+            jsonb_object_keys ( obj."data" -> '__closure' )
+            FROM
+            objects obj
+            WHERE
+            obj."id" = ( SELECT info -> 'commit' ->> 'objectId' AS objectId FROM stream_activity WHERE "resourceId" = #{resourceId} AND "actionType" = 'commit_create' )
+            )
+            AND obj."data" ->> 'category' IS NOT NULL
+           -- AND obj."data" ->> 'family' IS NOT NULL
+            AND obj."data" ->> 'type' IS NOT NULL
+            AND obj."data" ->> 'elementId' IS NOT NULL
+        <if test="category!=null and category!=''">
+            AND obj."data" ->> 'category' = #{category}
+        </if>
+    </select>
+
+    <select id="selectObjectsRefIdNotNull" resultType="org.springblade.modules.sp.vo.ObjectsVO">
+        SELECT
+            obj."id" AS id,
+            obj."streamId" AS stream_id,
+            obj."data" ->> 'units' AS units,
+            obj."data" ->> 'category' AS category,
+            obj."data" ->> 'family' AS family,
+            obj."data" ->> 'type' AS type,
+            obj."data" ->> 'elementId' AS elementId,
+            obj."data" ->> 'parameters' AS parameters,
+			obj."data" ->> 'speckle_type' AS speckle_type,
+		    obj."data" ->'definition'->>'referencedId' AS referencedId
+        FROM
+            objects obj
+        WHERE
+            obj."id" IN (
+            SELECT
+            jsonb_object_keys ( obj."data" -> '__closure' )
+            FROM
+            objects obj
+            WHERE
+            obj."id" = ( SELECT info -> 'commit' ->> 'objectId' AS objectId FROM stream_activity WHERE "resourceId" = #{resourceId} AND "actionType" = 'commit_create' )
+            )
+        <if test="category!=null and category!=''">
+            AND obj."data" ->> 'category' = #{category}
+        </if>
+			AND  obj."data" ->'definition'->>'referencedId' IS NOT NULL
+    </select>
+
+    <!-- 根据id和streamId查询单个对象 -->
+    <select id="selectObjectById" resultType="org.springblade.modules.sp.vo.ObjectsVO">
+        SELECT
+            id,
+            "streamId" as streamId,
+            data as parameters
+        FROM "objects"
+        WHERE "id" = #{id} AND "streamId" = #{streamId}
+    </select>
+
+</mapper>

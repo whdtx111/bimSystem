@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.StreamAclMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="streamAclResultMap" type="org.springblade.modules.sp.entity.StreamAcl">
+        <id column="userId" property="userId"/>
+        <result column="resourceId" property="resourceId"/>
+        <result column="role" property="role"/>
+    </resultMap>
+
+    <select id="selectStreamAclByStreamId" resultMap="streamAclResultMap">
+        select * from stream_acl where  "resourceId" = #{resourceId};
+    </select>
+
+    <select id="selectSpRole" resultMap="streamAclResultMap">
+        select * from stream_acl where "userId" = #{userId} and "resourceId" = #{resourceId};
+    </select>
+
+    <select id="getResourceIdsByUserId" resultType="java.lang.String">
+        SELECT DISTINCT "resourceId"
+        FROM stream_acl
+        WHERE "userId" = #{userId}
+    </select>
+
+    <insert id="insertStreamAcl" parameterType="org.springblade.modules.sp.entity.StreamAcl">
+        INSERT INTO stream_acl ("userId", "resourceId", "role")
+        VALUES (#{userId}, #{resourceId}, #{role})
+    </insert>
+
+
+</mapper>

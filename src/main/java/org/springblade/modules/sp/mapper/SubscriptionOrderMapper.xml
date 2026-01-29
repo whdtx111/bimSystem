@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.SubscriptionOrderMapper">
+
+    <resultMap id="orderResultMap" type="org.springblade.modules.sp.entity.SubscriptionOrder">
+        <id column="id" property="id"/>
+        <result column="config_id" property="configId"/>
+        <result column="user_id" property="userId"/>
+        <result column="used_project_num" property="usedProjectNum"/>
+        <result column="used_user_num" property="usedUserNum"/>
+        <result column="used_storage" property="usedStorage"/>
+        <result column="used_duration" property="usedDuration"/>
+        <result column="total_storage" property="totalStorage"/>
+        <result column="order_time" property="orderTime" jdbcType="TIMESTAMP"/>
+        <result column="dead_time" property="deadTime" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, config_id, user_id, used_project_num, used_user_num, used_storage,used_duration,total_storage,
+        order_time,dead_time,status
+    </sql>
+
+    <select id="getById" resultMap="orderResultMap">
+        select * from sp_subscription_order where id = #{id};
+    </select>
+
+    <select id="getByUserId" resultMap="orderResultMap">
+        select * from sp_subscription_order where user_id = #{userId} and status = 0;
+    </select>
+
+    <select id="selectByUserIdAndStatus" resultMap="orderResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sp_subscription_order
+        WHERE user_id = #{userId}
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        ORDER BY order_time DESC
+    </select>
+
+    <select id="selectByUserId" resultMap="orderResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sp_subscription_order
+        WHERE user_id = #{userId}
+        ORDER BY order_time DESC
+    </select>
+
+    <select id="selectOrderList" resultType="org.springblade.modules.sp.vo.SubscriptionOrderDetailVO">
+        SELECT
+        o.*,
+        u.name as user_name,
+        u.avatar as user_avatar,
+        c.name as config_name,
+        c.price as config_price,
+        c.project_num as config_project_num,
+        c.user_num as config_user_num,
+        c.storage as config_storage,
+        c.storage_unit as config_storage_unit,
+        c.duration as config_duration
+        FROM sp_subscription_order o
+        LEFT JOIN users u ON o.user_id = u.id
+        LEFT JOIN sp_subscription_config c ON o.config_id = c.id
+        <where>
+            <if test="userId != null and userId != ''">
+                AND o.user_id = #{userId}
+            </if>
+            <if test="status != null">
+                AND o.status = #{status}
+            </if>
+            <if test="startTime != null">
+                AND o.order_time &gt;= #{startTime}
+            </if>
+            <if test="endTime != null">
+                AND o.order_time &lt;= #{endTime}
+            </if>
+        </where>
+        ORDER BY o.order_time DESC
+    </select>
+
+    <insert id="insertSubscriptionOrder" parameterType="org.springblade.modules.sp.entity.SubscriptionOrder">
+        INSERT INTO sp_subscription_order (
+            id, config_id, user_id, used_project_num, used_user_num, used_storage,used_duration,total_storage,
+            order_time,dead_time,status
+        )
+        VALUES (
+        #{id}, #{configId}, #{userId}, #{usedProjectNum}, #{usedUserNum}, #{usedStorage},#{usedDuration},#{totalStorage},#{orderTime},#{deadTime},#{status}
+        )
+    </insert>
+
+    <update id="updateSubscriptionOrder" parameterType="org.springblade.modules.sp.entity.SubscriptionOrder">
+        UPDATE sp_subscription_order
+        <set>
+            <if test="configId != null">config_id = #{configId},</if>
+            <if test="usedProjectNum != null">used_project_num = #{usedProjectNum},</if>
+            <if test="usedUserNum != null">used_user_num = #{usedUserNum},</if>
+            <if test="usedStorage != null">used_storage = #{usedStorage},</if>
+            <if test="usedDuration != null">used_duration = #{usedDuration},</if>
+            <if test="totalStorage != null">total_storage = #{totalStorage},</if>
+            <if test="orderTime != null">order_time = #{orderTime},</if>
+            <if test="deadTime != null">dead_time = #{deadTime},</if>
+            <if test="status != null">status = #{status},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteSubscriptionOrder">
+        DELETE FROM sp_subscription_order WHERE id = #{id}
+    </delete>
+
+    <update id="updateSubscriptionOrderStatus" parameterType="org.springblade.modules.sp.entity.SubscriptionOrder">
+        UPDATE sp_subscription_order
+        SET status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <update id="expandTotalStorage" parameterType="org.springblade.modules.sp.entity.SubscriptionOrder">
+        UPDATE sp_subscription_order
+        SET total_storage = #{totalStorage}
+        WHERE id = #{id}
+    </update>
+</mapper>

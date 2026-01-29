@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.TemplateCustomDataMapper">
+
+    <resultMap id="TemplateCustomDataResult" type="org.springblade.modules.sp.entity.TemplateCustomData">
+        <id property="id" column="id"/>
+        <result property="objId" column="obj_id"/>
+        <result property="templateId" column="template_id"/>
+        <result property="elementId" column="element_id"/>
+        <result property="streamId" column="stream_id"/>
+        <result property="branchId" column="branch_id"/>
+        <result property="commitId" column="commit_id"/>
+        <result property="category" column="category"/>
+        <result property="type" column="type"/>
+        <result property="detail" column="detail" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result property="isfinished" column="isfinished"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="getById" resultMap="TemplateCustomDataResult">
+        SELECT * FROM sp_template_custom_data WHERE id = #{id} and status != 9
+    </select>
+
+    <select id="searchFilter" resultMap="TemplateCustomDataResult">
+        SELECT * FROM sp_template_custom_data WHERE status != 9
+        <if test="elementId != null and elementId != ''">
+            and element_id = #{elementId}
+        </if>
+        <if test="streamId != null">
+            and stream_id = #{streamId}
+        </if>
+        <if test="branchId != null">
+            and branch_id = #{branchId}
+        </if>
+        <if test="templateId != null">
+            and template_id = #{templateId}
+        </if>
+        ORDER BY modify_time DESC
+    </select>
+
+    <insert id="addTemplateCustomData" parameterType="org.springblade.modules.sp.entity.TemplateCustomData">
+        INSERT INTO sp_template_custom_data (id, template_id, obj_id, element_id, stream_id, branch_id, commit_id, 
+                                              category, type, detail, isfinished, modify_user, modify_time, status)
+        VALUES (#{id}, #{templateId}, #{objId}, #{elementId}, #{streamId}, #{branchId}, #{commitId}, #{category}, 
+                #{type}, #{detail, typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb, 
+                #{isfinished}, #{modifyUser}, #{modifyTime}, #{status})
+    </insert>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO sp_template_custom_data (id, template_id, obj_id, element_id, stream_id, branch_id, commit_id, 
+                                              category, type, detail, isfinished, modify_user, modify_time, status)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id}, #{item.templateId}, #{item.objId}, #{item.elementId}, #{item.streamId}, #{item.branchId}, 
+             #{item.commitId}, #{item.category}, #{item.type}, 
+             #{item.detail, typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb, 
+             #{item.isfinished}, #{item.modifyUser}, #{item.modifyTime}, #{item.status})
+        </foreach>
+    </insert>
+
+    <update id="updateTemplateCustomData" parameterType="org.springblade.modules.sp.entity.TemplateCustomData">
+        UPDATE sp_template_custom_data
+        <set>
+            <if test="templateId != null">
+                template_id = #{templateId},
+            </if>
+            <if test="elementId != null">
+                element_id = #{elementId},
+            </if>
+            <if test="streamId != null">
+                stream_id = #{streamId},
+            </if>
+            <if test="branchId != null">
+                branch_id = #{branchId},
+            </if>
+            <if test="commitId != null">
+                commit_id = #{commitId},
+            </if>
+            <if test="category != null">
+                category = #{category},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="detail != null">
+                detail = #{detail, typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb,
+            </if>
+            <if test="isfinished != null">
+                isfinished = #{isfinished},
+            </if>
+            <if test="objId != null">
+                obj_id = #{objId},
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser},
+            </if>
+            modify_time = #{modifyTime},
+            status = #{status}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        UPDATE sp_template_custom_data SET status = 9 WHERE id = #{id}
+    </delete>
+
+    <update id="updateFinished" parameterType="org.springblade.modules.sp.dto.RevitAllUPDTO">
+        UPDATE sp_template_custom_data set obj_id = #{objId},isfinished = #{isfinished} where id = #{id};
+    </update>
+
+    <select id="getByStreamBranchCommitElementId" resultMap="TemplateCustomDataResult">
+        SELECT * FROM sp_template_custom_data
+        WHERE status != 9
+        AND stream_id = #{streamId}
+        AND branch_id = #{branchId}
+        AND commit_id = #{commitId}
+        AND element_id = #{elementId}
+        ORDER BY modify_time DESC
+        LIMIT 1
+    </select>
+
+    <delete id="deleteByTemplateId">
+        DELETE FROM sp_template_custom_data WHERE template_id = #{templateId}
+    </delete>
+
+</mapper>

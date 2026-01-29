@@ -1,0 +1,29 @@
+package org.springblade.modules.sp.service;
+
+import org.springblade.core.mp.base.BaseService;
+import org.springblade.modules.sp.entity.RulesDetail;
+import org.springblade.modules.sp.entity.RulesLibrary;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
+
+public interface RulesDetailService extends BaseService<RulesDetail> {
+
+    RulesDetail getRulesDetailById(String id);
+
+    List<RulesDetail> getRulesDetailByPid(String pid);
+
+    List<RulesDetail> getAll();
+
+    boolean addRulesDetail(RulesDetail rulesDetail);
+
+//    boolean insertRulesDetailBatch(List<RulesDetail> list);
+
+    boolean updateRulesDetail(RulesDetail rulesDetail);
+
+    boolean deleteRulesDetailById(String id);
+
+    boolean deleteRulesDetailByPid(String pid);
+
+}

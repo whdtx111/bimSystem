@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.ElementLibraryMapper">
+
+    <!-- ResultMap for ElementLibrary -->
+    <resultMap id="ElementLibraryResultMap" type="org.springblade.modules.sp.entity.ElementLibrary">
+        <id property="id" column="id"/>
+        <result property="fileIds" column="file_ids" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="name" column="name"/>
+        <result property="version" column="version"/>
+        <result property="auth" column="auth"/>
+        <result property="project" column="project" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="description" column="description"/>
+        <result property="tags" column="tags" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="codeNameParamsMapList" column="code_name_params_map_list" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result property="propertyMgt" column="property_mgt" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="status" column="status"/>
+        <result property="streamId" column="stream_id"/>
+        <result property="branchId" column="branch_id"/>
+        <result property="commitId" column="commit_id"/>
+        <result property="loiNow" column="loi_now"/>
+        <result property="lodNow" column="lod_now"/>
+        <result property="library" column="library"/>
+    </resultMap>
+
+    <resultMap id="ElementLibraryMinResultMap" type="org.springblade.modules.sp.entity.ElementLibraryMin">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!-- 联表查询 ResultMap -->
+    <resultMap id="ElementLibraryWithFilesResultMap" type="org.springblade.modules.sp.entity.ElementLibraryWithFiles">
+        <!-- 继承 ElementLibrary 的字段 -->
+        <result property="id" column="el_id"/>
+        <result property="fileIds" column="el_file_ids" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="name" column="el_name"/>
+        <result property="version" column="el_version"/>
+        <result property="auth" column="el_auth"/>
+        <result property="project" column="el_project" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="description" column="el_description"/>
+        <result property="tags" column="el_tags" typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result property="codeNameParamsMapList" column="el_code_name_params_map_list" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result property="propertyMgt" column="el_property_mgt" typeHandler="org.springblade.modules.sp.utils.JsonListTypeHandler"/>
+        <result property="modifyUser" column="el_modify_user"/>
+        <result property="modifyTime" column="el_modify_time"/>
+        <result property="createTime" column="el_create_time"/>
+        <result property="status" column="el_status"/>
+        <result property="streamId" column="el_stream_id"/>
+        <result property="branchId" column="el_branch_id"/>
+        <result property="commitId" column="el_commit_id"/>
+        <result property="loiNow" column="el_loi_now"/>
+        <result property="lodNow" column="el_lod_now"/>
+        <result property="library" column="library"/>
+
+        <!-- 新增关联文件列表 -->
+        <collection property="files" ofType="org.springblade.modules.sp.entity.ElementLibraryFile">
+            <id property="id" column="elf_id"/>
+            <result property="pid" column="elf_pid"/>
+            <result property="name" column="elf_name"/>
+            <result property="system" column="elf_system"/>
+            <result property="lod" column="elf_lod"/>
+            <result property="fileUrl" column="elf_file_url"/>
+            <result property="fileSize" column="elf_file_size"/>
+            <result property="modifyUser" column="elf_modify_user"/>
+            <result property="modifyTime" column="elf_modify_time"/>
+            <result property="status" column="elf_status"/>
+        </collection>
+    </resultMap>
+
+    <!-- 联表查询 -->
+    <select id="getElementLibraryWithFiles" resultMap="ElementLibraryWithFilesResultMap">
+        SELECT
+            el.id AS el_id,
+            el.file_ids AS el_file_ids,
+            el.property_mgt AS el_property_mgt,
+            el.name AS el_name,
+            el.version AS el_version,
+            el.auth AS el_auth,
+            el.project AS el_project,
+            el.description AS el_description,
+            el.tags AS el_tags,
+            el.code_name_params_map_list AS el_code_name_params_map_list,
+            el.modify_user AS el_modify_user,
+            el.modify_time AS el_modify_time,
+            el.create_time AS el_create_time,
+            el.status AS el_status,
+            el.stream_id AS el_stream_id,
+            el.branch_id AS el_branch_id,
+            el.commit_id AS el_commit_id,
+            el.loi_now AS el_loi_now,
+            el.lod_now AS el_lod_now,
+            el.library AS library,
+            elf.id AS elf_id,
+            elf.pid AS elf_pid,
+            elf.name AS elf_name,
+            elf.type AS elf_type,
+            elf.system AS elf_system,
+            elf.lod AS elf_lod,
+            elf.file_url AS elf_file_url,
+            elf.file_size AS elf_file_size,
+            elf.modify_user AS elf_modify_user,
+            elf.modify_time AS elf_modify_time,
+            elf.status AS elf_status
+        FROM
+            sp_element_library el
+                LEFT JOIN
+            sp_element_library_file elf
+            ON
+                elf.pid = el.id
+        WHERE
+            el.id = #{id};
+    </select>
+
+    <select id="getElementLibraryWithFilesByProject" resultMap="ElementLibraryWithFilesResultMap">
+        SELECT
+            el.id AS el_id,
+            el.file_ids AS el_file_ids,
+            el.property_mgt AS el_property_mgt,
+            el.name AS el_name,
+            el.version AS el_version,
+            el.auth AS el_auth,
+            el.project AS el_project,
+            el.description AS el_description,
+            el.tags AS el_tags,
+            el.code_name_params_map_list AS el_code_name_params_map_list,
+            el.modify_user AS el_modify_user,
+            el.modify_time AS el_modify_time,
+            el.create_time AS el_create_time,
+            el.status AS el_status,
+            el.stream_id AS el_stream_id,
+            el.branch_id AS el_branch_id,
+            el.commit_id AS el_commit_id,
+            el.loi_now AS el_loi_now,
+            el.lod_now AS el_lod_now,
+            el.library AS library,
+            elf.id AS elf_id,
+            elf.pid AS elf_pid,
+            elf.name AS elf_name,
+            elf.type AS elf_type,
+            elf.system AS elf_system,
+            elf.lod AS elf_lod,
+            elf.file_url AS elf_file_url,
+            elf.file_size AS elf_file_size,
+            elf.modify_user AS elf_modify_user,
+            elf.modify_time AS elf_modify_time,
+            elf.status AS elf_status
+        FROM
+            sp_element_library el
+                LEFT JOIN
+            sp_element_library_file elf
+            ON
+                elf.pid = el.id
+        WHERE
+         el.project @> ARRAY[#{projectId}]::varchar[];
+    </select>
+
+    <!-- Select by ID -->
+    <select id="getById" resultMap="ElementLibraryResultMap">
+        SELECT * FROM sp_element_library WHERE id = #{id};
+    </select>
+
+    <!-- Select all records -->
+    <select id="getAll" resultMap="ElementLibraryResultMap">
+        SELECT * FROM sp_element_library order by create_time desc;
+    </select>
+
+    <select id="getElementLibraryList" resultMap="ElementLibraryMinResultMap">
+        SELECT id,name,status,modify_user,modify_time,create_time
+        FROM sp_element_library
+        WHERE #{projectId} = ANY(project::varchar[]);
+    </select>
+
+    <select id="getElementLibraryByFileId" resultMap="ElementLibraryResultMap">
+        SELECT * FROM sp_element_library WHERE #{fileId} = any(file_ids::varchar[]);
+    </select>
+
+    <select id="filterElementLibraryList" resultMap="ElementLibraryWithFilesResultMap">
+        SELECT
+        el.id AS el_id,
+        el.file_ids AS el_file_ids,
+        el.property_mgt AS el_property_mgt,
+        el.name AS el_name,
+        el.version AS el_version,
+        el.auth AS el_auth,
+        el.project AS el_project,
+        el.description AS el_description,
+        el.tags AS el_tags,
+        el.code_name_params_map_list AS el_code_name_params_map_list,
+        el.modify_user AS el_modify_user,
+        el.modify_time AS el_modify_time,
+        el.create_time AS el_create_time,
+        el.status AS el_status,
+        el.stream_id AS el_stream_id,
+        el.branch_id AS el_branch_id,
+        el.commit_id AS el_commit_id,
+        el.loi_now AS el_loi_now,
+        el.lod_now AS el_lod_now,
+        el.library AS library,
+        elf.id AS elf_id,
+        elf.pid AS elf_pid,
+        elf.name AS elf_name,
+        elf.system AS elf_system,
+        elf.lod AS elf_lod,
+        elf.file_url AS elf_file_url,
+        elf.file_size AS elf_file_size,
+        elf.modify_user AS elf_modify_user,
+        elf.modify_time AS elf_modify_time,
+        elf.status AS elf_status
+        FROM
+        sp_element_library el
+        LEFT JOIN
+        sp_element_library_file elf
+        ON
+        elf.pid = el.id
+        WHERE
+        1 = 1
+        <if test="name != null and name != ''">
+            AND el.name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="tags != null and tags.length > 0 and !tags[0].equals('[]')">
+            AND el.tags = #{tags,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler}
+        </if>
+        <if test="project != null and project.length > 0 and !project[0].equals('[]')">
+            AND el.project &amp;&amp; ARRAY[
+            <foreach item="item" collection="project" separator=",">
+                #{item}
+            </foreach>
+            ]::text[]
+        </if>
+        <if test="propertyList != null and propertyList != ''">
+            AND EXISTS (
+            SELECT 1
+            FROM jsonb_array_elements(el.property_mgt::jsonb) AS elem
+            WHERE elem->>'基本信息_属性变体' = #{propertyList}
+            )
+        </if>
+        <if test="system != null and system != ''">
+            AND elf.system = #{system}
+        </if>
+        <if test="lodNow != null and lodNow != ''">
+            AND el.lod_now = #{lodNow}
+        </if>
+        <if test="library != null and library.length > 0 and !library[0].equals('[]')">
+            AND (
+            <foreach item="item" collection="library" separator=" OR ">
+                el.library = #{item}
+            </foreach>
+            )
+        </if>
+        <if test="status != null">
+            AND el.status = #{status}
+        </if>
+        ORDER BY
+        el.create_time DESC;
+    </select>
+    <!-- Insert single record -->
+    <insert id="addElementLibrary" parameterType="org.springblade.modules.sp.entity.ElementLibrary">
+        INSERT INTO sp_element_library (id, file_ids, property_mgt, name, version, auth, project, description, tags, code_name_params_map_list, modify_user, modify_time, create_time, status,stream_id,branch_id,commit_id,loi_now,lod_now,library)
+        VALUES (
+                   #{id},
+                   #{fileIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+                   #{propertyMgt,typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb,
+                   #{name},
+                   #{version},
+                   #{auth},
+                   #{project,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+                   #{description},
+                   #{tags,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+                   #{codeNameParamsMapList,typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb,
+                   #{modifyUser},
+                   #{modifyTime},
+                   #{createTime},
+                   #{status},
+                #{streamId},
+                #{branchId},
+                #{commitId},
+                #{loiNow},
+                #{lodNow},
+                #{library}
+               );
+    </insert>
+
+    <!-- Insert multiple records -->
+    <insert id="insertElementLibraryList" parameterType="java.util.List">
+        INSERT INTO sp_element_library (id, file_ids, property_mgt,name, version, auth, project, description, tags, code_name_params_map_list, modify_user, modify_time, create_time, status,stream_id,branch_id,commit_id,loi_now,library)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.id},
+            #{item.fileIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            #{item.propertyMgt,typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb,
+            #{item.name},
+            #{item.version},
+            #{item.auth},
+            #{item.project,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            #{item.description},
+            #{item.tags,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},
+            #{item.codeNameParamsMapList,typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb,
+            #{item.modifyUser},
+            #{item.modifyTime},
+            #{item.createTime},
+            #{item.status},
+            #{item.streamId},
+            #{item.branchId},
+            #{item.commitId},
+            #{item.loiNow},
+            #{item.lodNow},
+            #{item.library}
+            )
+        </foreach>
+    </insert>
+
+    <!-- Update record -->
+    <update id="updateElementLibrary" parameterType="org.springblade.modules.sp.entity.ElementLibrary">
+        UPDATE sp_element_library
+        <set>
+            <if test="fileIds != null">file_ids = #{fileIds,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="auth != null">auth = #{auth},</if>
+            <if test="project != null">project = #{project,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="tags != null">tags = #{tags,typeHandler=org.springblade.modules.sp.utils.VarcharArrayTypeHandler},</if>
+            <if test="codeNameParamsMapList != null">code_name_params_map_list = #{codeNameParamsMapList,typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb,</if>
+            <if test="propertyMgt != null">property_mgt = #{propertyMgt,typeHandler=org.springblade.modules.sp.utils.JsonListTypeHandler}::jsonb,</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="branchId != null">branch_id = #{branchId},</if>
+            <if test="commitId != null">commit_id = #{commitId},</if>
+        <if test="loiNow != null">loi_now = #{loiNow},</if>
+        <if test="lodNow != null">lod_now = #{lodNow},</if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!-- Delete by ID -->
+    <delete id="deleteElementLibrary" parameterType="String">
+        DELETE FROM sp_element_library WHERE id = #{id};
+    </delete>
+</mapper>

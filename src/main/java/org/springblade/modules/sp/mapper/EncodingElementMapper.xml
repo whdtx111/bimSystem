@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.EncodingElementMapper">
+
+    <!-- 定义 resultMap 映射结果 -->
+    <resultMap id="EncodingElementResultMap" type="org.springblade.modules.sp.entity.EncodingElement">
+        <id property="id" column="id"/>
+        <result property="streamId" column="stream_id"/>
+        <result property="branchId" column="branch_id"/>
+        <result property="elementId" column="element_id"/>
+        <result property="encodingId" column="encoding_id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="encodingStatus" column="encoding_status"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+    </resultMap>
+
+    <!-- 根据ID查询 -->
+    <select id="getById" resultMap="EncodingElementResultMap">
+        SELECT * FROM sp_encoding_element WHERE id = #{id};
+    </select>
+
+    <!-- 获取所有记录 -->
+    <select id="getAllEncodingElements" resultMap="EncodingElementResultMap">
+        SELECT * FROM sp_encoding_element;
+    </select>
+
+    <select id="getEncodingElement" resultMap="EncodingElementResultMap">
+        select * from sp_encoding_element where stream_id = #{streamId} and branch_id = #{branchId} and element_id = #{elementId} and encoding_id = #{encodingId};
+    </select>
+
+    <select id="getEncodingElements" resultMap="EncodingElementResultMap">
+        select * from sp_encoding_element where stream_id = #{streamId} and branch_id = #{branchId} AND element_id IN
+        <foreach collection="elementId" item="elementId" open="(" separator="," close=")">
+            #{elementId}
+        </foreach>
+                                            and encoding_id = #{encodingId};
+    </select>
+
+    <!-- 条件搜索 -->
+    <select id="filterEncodingElements" resultMap="EncodingElementResultMap">
+        SELECT * FROM sp_encoding_element
+        WHERE 1=1
+        <if test="streamId != null and streamId != ''">
+            AND stream_id = #{streamId}
+        </if>
+        <if test="branchId != null and branchId != ''">
+            AND branch_id = #{branchId}
+        </if>
+        <if test="elementId != null and elementId != ''">
+            AND element_id = #{elementId}
+        </if>
+        <if test="encodingId != null and encodingId != ''">
+            AND encoding_id = #{encodingId}
+        </if>
+        <if test="code != null and code != ''">
+            AND code = #{code}
+        </if>
+        ORDER BY modify_time DESC
+    </select>
+
+    <!-- 插入记录 -->
+    <insert id="addEncodingElement" parameterType="org.springblade.modules.sp.entity.EncodingElement">
+        INSERT INTO sp_encoding_element (id, stream_id, branch_id, element_id, encoding_id,name,code, encoding_status, modify_user, modify_time)
+        VALUES (#{id}, #{streamId}, #{branchId}, #{elementId}, #{encodingId},#{name},#{code}, #{encodingStatus}, #{modifyUser}, #{modifyTime});
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="updateEncodingElement" parameterType="org.springblade.modules.sp.entity.EncodingElement">
+        UPDATE sp_encoding_element
+        <set>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="branchId != null">branch_id = #{branchId},</if>
+            <if test="elementId != null">element_id = #{elementId},</if>
+            <if test="encodingId != null">encoding_id = #{encodingId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="code != null">code = #{code},</if>
+            <if test="encodingStatus != null">encoding_status = #{encodingStatus},</if>
+            modify_user = #{modifyUser},
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!-- 根据ID删除记录 -->
+    <delete id="deleteEncodingElementById" parameterType="String">
+        DELETE FROM sp_encoding_element WHERE id = #{id};
+    </delete>
+
+</mapper>

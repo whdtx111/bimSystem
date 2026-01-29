@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.NewTemplateMapper">
+
+    <resultMap id="NewTemplateResultMap" type="org.springblade.modules.sp.entity.NewTemplate">
+        <id property="id" column="id"/>
+        <result property="pid" column="pid"/>
+        <result property="fileId" column="file_id"/>
+        <result property="templateId" column="template_id" />
+        <result property="streamListId" column="stream_list_id"/>
+        <result property="streamId" column="stream_id"/>
+        <result property="branchId" column="branch_id"/>
+        <result column="block_id" property="blockId"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="description" column="description"/>
+        <result property="auth" column="auth"/>
+        <result property="source" column="source"/>
+        <result property="version" column="version"/>
+        <result property="detail" column="detail"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!-- 结果映射：StreamListTemplatesVO -->
+    <resultMap id="StreamListTemplatesResultMap" type="org.springblade.modules.sp.vo.StreamListTemplatesVO">
+        <!-- StreamList 基本信息 -->
+        <id column="sl_id" property="streamListId"/>
+        <result column="stream_ids" property="streamIds"
+                typeHandler="org.springblade.modules.sp.utils.VarcharArrayTypeHandler"/>
+        <result column="sl_modify_time" property="streamListModifyTime" jdbcType="TIMESTAMP"/>
+
+        <!-- 关联的模板列表 -->
+        <collection property="newTemplateList" ofType="org.springblade.modules.sp.entity.NewTemplate">
+            <id column="id" property="id"/>
+            <result column="pid" property="pid"/>
+            <result column="file_id" property="fileId"/>
+            <result column="template_id" property="templateId"/>
+            <result column="stream_list_id" property="streamListId"/>
+            <result column="stream_id" property="streamId"/>
+            <result column="branch_id" property="branchId"/>
+            <result column="block_id" property="blockId"/>
+            <result column="name" property="name"/>
+            <result column="type" property="type"/>
+            <result column="description" property="description"/>
+            <result column="auth" property="auth"/>
+            <result column="source" property="source"/>
+            <result column="version" property="version"/>
+            <result column="detail" property="detail"/>
+            <result column="modify_user" property="modifyUser"/>
+            <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+            <result column="status" property="status"/>
+        </collection>
+    </resultMap>
+
+    <select id="getTemplateListByStreamId" resultMap="NewTemplateResultMap">
+        SELECT DISTINCT nt.* FROM sp_new_template nt
+        LEFT JOIN sp_stream_list sl ON nt.stream_list_id = sl.id
+        WHERE nt.stream_id = #{streamId}
+        AND (
+            <if test="branchId != null and branchId != ''">
+                nt.branch_id = #{branchId}
+                OR
+            </if>
+            nt.source = 'back'
+        )
+        ORDER BY nt.modify_time desc;
+    </select>
+
+    <select id="getTemplateListDefault" resultMap="NewTemplateResultMap">
+        SELECT * FROM sp_new_template WHERE source = 'back' and stream_id is null and stream_list_id is null;
+    </select>
+
+    <!-- 查询全量的streamList和对应的模板列表 -->
+    <select id="getAllStreamListTemplates" resultMap="StreamListTemplatesResultMap">
+        SELECT nt.*,
+               sl.id          AS sl_id,
+               sl.stream_ids  AS stream_ids,
+               sl.modify_time AS sl_modify_time
+        FROM sp_stream_list sl
+                 LEFT JOIN sp_new_template nt ON sl.id = nt.stream_list_id where nt.stream_id is null
+        ORDER BY nt.modify_time desc
+    </select>
+
+    <!-- 根据streamListId查询streamList和对应的模板列表 -->
+    <select id="getStreamListTemplatesById" resultMap="StreamListTemplatesResultMap" parameterType="string">
+        SELECT nt.*,
+               sl.id          AS sl_id,
+               sl.stream_ids  AS stream_ids,
+               sl.modify_time AS sl_modify_time
+        FROM sp_stream_list sl
+                 LEFT JOIN sp_new_template nt ON sl.id = nt.stream_list_id
+        WHERE sl.id = #{streamListId}
+        ORDER BY nt.id
+    </select>
+
+    <select id="getNewTemplateByStreamListId" resultMap="NewTemplateResultMap">
+        SELECT * FROM sp_new_template WHERE stream_list_id = #{streamListId};
+    </select>
+
+    <select id="getBomTemplate" resultMap="NewTemplateResultMap">
+            select * from sp_new_template where stream_id = #{streamId}   AND branch_id = #{branchId} AND type = '2' or type = '3';
+    </select>
+
+    <!-- 获取模板列表 -->
+    <select id="getTemplateList" resultMap="NewTemplateResultMap">
+        SELECT * FROM sp_new_template;
+    </select>
+
+    <select id="getTemplateListByPid" resultMap="NewTemplateResultMap">
+        SELECT * FROM sp_new_template where pid = #{pid};
+    </select>
+
+    <!-- 根据ID获取模板 -->
+    <select id="getTemplateById" resultMap="NewTemplateResultMap">
+        SELECT * FROM sp_new_template WHERE id = #{id};
+    </select>
+
+    <select id="filterTemplateList" resultMap="NewTemplateResultMap">
+        SELECT * FROM sp_new_template
+        WHERE 1=1
+        <if test="pid != null and pid != ''">
+            AND pid = #{pid}
+        </if>
+        <if test="fileId != null and fileId != ''">
+            AND file_id = #{fileId}
+        </if>
+        <if test="streamId != null and streamId != ''">
+            AND stream_id = #{streamId}
+        </if>
+        <if test="branchId != null and branchId != ''">
+            AND branch_id = #{branchId}
+        </if>
+        <if test="name != null and name != ''">
+            AND name = #{name}
+        </if>
+        <if test="type != null and type != ''">
+            AND type = #{type}
+        </if>
+        <if test="source != null and source != ''">
+            AND source = #{source}
+        </if>
+        <if test="version != null and version != ''">
+            AND version = #{version}
+        </if>
+        <if test="modifyUser != null and modifyUser != ''">
+            AND modify_user = #{modifyUser}
+        </if>
+        <if test="auth != null and auth != ''">
+            AND auth = #{auth}
+        </if>
+        ORDER BY modify_time DESC
+    </select>
+
+    <!-- 新增模板 -->
+    <insert id="addTemplate" parameterType="org.springblade.modules.sp.entity.NewTemplate">
+        INSERT INTO sp_new_template(
+            id, pid, file_id,template_id,stream_list_id,stream_id,branch_id,block_id,name, type,description,auth,source,version,
+            detail, modify_user, modify_time, status
+        ) VALUES (
+                     #{id}, #{pid}, #{fileId},#{templateId},#{streamListId},#{streamId},#{branchId},#{blockId},#{name}, #{type},#{description},#{auth},#{source},#{version},
+                     #{detail}, #{modifyUser}, #{modifyTime}, #{status}
+                 )
+    </insert>
+
+    <!-- 更新模板 -->
+    <update id="updateTemplate" parameterType="org.springblade.modules.sp.entity.NewTemplate">
+        UPDATE sp_new_template
+        <set>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="fileId != null">file_id = #{fileId},</if>
+            <if test="templateId != null">template_id = #{templateId},</if>
+            <if test="streamListId != null">stream_list_id = #{streamListId},</if>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="branchId != null">branch_id = #{branchId},</if>
+            <if test="blockId != null">block_id = #{blockId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="auth != null">auth = #{auth},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="detail != null">detail = #{detail},</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+            <if test="status != null">status = #{status},</if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除模板（物理删除） -->
+    <delete id="deleteTemplate">
+        DELETE FROM sp_new_template WHERE id = #{id};
+    </delete>
+
+    <delete id="deleteByStream">
+        DELETE FROM sp_new_template WHERE stream_id = #{streamId};
+    </delete>
+
+    <!-- 根据streamListId获取streamId为null或空字符串的模板列表 -->
+    <select id="getTemplatesByStreamListIdWithNullStreamId" resultMap="NewTemplateResultMap">
+        SELECT * FROM sp_new_template 
+        WHERE stream_list_id = #{streamListId} 
+        AND (stream_id IS NULL OR stream_id = '' OR TRIM(stream_id) = '')
+        ORDER BY id, pid
+    </select>
+
+    <!-- 根据streamId获取模板列表（用于删除检查） -->
+    <select id="getTemplatesByStreamId" resultMap="NewTemplateResultMap">
+        SELECT * FROM sp_new_template 
+        WHERE stream_id = #{streamId}
+        ORDER BY id
+    </select>
+
+</mapper>

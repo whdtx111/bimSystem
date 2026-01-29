@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.StreamUsersMapper">
+
+    <resultMap id="streamUsersResultMap" type="org.springblade.modules.sp.entity.StreamUsers">
+        <id property="id" column="id"/>
+        <result property="streamId" column="stream_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="authLevel" column="auth_level"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    
+    <select id="getByStreamId" resultMap="streamUsersResultMap">
+        SELECT * FROM sl_stream_users WHERE stream_id = #{streamId};
+    </select>
+    
+    <select id="getByUserId" resultMap="streamUsersResultMap">
+        SELECT * FROM sl_stream_users WHERE user_id = #{userId};
+    </select>
+
+    <insert id="addstreamUsers" parameterType="org.springblade.modules.sp.entity.StreamUsers">
+        INSERT INTO sl_stream_users(id,stream_id,user_id,auth_level,status)
+        VALUES(#{id},#{streamId},#{userId},#{authLevel},#{status});
+    </insert>
+
+    <update id="updateStreamUsers" parameterType="org.springblade.modules.sp.entity.StreamUsers">
+        UPDATE sl_stream_users
+        <if test="streamId != null">stream_id = #{streamId},</if>
+        <if test="userId != null">user_id = #{userId},</if>
+        <if test="authLevel != null">auth_level = #{authLevel},</if>
+        <if test="status != null">status = #{status},</if>
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteStreamUsers" parameterType="String">
+        DELETE FROM sl_stream_users WHERE id = #{id};
+    </delete>
+</mapper>

@@ -1,0 +1,19 @@
+${AnsiColor.BRIGHT_CYAN}           ░░░░░░░░░░░░░░░░░░░░░░░░▄░░                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            ░░░░░░░░░▐█░░░░░░░░░░░▄▀▒▌░                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            ░░░░░░░░▐▀▒█░░░░░░░░▄▀▒▒▒▐                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            ░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            ░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            ░░░▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            ░░▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            ░░▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            ░▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            ░▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            ▀▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒                           ${AnsiColor.BLUE}
+${AnsiColor.BRIGHT_CYAN}            行     为      艺       术。                           ${AnsiColor.BLUE}
+
+${AnsiColor.BLUE}:: smartlink :: ${spring.application.name}:${AnsiColor.RED}${blade.env}${AnsiColor.BLUE} :: Running SpringBoot ${spring-boot.version} :: ${AnsiColor.BRIGHT_BLACK}
+
+
+
+
+

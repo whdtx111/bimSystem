@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.FieldResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="fieldResourceResultMap" type="org.springblade.modules.sp.entity.FieldResource">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="tag" property="tag"/>
+        <result column="name" property="name"/>
+        <result column="data_type" property="dataType"/>
+        <result column="unit" property="unit"/>
+        <result column="type" property="type"/>
+        <result column="value" property="value"/>
+        <result column="required" property="required"/>
+        <result column="modify_user" property="modifyUser"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, tag, name, data_type, unit, type, value, required, modify_user, modify_time
+    </sql>
+
+    <select id="getMaxCodeNumber" resultType="java.lang.Integer">
+        SELECT COALESCE(MAX(CAST(SUBSTRING(code FROM 'CustomFields_(.*)') AS INTEGER)), 0)
+        FROM sp_field_resource
+        WHERE code LIKE 'CustomFields_%'
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="getById" resultMap="fieldResourceResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_field_resource
+        where id = #{id}
+    </select>
+
+    <select id="getByTag" resultMap="fieldResourceResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_field_resource
+        where tag = #{tag}
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="getAll" resultMap="fieldResourceResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_field_resource
+    </select>
+
+    <!-- 插入数据 -->
+    <insert id="addFieldResource" parameterType="org.springblade.modules.sp.entity.FieldResource">
+        insert into sp_field_resource
+        (id, code, tag, name, data_type, unit, type, value, required, modify_user, modify_time)
+        values
+            (#{id}, #{code}, #{tag}, #{name}, #{dataType}, #{unit}, #{type}, #{value}, #{required}, #{modifyUser}, #{modifyTime})
+    </insert>
+
+    <!-- 更新数据 -->
+    <update id="updateFieldResource" parameterType="org.springblade.modules.sp.entity.FieldResource">
+        update sp_field_resource
+        <set>
+            <if test="code != null">code = #{code},</if>
+            <if test="tag != null">tag = #{tag},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="dataType != null">data_type = #{dataType},</if>
+            <if test="unit != null">unit = #{unit},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="value != null">value = #{value},</if>
+            <if test="required != null">required = #{required},</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+            <if test="modifyTime != null">modify_time = #{modifyTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id="deleteById">
+        delete from sp_field_resource where id = #{id}
+    </delete>
+</mapper>

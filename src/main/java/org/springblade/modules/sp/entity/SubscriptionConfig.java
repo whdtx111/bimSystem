@@ -1,0 +1,64 @@
+package org.springblade.modules.sp.entity;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springblade.core.mp.base.BaseEntity;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.UUID;
+
+@Data
+@EqualsAndHashCode(callSuper = true)
+@TableName("sp_subscription_config")
+public class SubscriptionConfig extends BaseEntity {
+    private String id;
+    private String name;        // 配置名称
+    private Integer projectNum; // 项目数量 1-999
+    private Integer userNum;    // 人员数量 1-999
+    private Integer storage;    // 存储空间 1-999
+    private String storageUnit; // 存储单位 G/T
+    private Integer duration;   // 使用期限 1-999
+    private String price;   // 价格 0-10000000
+    private String discount;   // 折扣 1-99
+    private Integer status;     // 状态 0-下线 1-上线
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date createTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date onlineTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date offlineTime;
+
+//    套餐简介
+    private String introduction;
+//    套餐详情
+    private String description;
+
+    public SubscriptionConfig() {
+        this.id = UUID.randomUUID().toString();
+        this.createTime = new Date();
+    }
+
+    public SubscriptionConfig(String name, Integer projectNum, Integer userNum, Integer storage, String storageUnit, Integer duration, String price, String discount, Integer status,Date onlineTime,Date offlineTime,String introduction,String description) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.projectNum = projectNum;
+        this.userNum = userNum;
+        this.storage = storage;
+        this.storageUnit = storageUnit;
+        this.duration = duration;
+        this.price = price;
+        this.discount = discount;
+        this.status = status;
+        this.createTime = new Date();
+        this.onlineTime = onlineTime;
+        this.offlineTime = offlineTime;
+        this.introduction = introduction;
+        this.description = description;
+    }
+
+}

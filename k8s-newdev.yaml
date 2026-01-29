@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sp-server-newdev
+  namespace: smartlink-test
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sp-server-newdev
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 100%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: sp-server-newdev
+      annotations:
+        kubesphere.io/imagepullsecrets: '{"$REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:latest":"harbor-images"}'
+    spec:
+      containers:
+        - env:
+            - name: CACHE_IGNORE
+              value: js|html
+            - name: CACHE_PUBLIC_EXPIRATION
+              value: 3d
+          image: $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER
+          imagePullPolicy: Always
+          name: sp-server-newdev
+          args: ["--spring.profiles.active=$env"]
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      imagePullSecrets:
+        - name: harbor-images
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+## 创建Pod的Service
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: sp-server
+#  namespace: devops
+#spec:
+#  ports:
+#    - name: http
+#      port: 80
+#      protocol: TCP
+#      targetPort: 80
+#      nodePort: 30318
+#  selector:
+#    app: sp-server
+#  sessionAffinity: None
+#  type: NodePort

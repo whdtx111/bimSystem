@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.LibDicDetailMapper">
+    <resultMap id="libDicDetailResultMap" type="org.springblade.modules.sp.entity.LibDicDetail">
+        <id property="id" column="id"/>
+        <result property="pid" column="pid"/>
+        <result property="name" column="name"/>
+        <result property="value" column="value"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="userName" column="user_name"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!-- 添加DTO的结果映射 -->
+    <resultMap id="libDicDetailDTOResultMap" type="org.springblade.modules.sp.dto.LibDicDetailDTO" extends="libDicDetailResultMap">
+        <result property="code" column="code"/>
+    </resultMap>
+
+    <!-- 查询所有字典项并带有字典code -->
+    <select id="listAllWithCode" resultMap="libDicDetailDTOResultMap">
+        SELECT
+            d.*,
+            dic.code
+        FROM lib_dic_detail d
+                 LEFT JOIN lib_dictionary dic ON d.pid = dic.id
+        WHERE d.status = 0
+        ORDER BY dic.code, d.create_time DESC
+    </select>
+
+    <select id="getLibDicDetailByPid" resultMap="libDicDetailResultMap">
+        SELECT * FROM lib_dic_detail WHERE pid = #{pid} AND status = 0
+    </select>
+
+    <select id="getLibDicDetailById" resultMap="libDicDetailResultMap">
+        SELECT * FROM lib_dic_detail WHERE id = #{id} and status = 0
+    </select>
+
+    <insert id="addLibDicDetail" parameterType="org.springblade.modules.sp.entity.LibDicDetail">
+        INSERT INTO lib_dic_detail (id, pid, name, value, remark,create_time,modify_time,user_name,status)
+        VALUES (#{id}, #{pid}, #{name}, #{value}, #{remark},#{createTime},#{modifyTime},#{userName},#{status})
+    </insert>
+
+    <insert id="addLibDicDetailList" parameterType="java.util.List">
+        INSERT INTO lib_dic_detail (id, pid, name, value, remark,create_time,modify_time,user_name,status)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.pid},#{item.name}, #{item.value}, #{item.remark},#{item.createTime},#{item.modifyTime},#{item.userName},#{item.status})
+        </foreach>
+    </insert>
+
+    <update id="updateLibDicDetail" parameterType="org.springblade.modules.sp.entity.LibDicDetail">
+        UPDATE lib_dic_detail
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="value != null">value = #{value},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="status != null">status = #{status},</if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateLibDicDetailStatus" parameterType="org.springblade.modules.sp.entity.LibDicDetail">
+        UPDATE lib_dic_detail
+        <set>
+            <if test="status != null">status = #{status},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteLibDicDetailById">
+        DELETE FROM lib_dic_detail WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteLibDicDetailByPid">
+        DELETE FROM lib_dic_detail WHERE pid = #{pid}
+    </delete>
+
+</mapper>

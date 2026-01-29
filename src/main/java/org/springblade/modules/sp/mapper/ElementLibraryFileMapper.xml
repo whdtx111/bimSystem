@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.ElementLibraryFileMapper">
+
+    <!-- ResultMap for ElementLibraryFile -->
+    <resultMap id="ElementLibraryFileResultMap" type="org.springblade.modules.sp.entity.ElementLibraryFile">
+        <id property="id" column="id"/>
+        <result property="pid" column="pid"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="system" column="system"/>
+        <result property="lod" column="lod"/>
+        <result property="fileUrl" column="file_url"/>
+        <result property="fileSize" column="file_size" jdbcType="BIGINT"/>
+        <result property="modifyUser" column="modify_user"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!-- Select by ID -->
+    <select id="getById" resultMap="ElementLibraryFileResultMap">
+        SELECT * FROM sp_element_library_file WHERE id = #{id};
+    </select>
+
+    <!-- Select all records -->
+    <select id="getAll" resultMap="ElementLibraryFileResultMap">
+        SELECT * FROM sp_element_library_file where pid = #{pid};
+    </select>
+
+    <!-- Insert single record -->
+    <insert id="addElementLibraryFile" parameterType="org.springblade.modules.sp.entity.ElementLibraryFile">
+        INSERT INTO sp_element_library_file (id,pid,name, type, system, lod, file_url, file_size, modify_user, modify_time, status)
+        VALUES (#{id},#{pid},#{name}, #{type}, #{system}, #{lod}, #{fileUrl}, #{fileSize}, #{modifyUser}, #{modifyTime}, #{status});
+    </insert>
+
+    <!-- Insert multiple records -->
+    <insert id="insertElementLibraryFileList" parameterType="java.util.List">
+        INSERT INTO sp_element_library_file (id,pid,name, type, system, lod, file_url, file_size, modify_user, modify_time, status)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.pid},#{item.name}, #{item.type}, #{item.system}, #{item.lod}, #{item.fileUrl}, #{item.fileSize},
+            #{item.modifyUser}, #{item.modifyTime}, #{item.status})
+        </foreach>
+    </insert>
+
+    <!-- Update record -->
+    <update id="updateElementLibraryFile" parameterType="org.springblade.modules.sp.entity.ElementLibraryFile">
+        UPDATE sp_element_library_file
+        <set>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="system != null">system = #{system},</if>
+            <if test="lod != null">lod = #{lod},</if>
+            <if test="fileUrl != null">file_url = #{fileUrl},</if>
+            <if test="fileSize != null">file_size = #{fileSize},</if>
+            <if test="modifyUser != null">modify_user = #{modifyUser},</if>
+            <if test="status != null">status = #{status},</if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!-- Delete by ID -->
+    <delete id="deleteElementLibraryFile" parameterType="String">
+        DELETE FROM sp_element_library_file WHERE id = #{id};
+    </delete>
+</mapper>

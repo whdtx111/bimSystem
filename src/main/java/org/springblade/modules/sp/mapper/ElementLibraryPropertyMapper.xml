@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.ElementLibraryPropertyMapper">
+
+    <!-- ResultMap for ElementLibraryProperty -->
+    <resultMap id="ElementLibraryPropertyResultMap" type="org.springblade.modules.sp.entity.ElementLibraryProperty">
+        <id property="id" column="id"/>
+        <result property="pid" column="pid"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+    </resultMap>
+
+    <!-- Select by ID -->
+    <select id="getById" resultMap="ElementLibraryPropertyResultMap">
+        SELECT * FROM sp_element_library_property WHERE id = #{id};
+    </select>
+
+    <!-- Select all records -->
+    <select id="getAll" resultMap="ElementLibraryPropertyResultMap">
+        SELECT * FROM sp_element_library_property where pid = #{pid};
+    </select>
+
+    <!-- Insert single record -->
+    <insert id="addElementLibraryProperty" parameterType="org.springblade.modules.sp.entity.ElementLibraryProperty">
+        INSERT INTO sp_element_library_property (id,pid, name, type)
+        VALUES (#{id},#{pid},#{name}, #{type});
+    </insert>
+
+    <!-- Insert multiple records -->
+    <insert id="insertElementLibraryPropertyList" parameterType="java.util.List">
+        INSERT INTO sp_element_library_property (id,pid,name, type)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.pid},#{item.name}, #{item.type})
+        </foreach>
+    </insert>
+
+    <!-- Update record -->
+    <update id="updateElementLibraryProperty" parameterType="org.springblade.modules.sp.entity.ElementLibraryProperty">
+        UPDATE sp_element_library_property
+        <set>
+            <if test="pid!= null">pid = #{pid},</if>
+            <if test="name!= null">name = #{name},</if>
+            <if test="type!= null">type = #{type}</if>
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!-- Delete by ID -->
+    <delete id="deleteElementLibraryProperty" parameterType="String">
+        DELETE FROM sp_element_library_property WHERE id = #{id};
+    </delete>
+</mapper>

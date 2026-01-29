@@ -1,0 +1,22 @@
+package org.springblade.modules.sp.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+import org.springblade.modules.sp.entity.ElementLibraryProperty;
+
+import java.util.List;
+@Mapper
+public interface ElementLibraryPropertyMapper extends BaseMapper<ElementLibraryProperty> {
+
+    ElementLibraryProperty getById(String id);
+
+    List<ElementLibraryProperty> getAll();
+
+    boolean addElementLibraryProperty(ElementLibraryProperty elementLibraryProperty);
+
+    boolean updateElementLibraryProperty(ElementLibraryProperty elementLibraryProperty);
+
+    boolean deleteElementLibraryProperty(String id);
+
+    boolean insertElementLibraryPropertyList(List<ElementLibraryProperty> list);
+}

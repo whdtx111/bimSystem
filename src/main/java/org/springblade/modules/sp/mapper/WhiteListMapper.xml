@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.sp.mapper.WhiteListMapper">
+
+    <resultMap id="whiteListResultMap" type="org.springblade.modules.sp.entity.WhiteList">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="template_id" property="templateId"/>
+        <result column="file_id" property="fileId"/>
+        <result column="stream_id" property="streamId"/>
+        <result column="branch_id" property="branchId"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- 根据ID查询 -->
+    <select id="getById" resultMap="whiteListResultMap">
+        SELECT * FROM sp_white_list WHERE id = #{id}
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="getAll" resultMap="whiteListResultMap">
+        SELECT * FROM sp_white_list ORDER BY create_time DESC
+    </select>
+
+    <!-- 根据模板ID查询 -->
+    <select id="getByTemplateId" resultMap="whiteListResultMap">
+        SELECT * FROM sp_white_list 
+        WHERE template_id = #{templateId}
+          and stream_id = #{streamId}
+        <if test="branchId != null and branchId != ''">
+            AND branch_id = #{branchId}
+        </if>
+        ORDER BY create_time
+    </select>
+
+    <!-- 根据文件ID查询 -->
+    <select id="getByFileId" resultMap="whiteListResultMap">
+        SELECT * FROM sp_white_list WHERE file_id = #{fileId} ORDER BY create_time
+    </select>
+
+    <!-- 根据名称查询 -->
+    <select id="getByName" resultMap="whiteListResultMap">
+        SELECT * FROM sp_white_list WHERE name = #{name} ORDER BY create_time DESC
+    </select>
+
+    <!-- 批量新增 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO sp_white_list (id, name, template_id, file_id, stream_id, branch_id, create_time, modify_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id}, #{item.name}, #{item.templateId}, #{item.fileId}, #{item.streamId}, #{item.branchId}, #{item.createTime}, #{item.modifyTime})
+        </foreach>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="updateWhiteList" parameterType="org.springblade.modules.sp.entity.WhiteList">
+        UPDATE sp_white_list
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="templateId != null">template_id = #{templateId},</if>
+            <if test="fileId != null">file_id = #{fileId},</if>
+            <if test="streamId != null">stream_id = #{streamId},</if>
+            <if test="branchId != null">branch_id = #{branchId},</if>
+            modify_time = #{modifyTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById">
+        DELETE FROM sp_white_list WHERE id = #{id}
+    </delete>
+
+    <!-- 根据模板ID删除 -->
+    <delete id="deleteByTemplateId">
+        DELETE FROM sp_white_list WHERE template_id = #{templateId}
+    </delete>
+
+    <!-- 根据文件ID删除 -->
+    <delete id="deleteByFileId">
+        DELETE FROM sp_white_list WHERE file_id = #{fileId}
+    </delete>
+
+</mapper>
